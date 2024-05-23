@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 
 const LostItemCard = () => {
   return (
-    <div className="rounded-xl p-4 border border-black">
+    <div className="rounded-xl p-4 border border-black bg-white">
       <h3 className="text-xl font-semibold text-center mb-3">Lost Item</h3>
       <div className="flex flex-col gap-1">
         <p className="mb-3">
