@@ -11,7 +11,7 @@ type TProps = {
 const TeamMemberCard = ({ member }: TProps) => {
   return (
     <div className="rounded-3xl flex-1 p-4 overflow-hidden">
-      <div className="mx-auto border-2 border-blue-500 rounded-full p-1 h-[150px] w-[150px]">
+      <div className="mx-auto border-2 border-pink-500 rounded-full p-1 h-[150px] w-[150px]">
         <div className="size-full rounded-full overflow-hidden relative">
           <Image
             src={member.image}

@@ -12,7 +12,8 @@ const HeroSection = () => {
       <div className="">
         <div className="flex flex-col gap-5 items-center">
           <h1 className="text-5xl font-semibold text-center uppercase leading-[3.8rem]">
-            Connecting People with Their <br /> Possessions!
+            <span className="text-pink-500">Connecting People</span> with Their{" "}
+            <br /> Possessions!
           </h1>
           {/* <h2 className="text-3xl text-center">
             Reclaim {"What's"} Yours, Return What You Found!
@@ -25,8 +26,13 @@ const HeroSection = () => {
         </div>
 
         <div className="flex mt-8 gap-5 justify-center">
-          <Button>Report A Lost Item</Button>
-          <Button variant="outline" className="bg-transparent border-black">
+          <Button className="bg-pink-500 hover:bg-pink-600">
+            Report A Lost Item
+          </Button>
+          <Button
+            variant="outline"
+            className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+          >
             Report A Found Item
           </Button>
         </div>
