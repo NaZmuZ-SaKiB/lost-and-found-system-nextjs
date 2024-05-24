@@ -19,7 +19,7 @@ export const signUpAction = async (data: any) => {
 
   const result = await res.json();
 
-  cookies().set("jwt", result.token, {
+  cookies().set("jwt", result.data.token, {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,
     sameSite: "strict",
@@ -42,7 +42,7 @@ export const signInAction = async (email: string, password: string) => {
 
   const result = await res.json();
 
-  cookies().set("jwt", result.token, {
+  cookies().set("jwt", result.data.token, {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,
     sameSite: "strict",
@@ -51,6 +51,11 @@ export const signInAction = async (email: string, password: string) => {
   });
 
   return result;
+};
+
+export const signOutAction = async () => {
+  cookies().delete("jwt");
+  redirect("/");
 };
 
 export const currentUser = async () => {
@@ -79,12 +84,15 @@ export const currentUser = async () => {
 
 type TJwtPayload = { id: string; email: string; role: "ADMIN" | "USER" };
 
-export const isUserLoggedIn = (): TJwtPayload | null => {
+export const isUserLoggedIn = async () => {
   try {
     const token = cookies().get("jwt");
     if (!token?.value) return null;
 
-    const decoded = jwt.verify(token.value, process.env.TOKEN_SECRET as string);
+    const decoded = await jwt.verify(
+      token.value,
+      process.env.TOKEN_SECRET as string
+    );
 
     return decoded as TJwtPayload;
   } catch (error: any) {

@@ -3,8 +3,12 @@ import Link from "next/link";
 
 import Logo from "@/assets/images/logo-small.png";
 import { Button } from "../ui/button";
+import { isUserLoggedIn } from "@/lib/actions/auth.actions";
+import LogoutButton from "../Shared/LogoutButton";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const user = await isUserLoggedIn();
+
   return (
     <header className="border-b py-3">
       <div className="container flex gap-3 justify-between items-center">
@@ -25,20 +29,36 @@ const Navbar = () => {
           >
             About Us
           </Link>
+          {user?.id && (
+            <Link
+              className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+              href="/my-profile"
+            >
+              My Profile
+            </Link>
+          )}
         </div>
 
         <div className="space-x-3">
-          <Link href="/sign-in">
-            <Button
-              variant="outline"
-              className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
-            >
-              Sign In
-            </Button>
-          </Link>
-          <Link href="/sign-up">
-            <Button className="bg-pink-500 hover:bg-pink-600">Sign Up</Button>
-          </Link>
+          {user?.id ? (
+            <LogoutButton />
+          ) : (
+            <>
+              <Link href="/sign-in">
+                <Button
+                  variant="outline"
+                  className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/sign-up">
+                <Button className="bg-pink-500 hover:bg-pink-600">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
