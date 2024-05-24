@@ -1,12 +1,5 @@
 import {
-  Control,
-  Controller,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
-import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,7 +15,7 @@ import { Calendar } from "../ui/calendar";
 type TProps = {
   name: string;
   label: string;
-  control: Control<FieldValues>;
+  control: any;
 };
 
 const CustomDatePicker = ({ name, label, control }: TProps) => {
@@ -31,7 +24,7 @@ const CustomDatePicker = ({ name, label, control }: TProps) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col">
+        <FormItem className="flex flex-col gap-1 w-full">
           <FormLabel>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
@@ -39,7 +32,7 @@ const CustomDatePicker = ({ name, label, control }: TProps) => {
                 <Button
                   variant={"outline"}
                   className={cn(
-                    "w-[240px] pl-3 text-left font-normal",
+                    "w-full pl-3 text-left font-normal",
                     !field.value && "text-muted-foreground"
                   )}
                 >

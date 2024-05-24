@@ -161,19 +161,6 @@ const ReportLostItemPage = () => {
               )}
             />
 
-            {/* <FormField
-              control={form.control}
-              name="lostDate"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1 w-full">
-                  <FormLabel className="">Lost Date</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Lost Date" className="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
             <CustomDatePicker
               name="lostDate"
               label="Lost Date"
