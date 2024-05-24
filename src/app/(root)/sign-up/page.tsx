@@ -15,13 +15,11 @@ import { SignUpValidation } from "@/lib/validations/auth.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
 const SignUpPage = () => {
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const form = useForm({
@@ -37,8 +35,6 @@ const SignUpPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof SignUpValidation>) => {
-    setError(null);
-
     try {
       const result = await signUpAction(values);
 
@@ -46,12 +42,12 @@ const SignUpPage = () => {
       if (result.success) {
         toast.success("Account created successfully");
         form.reset();
+        router.push("/");
       } else {
-        setError(result?.message);
+        toast.error(result?.message);
       }
-      router.push("/");
     } catch (error: any) {
-      setError(error.message);
+      toast.error(error?.message || "Failed to create account");
     }
   };
   return (
@@ -65,10 +61,6 @@ const SignUpPage = () => {
             <h1 className="text-4xl font-semibold text-center">Sign up</h1>
             <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
           </div>
-
-          {error && (
-            <div className="bg-red-500 text-white p-2 text-sm">{error}</div>
-          )}
 
           <FormField
             control={form.control}

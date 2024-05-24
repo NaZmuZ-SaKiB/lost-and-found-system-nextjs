@@ -10,16 +10,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signInAction } from "@/lib/actions/auth.actions";
 import { SignInValidation } from "@/lib/validations/auth.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const SignInPage = () => {
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const form = useForm({
@@ -32,12 +32,19 @@ const SignInPage = () => {
 
   const onSubmit = async (values: z.infer<typeof SignInValidation>) => {
     try {
-      console.log(values);
+      const result = await signInAction(values.email, values.password);
 
-      // await signIn(values.email, values.password);
-      // form.reset();
-      // router.push("/");
-    } catch (error: any) {}
+      console.log(result);
+      if (result.success) {
+        toast.success("Login successful");
+        form.reset();
+        router.push("/");
+      } else {
+        toast.error(result?.message);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to login");
+    }
   };
   return (
     <section className="max-w-screen-sm mx-auto !py-20">
@@ -50,10 +57,6 @@ const SignInPage = () => {
             <h1 className="text-4xl font-semibold text-center">Sign in</h1>
             <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
           </div>
-
-          {error && (
-            <div className="bg-red-500 text-white p-2 text-sm">{error}</div>
-          )}
 
           <FormField
             control={form.control}
