@@ -10,12 +10,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signUpAction } from "@/lib/actions/auth.actions";
 import { SignUpValidation } from "@/lib/validations/auth.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const SignUpPage = () => {
@@ -35,13 +37,22 @@ const SignUpPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof SignUpValidation>) => {
-    try {
-      console.log(values);
+    setError(null);
 
-      // await signIn(values.email, values.password);
-      // form.reset();
-      // router.push("/");
-    } catch (error: any) {}
+    try {
+      const result = await signUpAction(values);
+
+      console.log(result);
+      if (result.success) {
+        toast.success("Account created successfully");
+        form.reset();
+      } else {
+        setError(result?.message);
+      }
+      router.push("/");
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
   return (
     <section className="max-w-screen-sm mx-auto !py-20">

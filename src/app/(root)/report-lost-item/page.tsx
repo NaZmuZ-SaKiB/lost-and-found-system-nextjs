@@ -164,7 +164,7 @@ const ReportLostItemPage = () => {
             <CustomDatePicker
               name="lostDate"
               label="Lost Date"
-              control={form.control as any}
+              control={form.control}
             />
           </div>
           <Button
