@@ -1,4 +1,3 @@
-import Footer from "@/components/Layout/Footer";
 import AboutSection from "@/components/Shared/HomePage/AboutSection";
 import HeroSection from "@/components/Shared/HomePage/HeroSection";
 import OurTeam from "@/components/Shared/HomePage/OurTeam";
@@ -11,7 +10,6 @@ export default function Home() {
       <AboutSection />
       <OurTeam />
       <RecentLostItems />
-      <Footer />
     </main>
   );
 }
