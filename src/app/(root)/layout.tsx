@@ -4,6 +4,7 @@ import "../globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Toaster } from "sonner";
+import Providers from "@/lib/Providers/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,15 +20,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <>
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster position="top-center" />
-        </>
-      </body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className={inter.className}>
+          <>
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster position="top-center" />
+          </>
+        </body>
+      </html>
+    </Providers>
   );
 }
