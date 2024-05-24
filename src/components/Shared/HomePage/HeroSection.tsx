@@ -1,5 +1,5 @@
-import GirlLostItemImage from "@/assets/images/girl-lost-item.jpg";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -26,15 +26,19 @@ const HeroSection = () => {
         </div>
 
         <div className="flex mt-8 gap-5 justify-center">
-          <Button className="bg-pink-500 hover:bg-pink-600">
-            Report A Lost Item
-          </Button>
-          <Button
-            variant="outline"
-            className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
-          >
-            Report A Found Item
-          </Button>
+          <Link href="/report-lost-item">
+            <Button className="bg-pink-500 hover:bg-pink-600">
+              Report A Lost Item
+            </Button>
+          </Link>
+          <Link href="/report-found-item">
+            <Button
+              variant="outline"
+              className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+            >
+              Report A Found Item
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

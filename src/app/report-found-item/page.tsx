@@ -10,31 +10,30 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignUpValidation } from "@/lib/validations/auth.validation";
+import { FoundItemCreateValidation } from "@/lib/validations/foundItem.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const SignUpPage = () => {
+const ReportFoundItemPage = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const form = useForm({
-    resolver: zodResolver(SignUpValidation),
+    resolver: zodResolver(FoundItemCreateValidation),
     defaultValues: {
-      email: "",
-      password: "",
-      name: "",
-      profile: {
-        contactNo: "",
-      },
+      categoryId: "",
+      foundItemName: "",
+      description: "",
+      location: "",
+      foundDate: new Date().toISOString(),
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof SignUpValidation>) => {
+  const onSubmit = async (
+    values: z.infer<typeof FoundItemCreateValidation>
+  ) => {
     try {
       console.log(values);
 
@@ -43,16 +42,19 @@ const SignUpPage = () => {
       // router.push("/");
     } catch (error: any) {}
   };
+
   return (
     <section className="max-w-screen-sm mx-auto !py-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-start gap-6 max-sm:gap-6"
+          className="flex flex-col justify-start gap-5 max-sm:gap-6"
         >
-          <div className="mb-5">
-            <h1 className="text-4xl font-semibold text-center">Sign up</h1>
-            <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+          <div className="mb-10">
+            <h1 className="text-4xl font-semibold text-center">
+              Report Found Item
+            </h1>
+            <div className="w-[125px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
           </div>
 
           {error && (
@@ -61,12 +63,12 @@ const SignUpPage = () => {
 
           <FormField
             control={form.control}
-            name="name"
+            name="categoryId"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-1 w-full">
-                <FormLabel className="">Name</FormLabel>
+                <FormLabel className="">Category*</FormLabel>
                 <FormControl>
-                  <Input placeholder="Name" className="" {...field} />
+                  <Input placeholder="Category" className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -75,45 +77,62 @@ const SignUpPage = () => {
 
           <FormField
             control={form.control}
-            name="email"
+            name="foundItemName"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-1 w-full">
-                <FormLabel className="">Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="Email" className="" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="profile.contactNo"
-            render={({ field }) => (
-              <FormItem className="flex flex-col gap-1 w-full">
-                <FormLabel className="">Contact No</FormLabel>
-                <FormControl>
-                  <Input placeholder="Contact No" className="" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="flex flex-col gap-1 w-full">
-                <FormLabel className="">Password</FormLabel>
+                <FormLabel className="">Found Item Name*</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Password"
-                    type="password"
+                    placeholder="Found Item Name"
                     className=""
                     {...field}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-1 w-full">
+                <FormLabel className="">Description*</FormLabel>
+                <FormControl>
+                  <Input placeholder="Description" className="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-1 w-full">
+                <FormLabel className="">Where it was found ?*</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Where it was lost ?"
+                    className=""
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="foundDate"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-1 w-full">
+                <FormLabel className="">Lost Date</FormLabel>
+                <FormControl>
+                  <Input placeholder="Lost Date" className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,18 +144,12 @@ const SignUpPage = () => {
             type="submit"
             disabled={form.formState.isSubmitting}
           >
-            {!form.formState.isSubmitting ? "Sign Up" : "Signing Up..."}
+            {!form.formState.isSubmitting ? "Submit" : "Submiting..."}
           </Button>
         </form>
-        <p className=" mt-3">
-          Already have an account?{" "}
-          <Link href="/sign-in" className="text-pink-500">
-            Sign in
-          </Link>
-        </p>
       </Form>
     </section>
   );
 };
 
-export default SignUpPage;
+export default ReportFoundItemPage;

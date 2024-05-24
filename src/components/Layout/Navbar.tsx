@@ -8,9 +8,9 @@ const Navbar = () => {
   return (
     <header className="border-b py-3">
       <div className="container flex gap-3 justify-between items-center">
-        <div>
+        <Link href="/">
           <Image src={Logo.src} height={50} width={50} alt="logo" />
-        </div>
+        </Link>
 
         <div className="text-gray-600 space-x-4">
           <Link

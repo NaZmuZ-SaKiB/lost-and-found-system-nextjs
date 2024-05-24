@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const LostItemCreateValidation = z.object({
+export const FoundItemCreateValidation = z.object({
   categoryId: z
     .string({
       invalid_type_error: "Category ID must be a string.",
@@ -8,18 +8,12 @@ export const LostItemCreateValidation = z.object({
     })
     .min(1, { message: "Category ID can't be empty." }),
 
-  lostItemName: z
+  foundItemName: z
     .string({
       invalid_type_error: "Found Item Name must be a string.",
       required_error: "Found Item Name is required.",
     })
-    .min(1, { message: "Lost Item Name can't be empty." }),
-
-  brand: z
-    .string({
-      invalid_type_error: "Brand must be a string.",
-    })
-    .optional(),
+    .min(1, { message: "Found Item Name can't be empty." }),
 
   description: z
     .string({
@@ -35,7 +29,7 @@ export const LostItemCreateValidation = z.object({
     })
     .min(1, { message: "Location can't be empty." }),
 
-  lostDate: z
+  foundDate: z
     .string({
       invalid_type_error: "Lost Date must be a string.",
     })
@@ -44,6 +38,12 @@ export const LostItemCreateValidation = z.object({
   contactNo: z
     .string({
       invalid_type_error: "Contact No must be a string.",
+    })
+    .optional(),
+
+  brand: z
+    .string({
+      invalid_type_error: "Brand must be a string.",
     })
     .optional(),
 });
