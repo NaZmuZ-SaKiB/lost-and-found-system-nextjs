@@ -73,7 +73,7 @@ export const currentUser = async () => {
 
     return await res.json();
   } catch (error: any) {
-    redirect("/");
+    return null;
   }
 };
 

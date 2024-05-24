@@ -27,8 +27,8 @@ const SignUpPage = () => {
     defaultValues: {
       email: "",
       password: "",
-      name: "",
       profile: {
+        name: "",
         contactNo: "",
       },
     },
@@ -64,7 +64,7 @@ const SignUpPage = () => {
 
           <FormField
             control={form.control}
-            name="name"
+            name="profile.name"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-1 w-full">
                 <FormLabel className="">Name</FormLabel>
