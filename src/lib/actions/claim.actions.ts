@@ -32,3 +32,18 @@ export const getAllClaims = async (query?: Record<string, any>) => {
 
   return result;
 };
+
+export const deleteClaim = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      cache: "no-cache",
+    }
+  );
+
+  return await res.json();
+};

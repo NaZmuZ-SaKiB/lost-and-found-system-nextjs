@@ -7,7 +7,6 @@ type TProps = {
 
 const MyClaims = async ({ userId }: TProps) => {
   const claims = await getAllClaims({ userId });
-  console.log("claims", claims);
 
   return (
     <section className="container !py-10 !px-8 border border-pink-500 rounded-3xl">
@@ -15,9 +14,13 @@ const MyClaims = async ({ userId }: TProps) => {
       <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 
       <div className="flex gap-5 mt-10 justify-center">
-        {claims?.data?.map((claim: any) => (
-          <ClaimCard key={claim.id} claim={claim} userId={userId} />
-        ))}
+        {claims?.data?.length ? (
+          claims?.data?.map((claim: any) => (
+            <ClaimCard key={claim.id} claim={claim} userId={userId} />
+          ))
+        ) : (
+          <p>No Claim Requests</p>
+        )}
       </div>
     </section>
   );

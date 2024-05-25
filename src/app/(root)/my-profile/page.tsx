@@ -1,4 +1,6 @@
 import MyClaims from "@/components/Shared/ProfilePage/MyClaims";
+import MyFoundItems from "@/components/Shared/ProfilePage/MyFoundItems";
+import MyLostItems from "@/components/Shared/ProfilePage/MyLostItems";
 import ProfileHeader from "@/components/Shared/ProfilePage/ProfileHeader";
 import { currentUser } from "@/lib/actions/auth.actions";
 
@@ -15,6 +17,8 @@ const MyProfilePage = async () => {
         bio={user.bio}
       />
       <MyClaims userId={user.user.id} />
+      <MyLostItems userId={user.user.id} />
+      <MyFoundItems userId={user.user.id} />
     </main>
   );
 };

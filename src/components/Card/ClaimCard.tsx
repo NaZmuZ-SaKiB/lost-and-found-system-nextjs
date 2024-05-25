@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import ClaimCardDeleteButton from "../Shared/ClaimCardDeleteButton";
 
 type TProps = { claim: any; userId: string };
 
 const ClaimCard = ({ claim, userId }: TProps) => {
   const isMyClaim = userId === claim?.userId;
-  console.log(userId);
-  console.log(claim?.userId);
 
   return (
     <div className="rounded-xl p-4 pb-16 border border-black bg-white relative basis-[300px]">
@@ -16,9 +15,9 @@ const ClaimCard = ({ claim, userId }: TProps) => {
       <div className="flex flex-col gap-1">
         <p className="mb-3">{claim.foundItem.description}</p>
         <p>
-          <span className="font-semibold">Category:</span>{" "}
-          {claim.foundItem.category.name}
+          <span className="font-semibold">Status:</span> {claim.status}
         </p>
+
         <p>
           <span className="font-semibold">Location:</span>{" "}
           {claim.foundItem.location}
@@ -29,10 +28,7 @@ const ClaimCard = ({ claim, userId }: TProps) => {
             claim.foundItem.foundDate || claim.foundItem.createdAt
           ).toLocaleDateString()}
         </p>
-        <p>
-          <span className="font-semibold">Found By:</span>{" "}
-          {claim.foundItem.user.userProfile.name}
-        </p>
+
         <p>
           <span className="font-semibold">Contact:</span>{" "}
           {claim.foundItem.contactNo ||
@@ -49,11 +45,7 @@ const ClaimCard = ({ claim, userId }: TProps) => {
             View
           </Button>
         </Link>
-        {isMyClaim && (
-          <Button variant="destructive" size="sm">
-            Delete
-          </Button>
-        )}
+        {isMyClaim && <ClaimCardDeleteButton claimId={claim.id} />}
       </div>
     </div>
   );
