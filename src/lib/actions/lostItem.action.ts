@@ -23,19 +23,11 @@ export const createLostItem = async (data: any) => {
   return await res.json();
 };
 
-export const getAllLostItems = async (query: Record<string, any>) => {
-  await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/lost-items`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-  });
-
+export const getAllLostItems = async (query?: Record<string, any>) => {
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/lost-items`,
     {
-      params: query,
+      params: query || {},
     }
   );
 

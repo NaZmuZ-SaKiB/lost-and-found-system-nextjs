@@ -21,13 +21,15 @@ export const signUpAction = async (data: any) => {
 
   const result = await res.json();
 
-  cookies().set("jwt", result.data.token, {
-    secure: process.env.NODE_ENV === "production",
-    httpOnly: true,
-    sameSite: "strict",
-    path: "/",
-    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-  });
+  if (result.success) {
+    cookies().set("jwt", result.data.token, {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "strict",
+      path: "/",
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+    });
+  }
 
   return result;
 };
@@ -44,13 +46,15 @@ export const signInAction = async (email: string, password: string) => {
 
   const result = await res.json();
 
-  cookies().set("jwt", result.data.token, {
-    secure: process.env.NODE_ENV === "production",
-    httpOnly: true,
-    sameSite: "strict",
-    path: "/",
-    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-  });
+  if (result.success) {
+    cookies().set("jwt", result.data.token, {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "strict",
+      path: "/",
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+    });
+  }
 
   return result;
 };

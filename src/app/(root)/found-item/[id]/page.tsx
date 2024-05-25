@@ -2,7 +2,7 @@ import ClaimForm from "@/components/Shared/FoundItemPage/ClaimForm";
 import FoundItemInfo from "@/components/Shared/FoundItemPage/FoundItemInfo";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import {
-  getAllFoundItemById,
+  getFoundItemById,
   isFoundItemClaimedByMe,
 } from "@/lib/actions/foundItem.actions";
 
@@ -15,7 +15,7 @@ type TProps = {
 const SingleLostItemPage = async ({ params }: TProps) => {
   const user = await isUserLoggedIn();
 
-  const foundItem = await getAllFoundItemById(params.id);
+  const foundItem = await getFoundItemById(params.id);
 
   const isClaimed = await isFoundItemClaimedByMe(params.id);
 

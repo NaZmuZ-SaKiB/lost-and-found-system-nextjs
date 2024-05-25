@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import Link from "next/link";
 
+export const fetchCache = "force-no-store";
+
 const FoundItemPage = async () => {
   const foundItems = await getAllFoundItems();
 

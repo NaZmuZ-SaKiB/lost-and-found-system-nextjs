@@ -1,5 +1,6 @@
 "use server";
 
+import axios from "axios";
 import { cookies } from "next/headers";
 
 export const createFoundItem = async (data: any) => {
@@ -19,19 +20,15 @@ export const createFoundItem = async (data: any) => {
   return await res.json();
 };
 
-export const getAllFoundItems = async () => {
-  const res = await fetch(
+export const getAllFoundItems = async (query?: Record<string, any>) => {
+  const res = await axios.get(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/found-items`,
     {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-cache",
+      params: query || {},
     }
   );
 
-  const result = await res.json();
+  const result = res.data;
 
   if (result.success) {
     return result.data;
@@ -40,7 +37,7 @@ export const getAllFoundItems = async () => {
   }
 };
 
-export const getAllFoundItemById = async (id: string) => {
+export const getFoundItemById = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/found-items/${id}`,
     {
