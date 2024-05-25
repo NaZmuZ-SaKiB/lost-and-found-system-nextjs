@@ -38,7 +38,6 @@ const SignUpPage = () => {
     try {
       const result = await signUpAction(values);
 
-      console.log(result);
       if (result.success) {
         toast.success("Account created successfully");
         form.reset();

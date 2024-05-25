@@ -1,4 +1,6 @@
+import Link from "next/link";
 import ProfileUpdateModal from "./ProfileUpdateModal";
+import { Button } from "@/components/ui/button";
 
 type TProps = {
   name: string;
@@ -13,7 +15,13 @@ const ProfileHeader = ({ name, email, age, contactNo, bio }: TProps) => {
     <section className="container !py-10 !px-8 bg-gray-100 rounded-3xl">
       <div className="flex justify-between items-center gap-4">
         <h1 className="text-4xl font-semibold">My Profile</h1>
-        <ProfileUpdateModal />
+        <ProfileUpdateModal
+          name={name}
+          email={email}
+          age={age}
+          contactNo={contactNo}
+          bio={bio}
+        />
       </div>
 
       <div className="mt-10 flex max-sm:flex-col gap-4 items-center">
@@ -43,7 +51,18 @@ const ProfileHeader = ({ name, email, age, contactNo, bio }: TProps) => {
       <div className="w-full text-lg bg-white px-4 py-2 rounded-lg mt-4">
         <span className="font-semibold text-sm text-pink-500">Bio</span>
         <br />
-        <span className="font-semibold">{bio || "N/A"}</span>
+        <span className="text-base">{bio || "N/A"}</span>
+      </div>
+
+      <div className="mt-5">
+        <Link href="/change-password">
+          <Button
+            variant="outline"
+            className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+          >
+            Change Password
+          </Button>
+        </Link>
       </div>
     </section>
   );

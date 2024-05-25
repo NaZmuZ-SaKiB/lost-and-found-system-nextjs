@@ -34,7 +34,6 @@ const SignInPage = () => {
     try {
       const result = await signInAction(values.email, values.password);
 
-      console.log(result);
       if (result.success) {
         toast.success("Login successful");
         form.reset();
