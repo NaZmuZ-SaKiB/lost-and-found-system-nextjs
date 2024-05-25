@@ -25,7 +25,7 @@ import { z } from "zod";
 const ReportLostItemPage = () => {
   const router = useRouter();
 
-  const { data, isLoading } = useGetAllCategoriesQuery(undefined);
+  const { data: categoriess, isLoading } = useGetAllCategoriesQuery(undefined);
 
   const form = useForm({
     resolver: zodResolver(LostItemCreateValidation),
@@ -54,12 +54,11 @@ const ReportLostItemPage = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-
-  const categoryOptions = data?.map((category: any) => ({
-    label: category.name,
-    value: category.id,
-  }));
+  const categoryOptions =
+    categoriess?.map((category: any) => ({
+      label: category.name,
+      value: category.id,
+    })) || [];
 
   return (
     <section className="max-w-screen-sm mx-auto !py-20">

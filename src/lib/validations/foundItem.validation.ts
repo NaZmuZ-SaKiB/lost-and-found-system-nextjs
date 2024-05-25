@@ -3,10 +3,10 @@ import { z } from "zod";
 export const FoundItemCreateValidation = z.object({
   categoryId: z
     .string({
-      invalid_type_error: "Category ID must be a string.",
-      required_error: "Category ID is required.",
+      invalid_type_error: "Category must be a string.",
+      required_error: "Category is required.",
     })
-    .min(1, { message: "Category ID can't be empty." }),
+    .min(1, { message: "Category can't be empty." }),
 
   foundItemName: z
     .string({
@@ -44,6 +44,12 @@ export const FoundItemCreateValidation = z.object({
   brand: z
     .string({
       invalid_type_error: "Brand must be a string.",
+    })
+    .optional(),
+
+  claimProcess: z
+    .string({
+      invalid_type_error: "Claim Process must be a string.",
     })
     .optional(),
 });
