@@ -1,6 +1,7 @@
 "use client";
 
 import CustomDatePicker from "@/components/Form/CustomDatePicker";
+import CustomSelect from "@/components/Form/CustomSelect";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,16 +13,19 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createLostItem } from "@/lib/actions/lostItem.action";
 import { LostItemCreateValidation } from "@/lib/validations/lostItem.validation";
+import { useGetAllCategoriesQuery } from "@/redux/api/category.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const ReportLostItemPage = () => {
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  const { data, isLoading } = useGetAllCategoriesQuery(undefined);
 
   const form = useForm({
     resolver: zodResolver(LostItemCreateValidation),
@@ -38,13 +42,24 @@ const ReportLostItemPage = () => {
 
   const onSubmit = async (values: z.infer<typeof LostItemCreateValidation>) => {
     try {
-      console.log(values);
-
-      // await signIn(values.email, values.password);
-      // form.reset();
-      // router.push("/");
-    } catch (error: any) {}
+      const result = await createLostItem(values);
+      if (result.success) {
+        toast.success("Lost item reported successfully");
+        form.reset();
+      } else {
+        toast.error("Failed to report lost item");
+      }
+    } catch (error: any) {
+      toast.error("Failed to report lost item");
+    }
   };
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const categoryOptions = data?.map((category: any) => ({
+    label: category.name,
+    value: category.id,
+  }));
 
   return (
     <section className="max-w-screen-sm mx-auto !py-20">
@@ -60,23 +75,12 @@ const ReportLostItemPage = () => {
             <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
           </div>
 
-          {error && (
-            <div className="bg-red-500 text-white p-2 text-sm">{error}</div>
-          )}
-
           <div className="flex gap-5 max-sm:flex-col">
-            <FormField
-              control={form.control}
+            <CustomSelect
               name="categoryId"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1 w-full">
-                  <FormLabel className="">Category*</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Category" className="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Category"
+              control={form.control}
+              items={categoryOptions}
             />
 
             <FormField

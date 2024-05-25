@@ -26,7 +26,7 @@ const CustomSelect = ({ name, label, control, items }: TProps) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="flex flex-col gap-1 w-full">
           <FormLabel>{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
