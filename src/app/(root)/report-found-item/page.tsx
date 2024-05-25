@@ -91,7 +91,7 @@ const ReportFoundItemPage = () => {
                 <FormItem className="flex flex-col gap-1 w-full">
                   <FormLabel className="">Brand</FormLabel>
                   <FormControl>
-                    <Input placeholder="Category" className="" {...field} />
+                    <Input placeholder="Brand" className="" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
