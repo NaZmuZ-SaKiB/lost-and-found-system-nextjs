@@ -76,7 +76,8 @@ export const currentUser = async () => {
       }
     );
 
-    return await res.json();
+    const result = await res.json();
+    return result.data;
   } catch (error: any) {
     return null;
   }
