@@ -35,7 +35,7 @@ const SignInPage = () => {
       const result = await signInAction(values.email, values.password);
 
       if (result.success) {
-        toast.success("Login successful");
+        toast.success("Login successful", { duration: 2000 });
         form.reset();
         router.push("/");
       } else {
@@ -79,7 +79,7 @@ const SignInPage = () => {
                 <FormLabel className="">Password</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Email"
+                    placeholder="Password"
                     type="password"
                     className=""
                     {...field}

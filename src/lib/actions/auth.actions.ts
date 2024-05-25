@@ -3,6 +3,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import jwt from "jsonwebtoken";
+import { z } from "zod";
+import { ChangePasswordValidation } from "../validations/auth.validation";
 
 export const signUpAction = async (data: any) => {
   const res = await fetch(
@@ -81,6 +83,30 @@ export const currentUser = async () => {
   } catch (error: any) {
     return null;
   }
+};
+
+export const changePassword = async (
+  data: z.infer<typeof ChangePasswordValidation>
+) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/change-password`,
+    {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: cookies().get("jwt")!.value,
+      },
+      cache: "no-store",
+    }
+  );
+
+  const result = await res.json();
+
+  if (result.success) {
+    cookies().delete("jwt");
+  }
+  return result;
 };
 
 type TJwtPayload = { id: string; email: string; role: "ADMIN" | "USER" };

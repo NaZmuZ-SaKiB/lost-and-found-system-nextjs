@@ -38,3 +38,18 @@ export const SignInValidation = z.object({
     invalid_type_error: "Password must be a string.",
   }),
 });
+
+export const ChangePasswordValidation = z.object({
+  oldPassword: z
+    .string({
+      required_error: "Old Password is required.",
+      invalid_type_error: "Old Password must be a string.",
+    })
+    .min(1, { message: "Old Password is required" }),
+  newPassword: z
+    .string({
+      required_error: "New Password is required.",
+      invalid_type_error: "New Password must be a string.",
+    })
+    .min(6, { message: "Password must be minimum 6 chars." }),
+});
