@@ -14,8 +14,8 @@ const RecentLostItems = async () => {
         </h2>
         <div className="w-[125px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 
-        <div className="flex gap-3 mt-10 justify-center">
-          {lostItems.map((item: any) => (
+        <div className="flex gap-5 mt-10 justify-center">
+          {lostItems?.data?.map((item: any) => (
             <LostItemCard key={item.id} lostItem={item} />
           ))}
         </div>

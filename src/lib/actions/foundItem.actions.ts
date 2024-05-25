@@ -25,16 +25,13 @@ export const getAllFoundItems = async (query?: Record<string, any>) => {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/found-items`,
     {
       params: query || {},
+      validateStatus: (_) => true,
     }
   );
 
   const result = res.data;
 
-  if (result.success) {
-    return result.data;
-  } else {
-    return [];
-  }
+  return result;
 };
 
 export const getFoundItemById = async (id: string) => {
@@ -54,7 +51,7 @@ export const getFoundItemById = async (id: string) => {
   if (result.success) {
     return result.data;
   } else {
-    return [];
+    return null;
   }
 };
 

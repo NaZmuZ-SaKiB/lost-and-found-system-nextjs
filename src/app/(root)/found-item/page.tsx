@@ -20,8 +20,8 @@ const FoundItemPage = async () => {
           </Link>
         </div>
 
-        <div className="flex gap-3 mt-10 justify-center flex-wrap">
-          {foundItems.map((foundItem: any) => (
+        <div className="flex gap-5 mt-10 justify-center flex-wrap">
+          {foundItems?.data?.map((foundItem: any) => (
             <FoundItemCard key={foundItem.id} foundItem={foundItem} />
           ))}
         </div>

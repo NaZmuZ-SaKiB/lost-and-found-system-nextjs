@@ -24,14 +24,11 @@ export const getAllClaims = async (query?: Record<string, any>) => {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims`,
     {
       params: query || {},
+      validateStatus: (_) => true,
     }
   );
 
   const result = res.data;
 
-  if (result.success) {
-    return result.data;
-  } else {
-    return [];
-  }
+  return result;
 };

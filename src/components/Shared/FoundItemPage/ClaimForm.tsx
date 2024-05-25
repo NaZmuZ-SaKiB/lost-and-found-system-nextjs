@@ -14,11 +14,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { createClaim } from "@/lib/actions/claim.actions";
 import { ClaimValidation } from "@/lib/validations/claim.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
 const ClaimForm = ({ lostItemId }: { lostItemId: string }) => {
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(ClaimValidation),
     defaultValues: {
@@ -36,6 +39,7 @@ const ClaimForm = ({ lostItemId }: { lostItemId: string }) => {
       if (result.success) {
         toast.success("Claim successful", { duration: 2000 });
         form.reset();
+        router.refresh();
       } else {
         toast.error(result?.message);
       }
