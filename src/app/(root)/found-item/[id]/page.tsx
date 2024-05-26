@@ -13,7 +13,7 @@ type TProps = {
   };
 };
 
-const SingleLostItemPage = async ({ params }: TProps) => {
+const SingleFoundItemPage = async ({ params }: TProps) => {
   const user = await isUserLoggedIn();
 
   const foundItem = await getFoundItemById(params.id);
@@ -48,4 +48,4 @@ const SingleLostItemPage = async ({ params }: TProps) => {
   );
 };
 
-export default SingleLostItemPage;
+export default SingleFoundItemPage;

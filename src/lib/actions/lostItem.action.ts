@@ -36,6 +36,27 @@ export const getAllLostItems = async (query?: Record<string, any>) => {
   return result;
 };
 
+export const getLostItemById = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/lost-items/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache",
+    }
+  );
+
+  const result = await res.json();
+
+  if (result.success) {
+    return result.data;
+  } else {
+    return null;
+  }
+};
+
 export const deleteLostItem = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/lost-items/${id}`,

@@ -55,7 +55,16 @@ const Navbar = async () => {
 
         <div className="space-x-3">
           {user?.id ? (
-            <LogoutButton />
+            <>
+              {user.role === "ADMIN" && (
+                <Link href="/admin/dashboard">
+                  <Button className="bg-pink-500 hover:bg-pink-600">
+                    Dashboard
+                  </Button>
+                </Link>
+              )}
+              <LogoutButton />
+            </>
           ) : (
             <>
               <Link href="/sign-in">

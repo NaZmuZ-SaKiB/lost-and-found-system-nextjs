@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LostItemCardDeleteButton from "../Shared/LostItemCardDeleteButton";
 import MarkAsFoundButton from "../Shared/MarkAsFoundButton";
 import { Button } from "../ui/button";
@@ -40,13 +41,15 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
         </p>
       </div>
       <div className="text-center w-full left-0 px-2 absolute bottom-2 flex gap-3">
-        <Button
-          variant="outline"
-          className="w-full bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
-          size="sm"
-        >
-          View
-        </Button>
+        <Link href={`/lost-item/${lostItem.id}`} className="flex-1">
+          <Button
+            variant="outline"
+            className="w-full bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+            size="sm"
+          >
+            View
+          </Button>
+        </Link>
         {isMyItem && (
           <>
             <MarkAsFoundButton
