@@ -48,7 +48,7 @@ const ClaimForm = ({ lostItemId }: { lostItemId: string }) => {
     }
   };
   return (
-    <section className="container !py-10 !px-8 border border-pink-500 rounded-3xl">
+    <section className="container !py-10 !px-8 max-sm:!p-5 border border-pink-500 rounded-3xl">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

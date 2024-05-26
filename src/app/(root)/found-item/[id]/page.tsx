@@ -23,7 +23,7 @@ const SingleFoundItemPage = async ({ params }: TProps) => {
   const isFoundBy = user?.id === foundItem.user.id;
 
   return (
-    <main className="py-10 flex flex-col gap-10">
+    <main className="py-10 px-2 flex flex-col gap-10">
       <div>
         <h1 className="text-4xl font-semibold text-center">Found Item</h1>
         <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />

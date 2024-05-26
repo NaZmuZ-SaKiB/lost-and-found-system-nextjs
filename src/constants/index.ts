@@ -1,4 +1,3 @@
-import { configureStore } from "@reduxjs/toolkit";
 export * from "./teamMembers";
 
 import { FaFacebook } from "react-icons/fa";
@@ -6,6 +5,10 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
+import { FaInfoCircle } from "react-icons/fa";
+import { BsPostcardFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
 
 export const FooterLinks = [
   { href: "/", label: "About Us" },
@@ -56,6 +59,7 @@ export const DashboardItems2 = [
   "returnedItemCount",
   "claimCount",
 ];
+
 export const DashboardItems = [
   {
     title: "Active Users",
@@ -82,6 +86,29 @@ export const DashboardItems = [
     title: "Successful Reunions",
     field: "returnedItemCount",
     className: "bg-green-500 hover:bg-green-600 col-span-2",
+  },
+];
+
+export const BottomBarItems = [
+  {
+    label: "Home",
+    route: "/",
+    icon: AiFillHome,
+  },
+  {
+    label: "About Us",
+    route: "/#about-us",
+    icon: FaInfoCircle,
+  },
+  {
+    label: "Recent Posts",
+    route: "/recent-posts",
+    icon: BsPostcardFill,
+  },
+  {
+    label: "Profile",
+    route: "/my-profile",
+    icon: FaUser,
   },
 ];
 

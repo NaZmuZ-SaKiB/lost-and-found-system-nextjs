@@ -46,7 +46,7 @@ const SignInPage = () => {
     }
   };
   return (
-    <section className="max-w-screen-sm mx-auto !py-20">
+    <section className="max-w-screen-sm mx-auto !py-20 px-2 sm:px-4">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

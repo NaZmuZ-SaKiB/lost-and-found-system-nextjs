@@ -6,6 +6,8 @@ import Providers from "@/lib/Providers/Providers";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/Layout/Navbar";
+import MobileNav from "@/components/Layout/MobileNav";
+import Footer from "@/components/Layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,12 +36,13 @@ export default async function RootLayout({
     <Providers>
       <html lang="en">
         <body className={inter.className}>
-          <>
+          <div className="pb-10">
             <Navbar />
             {children}
 
+            <MobileNav />
             <Toaster position="top-center" />
-          </>
+          </div>
         </body>
       </html>
     </Providers>

@@ -13,7 +13,7 @@ type TProps = {
 const ProfileHeader = ({ name, email, age, contactNo, bio }: TProps) => {
   return (
     <section className="container !py-10 !px-8 bg-gray-100 rounded-3xl">
-      <div className="flex justify-between items-center gap-4">
+      <div className="flex max-xs:flex-col justify-between items-center gap-4">
         <h1 className="text-4xl font-semibold">My Profile</h1>
         <ProfileUpdateModal
           name={name}

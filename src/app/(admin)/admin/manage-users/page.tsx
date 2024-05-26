@@ -16,39 +16,41 @@ const ManageUsersPage = () => {
   console.log("userData", userData);
 
   return (
-    <main className="container !py-10">
+    <main className="container !py-10 !px-2 sm:!px-4">
       <h1 className="text-4xl font-semibold">User Management</h1>
 
-      <div className="mt-3">
-        <div className="text-sm p-2 font-semibold border rounded-md mb-1 bg-gray-50 border-gray-300 grid gap-3 grid-cols-6">
-          <span className="col-span-2">Email</span>
-          <span className="text-center">Role</span>
-          <span className="text-center">Status</span>
-          <span className="text-right col-span-2">Actions</span>
-        </div>
-
-        {userData?.users?.length > 0 ? (
-          userData?.users?.map((user: any) => (
-            <div
-              key={user.id}
-              className="text-sm p-2 border rounded-md mb-1 border-gray-300 grid gap-3 grid-cols-6 hover:bg-gray-50 cursor-pointer"
-            >
-              <span className="col-span-2">{user.email}</span>
-
-              <span className="text-center">{user.role}</span>
-
-              <span className="text-center">{user.status}</span>
-              <span className="text-right col-span-2 space-x-2">
-                <ChangeUserStatus userId={user.id} status={user.status} />
-                <ToggleUserRole userId={user.id} role={user.role} />
-              </span>
-            </div>
-          ))
-        ) : (
-          <div className="mt-5 text-center border-2 p-3 text-lg font-semibold">
-            No sales yet
+      <div className="overflow-x-auto">
+        <div className="mt-3 min-w-[700px]">
+          <div className="text-sm p-2 font-semibold border rounded-md mb-1 bg-gray-50 border-gray-300 grid gap-3 grid-cols-6">
+            <span className="col-span-2">Email</span>
+            <span className="text-center">Role</span>
+            <span className="text-center">Status</span>
+            <span className="text-right col-span-2">Actions</span>
           </div>
-        )}
+
+          {userData?.users?.length > 0 ? (
+            userData?.users?.map((user: any) => (
+              <div
+                key={user.id}
+                className="text-sm p-2 border rounded-md mb-1 border-gray-300 grid gap-3 grid-cols-6 hover:bg-gray-50 cursor-pointer"
+              >
+                <span className="col-span-2">{user.email}</span>
+
+                <span className="text-center">{user.role}</span>
+
+                <span className="text-center">{user.status}</span>
+                <span className="text-right col-span-2 space-x-2">
+                  <ChangeUserStatus userId={user.id} status={user.status} />
+                  <ToggleUserRole userId={user.id} role={user.role} />
+                </span>
+              </div>
+            ))
+          ) : (
+            <div className="mt-5 text-center border-2 p-3 text-lg font-semibold">
+              No sales yet
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );

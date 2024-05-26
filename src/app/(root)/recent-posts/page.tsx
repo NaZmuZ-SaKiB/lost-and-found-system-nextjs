@@ -17,8 +17,8 @@ const RecentPostsPage = async () => {
   const lostItems = await getAllLostItems({ limit: 10 });
 
   return (
-    <main>
-      <div className="container !py-20">
+    <main className="px-2 sm:px-4">
+      <div className="container !py-10">
         <h1 className="text-4xl font-semibold mb-10">Recent Posts</h1>
 
         <section className="container !py-10 !px-8 border border-pink-500 rounded-3xl">

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <section className=" pt-20 pb-10 bg-gray-900">
+    <section className=" pt-20 pb-20 bg-gray-900">
       <div className="container">
         <div className="flex justify-center">
           <Image src={Logo.src} alt="logo" height={100} width={100} />
@@ -16,7 +16,7 @@ const Footer = () => {
           <MdEmail className="text-2xl" />{" "}
           <span>lostandfoundsystem@gmail.com</span>
         </p>
-        <div className="mt-10 flex justify-center gap-3 text-gray-300">
+        <div className="mt-10 flex max-sm:flex-col max-sm:items-center justify-center gap-3 text-gray-300">
           {FooterLinks.map((link, index) => (
             <Link
               key={index + link.label}

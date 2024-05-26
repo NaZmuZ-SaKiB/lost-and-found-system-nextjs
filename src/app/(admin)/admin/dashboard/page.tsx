@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const AdminDashboardPage = async () => {
   return (
-    <main className="container !py-10">
+    <main className="container !py-10 !px-2 sm:!px-4">
       <div className="flex justify-between gap-4">
         <h1 className="text-4xl font-semibold">Dashboard</h1>
         <Link href="/admin/manage-users">

@@ -10,13 +10,13 @@ const Navbar = async () => {
   const user = await isUserLoggedIn();
 
   return (
-    <header className="border-b py-3">
+    <header className="border-b py-3 px-3">
       <div className="container flex gap-3 justify-between items-center">
         <Link href="/">
           <Image src={Logo.src} height={50} width={50} alt="logo" />
         </Link>
 
-        <div className="text-gray-600 space-x-4">
+        <div className="text-gray-600 space-x-4 hidden md:block">
           <Link
             className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
             href="/"
