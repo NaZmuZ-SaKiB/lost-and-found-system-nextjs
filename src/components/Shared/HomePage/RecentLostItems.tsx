@@ -1,5 +1,7 @@
 import LostItemCard from "@/components/Card/LostItemCard";
+import { Button } from "@/components/ui/button";
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
+import Link from "next/link";
 
 export const fetchCache = "force-no-store";
 
@@ -18,6 +20,12 @@ const RecentLostItems = async () => {
           {lostItems?.data?.map((item: any) => (
             <LostItemCard key={item.id} lostItem={item} />
           ))}
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <Link href={"/lost-item"}>
+            <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
+          </Link>
         </div>
       </div>
     </section>
