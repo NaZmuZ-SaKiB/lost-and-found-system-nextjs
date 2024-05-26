@@ -11,7 +11,7 @@ const MyClaimsPage = async () => {
     redirect("/sign-in");
   }
 
-  const claims = await getAllClaims({ userId: user.id });
+  const claims = await getAllClaims({ userId: user.id, limit: 999 });
   return (
     <main>
       <div className="container !py-20">
@@ -21,7 +21,7 @@ const MyClaimsPage = async () => {
 
         <div className="flex gap-5 mt-10 justify-center flex-wrap">
           {claims?.data?.map((claim: any) => (
-            <ClaimCard key={claim.id} claim={claim} />
+            <ClaimCard key={claim.id} userId={user.id} claim={claim} />
           ))}
         </div>
       </div>

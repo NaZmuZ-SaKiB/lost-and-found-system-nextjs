@@ -11,7 +11,7 @@ const MyLostItemsPage = async () => {
     redirect("/sign-in");
   }
 
-  const lostItems = await getAllLostItems({ userId: user.id });
+  const lostItems = await getAllLostItems({ userId: user.id, limit: 999 });
 
   return (
     <main>
@@ -27,7 +27,11 @@ const MyLostItemsPage = async () => {
 
         <div className="flex gap-5 mt-10 justify-center flex-wrap">
           {lostItems?.data?.map((lostItem: any) => (
-            <LostItemCard key={lostItem.id} lostItem={lostItem} />
+            <LostItemCard
+              key={lostItem.id}
+              userId={user.id}
+              lostItem={lostItem}
+            />
           ))}
         </div>
       </div>

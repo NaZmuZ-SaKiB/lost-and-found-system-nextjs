@@ -4,7 +4,7 @@ import { getAllLostItems } from "@/lib/actions/lostItem.action";
 import Link from "next/link";
 
 const LostItemPage = async () => {
-  const lostItems = await getAllLostItems();
+  const lostItems = await getAllLostItems({ limit: 999 });
 
   return (
     <main>

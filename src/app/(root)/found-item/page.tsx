@@ -6,7 +6,7 @@ import Link from "next/link";
 export const fetchCache = "force-no-store";
 
 const FoundItemPage = async () => {
-  const foundItems = await getAllFoundItems();
+  const foundItems = await getAllFoundItems({ limit: 999 });
 
   return (
     <main>

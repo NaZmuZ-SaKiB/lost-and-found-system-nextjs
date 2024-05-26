@@ -6,7 +6,7 @@ import { useGetAllUsersQuery } from "@/redux/api/user.api";
 import { useState } from "react";
 
 const ManageUsersPage = () => {
-  const [params, setParams] = useState<Record<string, any>>({});
+  const [params, setParams] = useState<Record<string, any>>({ limit: 999 });
   const {
     data: userData,
     isLoading: loadingUsers,

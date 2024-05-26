@@ -11,7 +11,7 @@ const MyFoundItemsPage = async () => {
     redirect("/sign-in");
   }
 
-  const foundItems = await getAllFoundItems({ userId: user.id });
+  const foundItems = await getAllFoundItems({ userId: user.id, limit: 999 });
 
   return (
     <main>
@@ -27,7 +27,11 @@ const MyFoundItemsPage = async () => {
 
         <div className="flex gap-5 mt-10 justify-center flex-wrap">
           {foundItems?.data?.map((foundItem: any) => (
-            <FoundItemCard key={foundItem.id} foundItem={foundItem} />
+            <FoundItemCard
+              key={foundItem.id}
+              userId={user.id}
+              foundItem={foundItem}
+            />
           ))}
         </div>
       </div>
