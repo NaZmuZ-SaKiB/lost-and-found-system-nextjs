@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import ClaimCardDeleteButton from "../Shared/ClaimCardDeleteButton";
 
-type TProps = { claim: any; userId: string };
+type TProps = { claim: any; userId?: string };
 
 const ClaimCard = ({ claim, userId }: TProps) => {
   const isMyClaim = userId === claim?.userId;

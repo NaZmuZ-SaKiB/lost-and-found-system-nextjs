@@ -1,6 +1,14 @@
+import LostItemCardDeleteButton from "../Shared/LostItemCardDeleteButton";
 import { Button } from "../ui/button";
 
-const LostItemCard = ({ lostItem }: { lostItem: any }) => {
+type TProps = {
+  lostItem: any;
+  userId?: string;
+};
+
+const LostItemCard = ({ lostItem, userId }: TProps) => {
+  const isMyItem = userId === lostItem?.user?.id;
+
   return (
     <div className="rounded-xl p-4 pb-16 border border-black bg-white relative basis-[300px]">
       <h3 className="text-xl font-semibold text-center mb-3">
@@ -30,7 +38,7 @@ const LostItemCard = ({ lostItem }: { lostItem: any }) => {
           {lostItem.contactNo || lostItem.user.userProfile.contactNo}
         </p>
       </div>
-      <div className="text-center w-full left-0 px-2 absolute bottom-2">
+      <div className="text-center w-full left-0 px-2 absolute bottom-2 flex gap-3">
         <Button
           variant="outline"
           className="w-full bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
@@ -38,6 +46,7 @@ const LostItemCard = ({ lostItem }: { lostItem: any }) => {
         >
           View
         </Button>
+        {isMyItem && <LostItemCardDeleteButton lostItemId={lostItem.id} />}
       </div>
     </div>
   );

@@ -16,7 +16,11 @@ const MyLostItems = async ({ userId }: TProps) => {
       <div className="flex gap-5 mt-10 justify-center">
         {lostItems?.data?.length ? (
           lostItems?.data?.map((lostItem: any) => (
-            <LostItemCard key={lostItem.id} lostItem={lostItem} />
+            <LostItemCard
+              key={lostItem.id}
+              userId={userId}
+              lostItem={lostItem}
+            />
           ))
         ) : (
           <p>No Lost Items</p>

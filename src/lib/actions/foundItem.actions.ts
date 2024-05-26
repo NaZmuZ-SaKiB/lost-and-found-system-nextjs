@@ -76,3 +76,18 @@ export const isFoundItemClaimedByMe = async (id: string) => {
     return false;
   }
 };
+
+export const deleteFoundItem = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/found-items/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      cache: "no-cache",
+    }
+  );
+
+  return await res.json();
+};

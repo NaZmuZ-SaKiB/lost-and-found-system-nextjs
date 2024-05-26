@@ -1,12 +1,16 @@
 "use client";
 
-import { deleteClaim } from "@/lib/actions/claim.actions";
-import { Button } from "../ui/button";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
+import { deleteFoundItem } from "@/lib/actions/foundItem.actions";
+import { toast } from "sonner";
 import { useState } from "react";
 
-const ClaimCardDeleteButton = ({ claimId }: { claimId: string }) => {
+const FoundItemCardDeleteButton = ({
+  foundItemId,
+}: {
+  foundItemId: string;
+}) => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -14,9 +18,9 @@ const ClaimCardDeleteButton = ({ claimId }: { claimId: string }) => {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const result = await deleteClaim(claimId);
+      const result = await deleteFoundItem(foundItemId);
       if (result.success) {
-        toast.success("Claim Deleted");
+        toast.success("Found Item Deleted");
         router.refresh();
       } else {
         toast.error(result?.message);
@@ -39,4 +43,4 @@ const ClaimCardDeleteButton = ({ claimId }: { claimId: string }) => {
   );
 };
 
-export default ClaimCardDeleteButton;
+export default FoundItemCardDeleteButton;

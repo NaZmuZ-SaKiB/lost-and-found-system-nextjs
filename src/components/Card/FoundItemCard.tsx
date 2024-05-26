@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import FoundItemCardDeleteButton from "../Shared/FoundItemCardDeleteButton";
 
 type TProps = {
   foundItem: any;
+  userId?: string;
 };
 
-const FoundItemCard = ({ foundItem }: TProps) => {
+const FoundItemCard = ({ foundItem, userId }: TProps) => {
+  const isMyItem = userId === foundItem?.user?.id;
+
   return (
     <div className="rounded-xl p-4 pb-16 border border-black bg-white relative basis-[300px]">
       <h3 className="text-xl font-semibold text-center mb-3">
@@ -35,8 +39,8 @@ const FoundItemCard = ({ foundItem }: TProps) => {
           {foundItem.contactNo || foundItem.user.userProfile.contactNo}
         </p>
       </div>
-      <div className="text-center w-full left-0 px-2 absolute bottom-2">
-        <Link href={`/found-item/${foundItem.id}`}>
+      <div className="text-center w-full left-0 px-2 absolute bottom-2 flex gap-3">
+        <Link href={`/found-item/${foundItem.id}`} className="flex-1">
           <Button
             variant="outline"
             className="w-full bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
@@ -45,6 +49,7 @@ const FoundItemCard = ({ foundItem }: TProps) => {
             View / Claim
           </Button>
         </Link>
+        {isMyItem && <FoundItemCardDeleteButton foundItemId={foundItem.id} />}
       </div>
     </div>
   );
