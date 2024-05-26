@@ -1,4 +1,5 @@
 import LostItemCardDeleteButton from "../Shared/LostItemCardDeleteButton";
+import MarkAsFoundButton from "../Shared/MarkAsFoundButton";
 import { Button } from "../ui/button";
 
 type TProps = {
@@ -46,7 +47,15 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
         >
           View
         </Button>
-        {isMyItem && <LostItemCardDeleteButton lostItemId={lostItem.id} />}
+        {isMyItem && (
+          <>
+            <MarkAsFoundButton
+              lostItemId={lostItem.id}
+              found={lostItem.found}
+            />
+            <LostItemCardDeleteButton lostItemId={lostItem.id} />
+          </>
+        )}
       </div>
     </div>
   );

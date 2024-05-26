@@ -53,7 +53,7 @@ export const deleteLostItem = async (id: string) => {
 
 export const markAsFound = async (id: string) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/mark-found/${id}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/lost-items/mark-found/${id}`,
     {
       method: "PATCH",
       headers: {

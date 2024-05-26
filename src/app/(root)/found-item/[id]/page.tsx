@@ -24,14 +24,15 @@ const SingleLostItemPage = async ({ params }: TProps) => {
   return (
     <main className="py-10 flex flex-col gap-10">
       <div>
-        <h1 className="text-4xl font-semibold text-center">Lost Item</h1>
+        <h1 className="text-4xl font-semibold text-center">Found Item</h1>
         <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
       </div>
 
       <FoundItemInfo foundItem={foundItem} />
-      {!isFoundBy && !isClaimed ? (
-        <ClaimForm lostItemId={foundItem.id} />
-      ) : (
+
+      {!isFoundBy && <ClaimForm lostItemId={foundItem.id} />}
+
+      {isClaimed && !isFoundBy && (
         <div className="container !py-5 bg-pink-50 border border-pink-500 rounded-3xl">
           <h2 className="text-3xl text-pink-500 text-center">
             You have claimed this item.
