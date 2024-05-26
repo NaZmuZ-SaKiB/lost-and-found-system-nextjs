@@ -29,20 +29,20 @@ const Navbar = async () => {
           >
             About Us
           </Link>
+          <Link
+            className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+            href="/lost-item"
+          >
+            Lost Item
+          </Link>
+          <Link
+            className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+            href="/found-item"
+          >
+            Found Item
+          </Link>
           {user?.id && (
             <>
-              <Link
-                className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
-                href="/lost-item"
-              >
-                Lost Item
-              </Link>
-              <Link
-                className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
-                href="/found-item"
-              >
-                Found Item
-              </Link>
               <Link
                 className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
                 href="/my-profile"

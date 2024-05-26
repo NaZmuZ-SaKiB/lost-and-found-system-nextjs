@@ -3,9 +3,13 @@ import MyFoundItems from "@/components/Shared/ProfilePage/MyFoundItems";
 import MyLostItems from "@/components/Shared/ProfilePage/MyLostItems";
 import ProfileHeader from "@/components/Shared/ProfilePage/ProfileHeader";
 import { currentUser } from "@/lib/actions/auth.actions";
+import { redirect } from "next/navigation";
 
 const MyProfilePage = async () => {
   const user = await currentUser();
+  if (!user?.id) {
+    redirect("/sign-in");
+  }
 
   return (
     <main className="py-10 flex flex-col gap-10">

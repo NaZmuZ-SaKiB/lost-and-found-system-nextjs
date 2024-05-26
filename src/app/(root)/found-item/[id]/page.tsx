@@ -31,7 +31,9 @@ const SingleFoundItemPage = async ({ params }: TProps) => {
 
       <FoundItemInfo foundItem={foundItem} />
 
-      {!isFoundBy && !isClaimed && <ClaimForm lostItemId={foundItem.id} />}
+      {user?.id && !isFoundBy && !isClaimed && (
+        <ClaimForm lostItemId={foundItem.id} />
+      )}
 
       {isClaimed && !isFoundBy && (
         <div className="container !py-5 bg-pink-50 border border-pink-500 rounded-3xl">
