@@ -6,5 +6,5 @@ export const baseApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`,
   }),
   endpoints: (builder) => ({}),
-  tagTypes: ["category"],
+  tagTypes: ["category", "user"],
 });
