@@ -13,7 +13,7 @@ const MyLostItems = async ({ userId }: TProps) => {
       <h2 className="text-3xl font-semibold text-center">My Lost Items</h2>
       <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 
-      <div className="flex gap-5 mt-10 justify-center">
+      <div className="flex gap-5 mt-10 justify-center flex-wrap">
         {lostItems?.data?.length ? (
           lostItems?.data?.map((lostItem: any) => (
             <LostItemCard

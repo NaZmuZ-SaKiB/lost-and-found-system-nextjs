@@ -1,4 +1,5 @@
 import ClaimForm from "@/components/Shared/FoundItemPage/ClaimForm";
+import FoundItemClaims from "@/components/Shared/FoundItemPage/FoundItemClaims";
 import FoundItemInfo from "@/components/Shared/FoundItemPage/FoundItemInfo";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import {
@@ -30,7 +31,7 @@ const SingleLostItemPage = async ({ params }: TProps) => {
 
       <FoundItemInfo foundItem={foundItem} />
 
-      {!isFoundBy && <ClaimForm lostItemId={foundItem.id} />}
+      {!isFoundBy && !isClaimed && <ClaimForm lostItemId={foundItem.id} />}
 
       {isClaimed && !isFoundBy && (
         <div className="container !py-5 bg-pink-50 border border-pink-500 rounded-3xl">
@@ -38,6 +39,10 @@ const SingleLostItemPage = async ({ params }: TProps) => {
             You have claimed this item.
           </h2>
         </div>
+      )}
+
+      {isFoundBy && !foundItem.returned && (
+        <FoundItemClaims claims={foundItem.claim} userId={user!.id} />
       )}
     </main>
   );

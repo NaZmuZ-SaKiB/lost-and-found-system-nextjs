@@ -60,6 +60,7 @@ export const updateStatus = async (id: string, data: { status: string }) => {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: {
+        "Content-Type": "application/json",
         Authorization: cookies().get("jwt")?.value as string,
       },
       cache: "no-cache",

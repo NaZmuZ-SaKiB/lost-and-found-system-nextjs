@@ -12,7 +12,7 @@ const MyFoundItems = async ({ userId }: TProps) => {
       <h2 className="text-3xl font-semibold text-center">My Found Items</h2>
       <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 
-      <div className="flex gap-5 mt-10 justify-center">
+      <div className="flex gap-5 mt-10 justify-center flex-wrap">
         {foundItems?.data?.length ? (
           foundItems?.data?.map((foundItem: any) => (
             <FoundItemCard
