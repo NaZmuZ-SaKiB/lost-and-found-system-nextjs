@@ -49,6 +49,42 @@ export const FooterSocialLinks = [
   },
 ];
 
+export const DashboardItems2 = [
+  "userCount",
+  "lostItemCount",
+  "foundItemCount",
+  "returnedItemCount",
+  "claimCount",
+];
+export const DashboardItems = [
+  {
+    title: "Active Users",
+    field: "userCount",
+    className: "bg-orange-500 hover:bg-orange-600",
+  },
+  {
+    title: "Lost Items",
+    field: "lostItemCount",
+    className: "bg-red-500 hover:bg-red-600",
+  },
+  {
+    title: "Found Items",
+    field: "foundItemCount",
+    className: "bg-purple-500 hover:bg-purple-600",
+  },
+
+  {
+    title: "Total Claims",
+    field: "claimCount",
+    className: "bg-pink-500 hover:bg-pink-600",
+  },
+  {
+    title: "Successful Reunions",
+    field: "returnedItemCount",
+    className: "bg-green-500 hover:bg-green-600 col-span-2",
+  },
+];
+
 export const ClaimStatusEnum = {
   APPROVED: "APPROVED",
   PENDING: "PENDING",
