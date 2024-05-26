@@ -31,15 +31,9 @@ const Navbar = async () => {
           </Link>
           <Link
             className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
-            href="/lost-item"
+            href="/recent-posts"
           >
-            Lost Item
-          </Link>
-          <Link
-            className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
-            href="/found-item"
-          >
-            Found Item
+            Recent Posts
           </Link>
           {user?.id && (
             <>
