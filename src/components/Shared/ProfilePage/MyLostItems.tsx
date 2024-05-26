@@ -1,5 +1,7 @@
 import LostItemCard from "@/components/Card/LostItemCard";
+import { Button } from "@/components/ui/button";
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
+import Link from "next/link";
 
 type TProps = {
   userId: string;
@@ -25,6 +27,12 @@ const MyLostItems = async ({ userId }: TProps) => {
         ) : (
           <p>No Lost Items</p>
         )}
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <Link href={"/my-lost-items"}>
+          <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
+        </Link>
       </div>
     </section>
   );

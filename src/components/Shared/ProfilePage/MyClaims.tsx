@@ -1,5 +1,7 @@
 import ClaimCard from "@/components/Card/ClaimCard";
+import { Button } from "@/components/ui/button";
 import { getAllClaims } from "@/lib/actions/claim.actions";
+import Link from "next/link";
 
 type TProps = {
   userId: string;
@@ -21,6 +23,11 @@ const MyClaims = async ({ userId }: TProps) => {
         ) : (
           <p>No Claim Requests</p>
         )}
+      </div>
+      <div className="flex justify-center mt-10">
+        <Link href={"/my-claims"}>
+          <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
+        </Link>
       </div>
     </section>
   );

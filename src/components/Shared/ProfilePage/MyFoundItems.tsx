@@ -1,5 +1,7 @@
 import FoundItemCard from "@/components/Card/FoundItemCard";
+import { Button } from "@/components/ui/button";
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
+import Link from "next/link";
 
 type TProps = {
   userId: string;
@@ -24,6 +26,12 @@ const MyFoundItems = async ({ userId }: TProps) => {
         ) : (
           <p>No Found Items</p>
         )}
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <Link href={"/my-found-items"}>
+          <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
+        </Link>
       </div>
     </section>
   );
