@@ -50,3 +50,18 @@ export const deleteLostItem = async (id: string) => {
 
   return await res.json();
 };
+
+export const markAsFound = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/mark-found/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      cache: "no-cache",
+    }
+  );
+
+  return await res.json();
+};

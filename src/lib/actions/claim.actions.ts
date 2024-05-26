@@ -4,6 +4,7 @@ import { z } from "zod";
 import { ClaimValidation } from "../validations/claim.validation";
 import { cookies } from "next/headers";
 import axios from "axios";
+import { ClaimStatusEnum } from "@/constants";
 
 export const createClaim = async (data: z.infer<typeof ClaimValidation>) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims`, {
@@ -38,6 +39,26 @@ export const deleteClaim = async (id: string) => {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims/${id}`,
     {
       method: "DELETE",
+      headers: {
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      cache: "no-cache",
+    }
+  );
+
+  return await res.json();
+};
+
+export const updateStatus = async (id: string, data: { status: string }) => {
+  if (!Object.values(ClaimStatusEnum).includes(data.status)) {
+    return;
+  }
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims/status/${id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(data),
       headers: {
         Authorization: cookies().get("jwt")?.value as string,
       },

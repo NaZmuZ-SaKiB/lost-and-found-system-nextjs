@@ -1,3 +1,4 @@
+import { configureStore } from "@reduxjs/toolkit";
 export * from "./teamMembers";
 
 import { FaFacebook } from "react-icons/fa";
@@ -47,3 +48,9 @@ export const FooterSocialLinks = [
     color: "hover:text-red-500",
   },
 ];
+
+export const ClaimStatusEnum = {
+  APPROVED: "APPROVED",
+  PENDING: "PENDING",
+  REJECTED: "REJECTED",
+};
