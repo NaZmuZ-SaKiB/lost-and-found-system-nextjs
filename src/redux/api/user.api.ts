@@ -10,6 +10,13 @@ const userApi = baseApi.injectEndpoints({
         params,
       }),
       providesTags: ["user"],
+      transformResponse: (response: any) => {
+        if (response.success) {
+          return { users: response?.data, meta: response?.meta };
+        } else {
+          return { users: [], meta: null };
+        }
+      },
     }),
 
     updateUserStatus: builder.mutation({
