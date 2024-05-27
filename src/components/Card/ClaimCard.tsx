@@ -10,38 +10,40 @@ const ClaimCard = ({ claim, userId, isFoundItemPage }: TProps) => {
   const isMyClaim = userId === claim?.userId;
 
   return (
-    <div className="rounded-xl p-4 pb-16 border border-black bg-white relative basis-[300px]">
+    <div className="rounded-xl p-4 pb-16 border border-gray-300 bg-white relative basis-[300px]">
       <h3 className="text-xl font-semibold text-center mb-3">
         {claim.foundItem.foundItemName}
       </h3>
-      <div className="flex flex-col gap-1">
-        <p className="mb-3">{claim.foundItem.description}</p>
-        <p>
-          <span className="font-semibold">Status:</span> {claim.status}
+      <ul className="flex flex-col gap-1 text-gray-600 text-sm list-inside list-disc">
+        <p className="mb-3 text-black text-center">
+          {claim.foundItem.description}
         </p>
+        <li className="list-item">
+          <span className="font-semibold">Status:</span> {claim.status}
+        </li>
 
-        <p>
+        <li className="list-item">
           <span className="font-semibold">Location:</span>{" "}
           {claim.foundItem.location}
-        </p>
-        <p>
+        </li>
+        <li className="list-item">
           <span className="font-semibold">Lost Date:</span>{" "}
           {new Date(claim.lostDate || claim.createdAt).toLocaleDateString()}
-        </p>
+        </li>
 
-        <p>
+        <li className="list-item">
           <span className="font-semibold">Claimed By:</span>{" "}
           {claim.user.userProfile.name}
-        </p>
-        <p>
+        </li>
+        <li className="list-item">
           <span className="font-semibold">Contact:</span>{" "}
           {claim.user.userProfile.contactNo}
-        </p>
-        <p className="mb-3">
+        </li>
+        <li className="mb-3 list-item">
           <span className="font-semibold">Proof:</span>{" "}
           {claim.distinguishingFeatures}
-        </p>
-      </div>
+        </li>
+      </ul>
       <div className="text-center w-full left-0 px-2 absolute bottom-2 flex gap-3">
         {!isFoundItemPage && (
           <Link href={`/found-item/${claim.foundItem.id}`} className="flex-1">

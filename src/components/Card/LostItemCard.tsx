@@ -14,7 +14,7 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
   const isMyItem = userId === lostItem?.user?.id;
 
   return (
-    <div className="rounded-xl pb-16 overflow-hidden border border-black bg-white relative basis-[300px]">
+    <div className="rounded-xl pb-16 overflow-hidden border border-gray-300 bg-white relative basis-[300px]">
       <div className="w-full h-[200px] relative mb-3 border-b">
         <Image
           src={lostItem?.image || PlaceHolderImage.src}
@@ -23,25 +23,25 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
           alt={lostItem?.lostItemName}
         />
       </div>
-      <h3 className="text-xl font-semibold px-2 mb-3">
+      <h3 className="text-lg font-semibold px-2 mb-3">
         {lostItem.lostItemName}
       </h3>
-      <div className="flex flex-col gap-1 px-2">
-        <p>
+      <ul className="flex flex-col gap-1 px-2 text-gray-600 text-sm list-inside list-disc">
+        <li className="list-item">
           <span className="font-semibold">Location:</span> {lostItem.location}
-        </p>
-        <p>
+        </li>
+        <li className="list-item">
           <span className="font-semibold">Lost Date:</span>{" "}
           {new Date(
             lostItem.lostDate || lostItem.createdAt
           ).toLocaleDateString()}
-        </p>
+        </li>
 
-        <p>
+        <li className="list-item">
           <span className="font-semibold">Contact:</span>{" "}
           {lostItem.contactNo || lostItem.user.userProfile.contactNo}
-        </p>
-      </div>
+        </li>
+      </ul>
       <div className="text-center w-full left-0 px-2 absolute bottom-2 flex gap-3">
         <Link href={`/lost-item/${lostItem.id}`} className="flex-1">
           <Button
