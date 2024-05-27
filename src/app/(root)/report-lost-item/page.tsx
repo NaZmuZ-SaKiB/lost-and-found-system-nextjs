@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { uploadImage } from "@/lib/actions/imgbb.actions";
 import { createLostItem } from "@/lib/actions/lostItem.action";
 import { LostItemCreateValidation } from "@/lib/validations/lostItem.validation";
 import { useGetAllCategoriesQuery } from "@/redux/api/category.api";
@@ -47,7 +48,15 @@ const ReportLostItemPage = () => {
 
   const onSubmit = async (values: z.infer<typeof LostItemCreateValidation>) => {
     try {
-      const result = await createLostItem(values);
+      let data: any = { ...values };
+      let imgUrl: any = null;
+
+      if (image) {
+        imgUrl = await uploadImage(image);
+        data.image = imgUrl;
+      }
+
+      const result = await createLostItem(data);
       if (result.success) {
         toast.success("Lost item reported successfully");
         form.reset();
