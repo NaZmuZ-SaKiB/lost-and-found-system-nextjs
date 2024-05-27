@@ -38,8 +38,7 @@ export default async function RootLayout({
         <body className={inter.className}>
           <div className="pb-10">
             <Navbar />
-            {children}
-
+            <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
             <MobileNav />
             <Toaster position="top-center" />
           </div>

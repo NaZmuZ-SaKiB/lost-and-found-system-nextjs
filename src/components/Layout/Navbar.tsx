@@ -10,10 +10,10 @@ const Navbar = async () => {
   const user = await isUserLoggedIn();
 
   return (
-    <header className="border-b py-3 px-3">
+    <header className="border-b fixed top-0 bg-gray-200 bg-opacity-90 backdrop-blur-md z-10 w-full py-3 px-3">
       <div className="container flex gap-3 justify-between items-center">
-        <Link href="/">
-          <Image src={Logo.src} height={50} width={50} alt="logo" />
+        <Link href="/" className="size-[30px] sm:size-[50px] relative">
+          <Image src={Logo.src} fill alt="logo" />
         </Link>
 
         <div className="text-gray-600 space-x-4 hidden md:block">
@@ -52,7 +52,7 @@ const Navbar = async () => {
             <>
               {user.role === "ADMIN" && (
                 <Link href="/admin/dashboard">
-                  <Button className="bg-pink-500 hover:bg-pink-600">
+                  <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
                     Dashboard
                   </Button>
                 </Link>
@@ -63,6 +63,7 @@ const Navbar = async () => {
             <>
               <Link href="/sign-in">
                 <Button
+                  size="sm"
                   variant="outline"
                   className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
                 >
@@ -70,7 +71,7 @@ const Navbar = async () => {
                 </Button>
               </Link>
               <Link href="/sign-up">
-                <Button className="bg-pink-500 hover:bg-pink-600">
+                <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
                   Sign Up
                 </Button>
               </Link>

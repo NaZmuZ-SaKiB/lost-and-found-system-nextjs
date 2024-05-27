@@ -8,9 +8,9 @@ import SearchingImage1 from "@/assets/images/searching-image-1.png";
 const HeroSection = () => {
   return (
     <section
-      className={`min-h-[calc(100svh-100px)] bg-cover grid place-items-center p-5`}
+      className={`min-h-svh md:-mt-20 bg-cover bg-center grid place-items-center p-5`}
       style={{
-        backgroundImage: `linear-gradient(rgba(255 255 255/0.8), rgba(255 255 255/0.8)), url("${GridImage.src}")`,
+        backgroundImage: `linear-gradient(rgba(255 255 255/0), rgba(255 255 255/0)), url("${GridImage.src}")`,
       }}
     >
       <div className="container flex max-md:flex-col-reverse items-center gap-5">
@@ -25,7 +25,7 @@ const HeroSection = () => {
             and Claim What {"You've"} Lost.
           </p>
 
-          <div className="flex max-md:flex-col mt-3 md:mt-8 gap-5 justify-center">
+          <div className="flex max-md:flex-col mt-3 md:mt-8 gap-2 md:gap-5 justify-center">
             <Link href="/report-lost-item">
               <Button className="bg-pink-500 w-full hover:bg-pink-600">
                 Report A Lost Item
@@ -34,7 +34,7 @@ const HeroSection = () => {
             <Link href="/report-found-item">
               <Button
                 variant="outline"
-                className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+                className="bg-transparent border-pink-500 bg-pink-200 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
               >
                 Report A Found Item
               </Button>
@@ -42,7 +42,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative size-[40vw]">
+        <div className="relative max-md:size-[70vw] size-[40vw]">
           <Image
             fill
             src={SearchingImage1.src}

@@ -16,6 +16,7 @@ const LogoutButton = () => {
   return (
     <Button
       variant="outline"
+      size="sm"
       className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
       onClick={handleLogout}
     >

@@ -26,7 +26,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <>
             <Navbar />
-            {children}
+            <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
             <MobileNav />
             <Footer />
             <Toaster position="top-center" />

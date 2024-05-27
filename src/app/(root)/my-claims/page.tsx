@@ -19,7 +19,6 @@ const MyClaimsPage = async ({ searchParams }: TProps) => {
     userId: user.id,
     ...searchParams,
   });
-  console.log("claims", claims);
 
   return (
     <main className="px-2 sm:px-4">
@@ -34,6 +33,12 @@ const MyClaimsPage = async ({ searchParams }: TProps) => {
           {claims?.data?.map((claim: any) => (
             <ClaimCard key={claim.id} userId={user.id} claim={claim} />
           ))}
+
+          {!claims?.data?.length && (
+            <p className="text-pink-500 text-xl bg-pink-50 flex-1 text-center p-3">
+              No Lost Items
+            </p>
+          )}
         </div>
 
         <CustomPagination
