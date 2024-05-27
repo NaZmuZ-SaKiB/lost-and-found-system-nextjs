@@ -1,4 +1,4 @@
-import ClaimForm from "@/components/Shared/FoundItemPage/ClaimForm";
+import ClaimForm from "@/components/Form/ClaimForm";
 import FoundItemClaims from "@/components/Shared/FoundItemPage/FoundItemClaims";
 import FoundItemInfo from "@/components/Shared/FoundItemPage/FoundItemInfo";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";

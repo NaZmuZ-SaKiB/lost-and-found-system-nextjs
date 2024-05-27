@@ -10,8 +10,6 @@ type TProps = {
 };
 
 const LostItemPage = async ({ searchParams }: TProps) => {
-  console.log("searchparams", searchParams);
-
   const lostItems = await getAllLostItems(searchParams);
 
   return (

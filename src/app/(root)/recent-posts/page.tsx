@@ -13,15 +13,15 @@ const RecentPostsPage = async () => {
     redirect("/sign-in");
   }
 
-  const foundItems = await getAllFoundItems({ limit: 10 });
-  const lostItems = await getAllLostItems({ limit: 10 });
+  const foundItems = await getAllFoundItems({ limit: 6 });
+  const lostItems = await getAllLostItems({ limit: 6 });
 
   return (
     <main className="px-2 sm:px-4">
       <div className="container !py-10">
         <h1 className="text-4xl font-semibold mb-10">Recent Posts</h1>
 
-        <section className="container !py-10 !px-8 border border-pink-500 rounded-3xl">
+        <section className="container !py-10 !px-8 max-sm:!p-5 max-sm:!px-2 border border-pink-500 rounded-3xl">
           <h2 className="text-3xl font-semibold text-center">Found Items</h2>
           <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 
@@ -48,7 +48,7 @@ const RecentPostsPage = async () => {
           </div>
         </section>
 
-        <section className="container !py-10 !px-8 border border-pink-500 rounded-3xl mt-10">
+        <section className="container !py-10 !px-8 max-sm:!p-5 max-sm:!px-2 border border-pink-500 rounded-3xl mt-10">
           <h2 className="text-3xl font-semibold text-center">Lost Items</h2>
           <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 

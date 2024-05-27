@@ -12,7 +12,7 @@ const MyProfilePage = async () => {
   }
 
   return (
-    <main className="max-md:py-5 py-10 px-2 flex flex-col gap-10">
+    <main className="max-md:py-7 py-10 px-2 flex flex-col gap-10">
       <ProfileHeader
         name={user.name}
         email={user.user.email}
