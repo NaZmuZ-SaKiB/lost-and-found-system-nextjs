@@ -53,6 +53,30 @@ export const FooterSocialLinks = [
   },
 ];
 
+export const FollowersCountList = [
+  {
+    label: "Facebook",
+    icon: FaFacebook,
+    count: "750K+",
+  },
+  {
+    label: "Twitter",
+    icon: FaTwitter,
+    count: "470K+",
+  },
+  {
+    label: "Instagram",
+    icon: FaInstagramSquare,
+    count: "600K+",
+  },
+
+  {
+    label: "YouTube",
+    icon: FaYoutube,
+    count: "1.5M+",
+  },
+];
+
 export const DashboardItems2 = [
   "userCount",
   "lostItemCount",
