@@ -9,7 +9,7 @@ const RecentLostItems = async () => {
   const lostItems = await getAllLostItems({ limit: 4 });
 
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 py-20 px-2 sm:px-4">
       <div className="container">
         <h2 className="text-4xl font-semibold text-center">
           Recent Lost Reports

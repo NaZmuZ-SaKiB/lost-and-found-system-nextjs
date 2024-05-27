@@ -2,6 +2,8 @@ import Link from "next/link";
 import LostItemCardDeleteButton from "../Shared/LostItemCardDeleteButton";
 import MarkAsFoundButton from "../Shared/MarkAsFoundButton";
 import { Button } from "../ui/button";
+import Image from "next/image";
+import PlaceHolderImage from "@/assets/images/placeholder-image.jpg";
 
 type TProps = {
   lostItem: any;
@@ -12,29 +14,29 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
   const isMyItem = userId === lostItem?.user?.id;
 
   return (
-    <div className="rounded-xl p-4 pb-16 border border-black bg-white relative basis-[300px]">
-      <h3 className="text-xl font-semibold text-center mb-3">
+    <div className="rounded-xl pb-16 overflow-hidden border border-black bg-white relative basis-[300px]">
+      <div className="w-full h-[200px] relative mb-3 border-b">
+        <Image
+          src={lostItem?.image || PlaceHolderImage.src}
+          className="object-cover object-center"
+          fill
+          alt={lostItem?.lostItemName}
+        />
+      </div>
+      <h3 className="text-xl font-semibold px-2 mb-3">
         {lostItem.lostItemName}
       </h3>
-      <div className="flex flex-col gap-1">
-        <p className="mb-3">{lostItem.description}</p>
-        <p>
-          <span className="font-semibold">Category:</span>{" "}
-          {lostItem.category.name}
-        </p>
+      <div className="flex flex-col gap-1 px-2">
         <p>
           <span className="font-semibold">Location:</span> {lostItem.location}
         </p>
         <p>
-          <span className="font-semibold">Date:</span>{" "}
+          <span className="font-semibold">Lost Date:</span>{" "}
           {new Date(
             lostItem.lostDate || lostItem.createdAt
           ).toLocaleDateString()}
         </p>
-        <p>
-          <span className="font-semibold">Owner Name:</span>{" "}
-          {lostItem.user.userProfile.name}
-        </p>
+
         <p>
           <span className="font-semibold">Contact:</span>{" "}
           {lostItem.contactNo || lostItem.user.userProfile.contactNo}

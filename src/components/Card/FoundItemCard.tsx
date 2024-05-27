@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import FoundItemCardDeleteButton from "../Shared/FoundItemCardDeleteButton";
+import Image from "next/image";
+import PlaceHolderImage from "@/assets/images/placeholder-image.jpg";
 
 type TProps = {
   foundItem: any;
@@ -11,29 +13,29 @@ const FoundItemCard = ({ foundItem, userId }: TProps) => {
   const isMyItem = userId === foundItem?.user?.id;
 
   return (
-    <div className="rounded-xl p-4 pb-16 border border-black bg-white relative basis-[300px]">
-      <h3 className="text-xl font-semibold text-center mb-3">
+    <div className="rounded-xl overflow-hidden pb-16 border border-black bg-white relative basis-[300px]">
+      <div className="w-full h-[200px] relative mb-3 border-b">
+        <Image
+          src={foundItem?.image || PlaceHolderImage.src}
+          className="object-cover object-center"
+          fill
+          alt={foundItem?.foundItemName}
+        />
+      </div>
+      <h3 className="text-xl font-semibold px-2 mb-3">
         {foundItem.foundItemName}
       </h3>
-      <div className="flex flex-col gap-1">
-        <p className="mb-3">{foundItem.description}</p>
-        <p>
-          <span className="font-semibold">Category:</span>{" "}
-          {foundItem.category.name}
-        </p>
+      <div className="flex flex-col gap-1 px-2">
         <p>
           <span className="font-semibold">Location:</span> {foundItem.location}
         </p>
         <p>
-          <span className="font-semibold">Date:</span>{" "}
+          <span className="font-semibold">Found Date:</span>{" "}
           {new Date(
             foundItem.foundDate || foundItem.createdAt
           ).toLocaleDateString()}
         </p>
-        <p>
-          <span className="font-semibold">Found By:</span>{" "}
-          {foundItem.user.userProfile.name}
-        </p>
+
         <p>
           <span className="font-semibold">Contact:</span>{" "}
           {foundItem.contactNo || foundItem.user.userProfile.contactNo}
