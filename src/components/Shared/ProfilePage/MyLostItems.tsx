@@ -29,11 +29,13 @@ const MyLostItems = async ({ userId }: TProps) => {
         )}
       </div>
 
-      <div className="flex justify-center mt-10">
-        <Link href={"/my-lost-items"}>
-          <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
-        </Link>
-      </div>
+      {lostItems?.data?.length > 0 && (
+        <div className="flex justify-center mt-10">
+          <Link href={"/my-lost-items"}>
+            <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
+          </Link>
+        </div>
+      )}
     </section>
   );
 };

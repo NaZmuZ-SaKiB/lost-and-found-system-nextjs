@@ -24,11 +24,14 @@ const MyClaims = async ({ userId }: TProps) => {
           <p>No Claim Requests</p>
         )}
       </div>
-      <div className="flex justify-center mt-10">
-        <Link href={"/my-claims"}>
-          <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
-        </Link>
-      </div>
+
+      {claims?.data?.length > 0 && (
+        <div className="flex justify-center mt-10">
+          <Link href={"/my-claims"}>
+            <Button className="bg-pink-500 hover:bg-pink-600">View All</Button>
+          </Link>
+        </div>
+      )}
     </section>
   );
 };

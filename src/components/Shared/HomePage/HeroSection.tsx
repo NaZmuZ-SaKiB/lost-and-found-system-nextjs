@@ -34,7 +34,7 @@ const HeroSection = () => {
             <Link href="/report-found-item">
               <Button
                 variant="outline"
-                className="bg-transparent border-pink-500 bg-pink-200 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+                className="bg-transparent border-pink-500 bg-pink-50 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
               >
                 Report A Found Item
               </Button>
