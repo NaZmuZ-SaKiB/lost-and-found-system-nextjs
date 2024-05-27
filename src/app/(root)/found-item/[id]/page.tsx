@@ -6,6 +6,7 @@ import {
   getFoundItemById,
   isFoundItemClaimedByMe,
 } from "@/lib/actions/foundItem.actions";
+import { notFound } from "next/navigation";
 
 type TProps = {
   params: {
@@ -14,9 +15,11 @@ type TProps = {
 };
 
 const SingleFoundItemPage = async ({ params }: TProps) => {
-  const user = await isUserLoggedIn();
-
   const foundItem = await getFoundItemById(params.id);
+
+  if (!foundItem) notFound();
+
+  const user = await isUserLoggedIn();
 
   const isClaimed = await isFoundItemClaimedByMe(params.id);
 

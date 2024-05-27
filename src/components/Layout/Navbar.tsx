@@ -10,7 +10,7 @@ const Navbar = async () => {
   const user = await isUserLoggedIn();
 
   return (
-    <header className="border-b fixed top-0 bg-gray-200 bg-opacity-90 backdrop-blur-md z-10 w-full py-3 px-3">
+    <header className="border-b fixed top-0 bg-white bg-opacity-95 z-10 w-full py-3 px-3">
       <div className="container flex gap-3 justify-between items-center">
         <Link href="/" className="size-[30px] sm:size-[50px] relative">
           <Image src={Logo.src} fill alt="logo" />

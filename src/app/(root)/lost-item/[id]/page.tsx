@@ -1,6 +1,6 @@
 import LostItemInfo from "@/components/Shared/LostItemPage/LostItemInfo";
-import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { getLostItemById } from "@/lib/actions/lostItem.action";
+import { notFound } from "next/navigation";
 
 type TProps = {
   params: {
@@ -10,6 +10,8 @@ type TProps = {
 
 const SingleLostItemPage = async ({ params }: TProps) => {
   const lostItem = await getLostItemById(params.id);
+
+  if (!lostItem) notFound();
 
   return (
     <main className="py-10 flex px-2 flex-col gap-10">

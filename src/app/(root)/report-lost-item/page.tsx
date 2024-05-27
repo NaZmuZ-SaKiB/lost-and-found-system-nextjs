@@ -2,6 +2,7 @@
 
 import CustomDatePicker from "@/components/Form/CustomDatePicker";
 import CustomSelect from "@/components/Form/CustomSelect";
+import ImageUploadButton from "@/components/Form/ImageUploadButton";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,11 +19,15 @@ import { LostItemCreateValidation } from "@/lib/validations/lostItem.validation"
 import { useGetAllCategoriesQuery } from "@/redux/api/category.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
 const ReportLostItemPage = () => {
+  const [image, setImage] = useState<File | null>(null);
+  const [imageSrc, setImageSrc] = useState<null | string>(null);
+
   const router = useRouter();
 
   const { data: categoriess, isLoading } = useGetAllCategoriesQuery(undefined);
@@ -46,6 +51,7 @@ const ReportLostItemPage = () => {
       if (result.success) {
         toast.success("Lost item reported successfully");
         form.reset();
+        router.push(`/lost-item/${result?.data?.id}`);
       } else {
         toast.error("Failed to report lost item");
       }
@@ -73,6 +79,13 @@ const ReportLostItemPage = () => {
             </h1>
             <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
           </div>
+
+          <ImageUploadButton
+            image={image}
+            imageSrc={imageSrc}
+            setImage={setImage}
+            setImageSrc={setImageSrc}
+          />
 
           <div className="flex gap-5 max-sm:flex-col">
             <CustomSelect

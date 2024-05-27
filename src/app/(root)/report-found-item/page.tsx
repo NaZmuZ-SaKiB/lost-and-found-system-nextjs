@@ -2,6 +2,7 @@
 
 import CustomDatePicker from "@/components/Form/CustomDatePicker";
 import CustomSelect from "@/components/Form/CustomSelect";
+import ImageUploadButton from "@/components/Form/ImageUploadButton";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,17 +16,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createFoundItem } from "@/lib/actions/foundItem.actions";
+import { uploadImage } from "@/lib/actions/imgbb.actions";
 import { FoundItemCreateValidation } from "@/lib/validations/foundItem.validation";
 import { useGetAllCategoriesQuery } from "@/redux/api/category.api";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 const ReportFoundItemPage = () => {
+  const [image, setImage] = useState<File | null>(null);
+  const [imageSrc, setImageSrc] = useState<null | string>(null);
+
   const router = useRouter();
 
-  const { data: categoriess, isLoading } = useGetAllCategoriesQuery(undefined);
+  const { data: categoriess } = useGetAllCategoriesQuery(undefined);
 
   const form = useForm({
     resolver: zodResolver(FoundItemCreateValidation),
@@ -45,15 +52,25 @@ const ReportFoundItemPage = () => {
     values: z.infer<typeof FoundItemCreateValidation>
   ) => {
     try {
-      const result = await createFoundItem(values);
+      let data: any = { ...values };
+      let imgUrl: any = null;
+
+      if (image) {
+        imgUrl = await uploadImage(image);
+        data.image = imgUrl;
+      }
+
+      const result = await createFoundItem(data);
       if (result.success) {
         toast.success("Found item reported successfully");
         form.reset();
+        router.push(`/found-item/${result?.data?.id}`);
       } else {
         toast.error("Failed to report found item");
       }
     } catch (error: any) {
       toast.error("Failed to report found item");
+      console.log(error);
     }
   };
 
@@ -70,12 +87,19 @@ const ReportFoundItemPage = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col justify-start gap-5 max-sm:gap-6"
         >
-          <div className="mb-10">
+          <div className="mb-5">
             <h1 className="text-4xl font-semibold text-center">
               Report Found Item
             </h1>
             <div className="w-[125px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
           </div>
+
+          <ImageUploadButton
+            image={image}
+            imageSrc={imageSrc}
+            setImage={setImage}
+            setImageSrc={setImageSrc}
+          />
 
           <div className="flex gap-5 max-sm:flex-col">
             <CustomSelect
