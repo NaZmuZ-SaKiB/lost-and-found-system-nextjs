@@ -1,23 +1,29 @@
 "use client";
 
+import CustomPagination from "@/components/Form/CustomPagination";
+import Filters from "@/components/Shared/Filters";
 import ChangeUserStatus from "@/components/Shared/UserManagementPage/ChangeUserStatus";
 import ToggleUserRole from "@/components/Shared/UserManagementPage/ToggleUserRole";
 import { useGetAllUsersQuery } from "@/redux/api/user.api";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const ManageUsersPage = () => {
-  const [params, setParams] = useState<Record<string, any>>({ limit: 999 });
+  const searchParams = useSearchParams();
+  const params = Object.fromEntries(searchParams.entries());
+
   const {
     data: userData,
     isLoading: loadingUsers,
     isFetching,
   } = useGetAllUsersQuery(params);
 
-  console.log("userData", userData);
-
   return (
     <main className="container !py-10 !px-2 sm:!px-4">
       <h1 className="text-4xl font-semibold">User Management</h1>
+
+      <div className="mt-5 flex gap-3 justify-center items-center flex-wrap max-w-screen-md mx-auto">
+        <Filters category={false} />
+      </div>
 
       <div className="overflow-x-auto">
         <div className="mt-3 min-w-[700px]">
@@ -47,10 +53,18 @@ const ManageUsersPage = () => {
             ))
           ) : (
             <div className="mt-5 text-center border-2 p-3 text-lg font-semibold">
-              No sales yet
+              No Users
             </div>
           )}
         </div>
+
+        {!loadingUsers && (
+          <CustomPagination
+            page={userData?.meta?.page}
+            limit={userData?.meta?.limit}
+            total={userData?.meta?.total}
+          />
+        )}
       </div>
     </main>
   );

@@ -1,4 +1,6 @@
 import FoundItemCard from "@/components/Card/FoundItemCard";
+import CustomPagination from "@/components/Form/CustomPagination";
+import Filters from "@/components/Shared/Filters";
 import { Button } from "@/components/ui/button";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
@@ -25,6 +27,10 @@ const MyFoundItemsPage = async () => {
           </Link>
         </div>
 
+        <div className="mt-5 flex gap-3 justify-center items-center flex-wrap max-w-screen-md mx-auto">
+          <Filters />
+        </div>
+
         <div className="flex gap-5 mt-10 justify-center flex-wrap">
           {foundItems?.data?.map((foundItem: any) => (
             <FoundItemCard
@@ -33,7 +39,19 @@ const MyFoundItemsPage = async () => {
               foundItem={foundItem}
             />
           ))}
+
+          {!foundItems?.data?.length && (
+            <p className="text-pink-500 text-xl bg-pink-50 flex-1 text-center p-3">
+              No Found Items
+            </p>
+          )}
         </div>
+
+        <CustomPagination
+          page={foundItems?.meta?.page}
+          limit={foundItems?.meta?.limit}
+          total={foundItems?.meta?.total}
+        />
       </div>
     </main>
   );
