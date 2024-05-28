@@ -6,6 +6,7 @@ import Footer from "@/components/Layout/Footer";
 import { Toaster } from "sonner";
 import Providers from "@/lib/Providers/Providers";
 import MobileNav from "@/components/Layout/MobileNav";
+import { BottomBarItems } from "@/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
           <>
             <Navbar />
             <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
-            <MobileNav />
+            <MobileNav items={BottomBarItems} />
             <Footer />
             <Toaster position="top-center" />
           </>

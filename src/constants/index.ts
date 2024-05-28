@@ -10,6 +10,8 @@ import { AiFillHome } from "react-icons/ai";
 import { FaInfoCircle } from "react-icons/fa";
 import { BsPostcardFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
+import { BiSolidCategory } from "react-icons/bi";
 
 export const FooterLinks = [
   { href: "/", label: "About Us" },
@@ -134,6 +136,29 @@ export const BottomBarItems = [
     label: "Profile",
     route: "/my-profile",
     icon: FaUser,
+  },
+];
+
+export const AdminBottomBarItems = [
+  {
+    label: "Home",
+    route: "/",
+    icon: AiFillHome,
+  },
+  {
+    label: "Profile",
+    route: "/my-profile",
+    icon: FaUser,
+  },
+  {
+    label: "Users",
+    route: "/admin/manage-users",
+    icon: FaUserGroup,
+  },
+  {
+    label: "Category",
+    route: "/admin/category",
+    icon: BiSolidCategory,
   },
 ];
 
