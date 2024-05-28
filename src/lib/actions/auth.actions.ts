@@ -51,7 +51,7 @@ export const signInAction = async (email: string, password: string) => {
 
   if (result.success) {
     cookies().set("jwt", result.data.token, {
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       sameSite: "none",
       path: "/",
