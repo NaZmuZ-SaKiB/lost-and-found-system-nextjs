@@ -190,7 +190,7 @@ const ProfileUpdateModal = ({
                 type="submit"
                 disabled={form.formState.isSubmitting}
               >
-                Save changes
+                {form.formState.isSubmitting ? "Saving..." : "Save Changes"}
               </Button>
             </DialogFooter>
           </form>

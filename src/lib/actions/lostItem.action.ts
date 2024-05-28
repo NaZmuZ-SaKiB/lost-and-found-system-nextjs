@@ -21,6 +21,7 @@ export const createLostItem = async (data: any) => {
   revalidatePath("/");
   revalidatePath("/recent-posts");
   revalidatePath("/lost-item");
+  revalidatePath("/my-lost-items");
   revalidatePath("/my-profile");
   revalidatePath("/admin/dashboard");
 
@@ -78,6 +79,7 @@ export const deleteLostItem = async (id: string) => {
   revalidatePath("/");
   revalidatePath("/recent-posts");
   revalidatePath("/lost-item");
+  revalidatePath("/my-lost-items");
   revalidatePath("/my-profile");
   revalidatePath("/admin/dashboard");
 
@@ -100,6 +102,7 @@ export const markAsFound = async (id: string) => {
 
   revalidatePath("/recent-posts");
   revalidatePath("/lost-item");
+  revalidatePath("/my-lost-items");
   revalidatePath("/my-profile");
   revalidatePath("/admin/dashboard");
 };

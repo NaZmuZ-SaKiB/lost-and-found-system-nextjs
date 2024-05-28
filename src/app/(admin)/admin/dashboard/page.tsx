@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Suspense } from "react";
 
-const AdminDashboardPage = () => {
+const AdminDashboardPage = async () => {
   return (
     <main className="container !py-10 !px-2 sm:!px-4">
-      <div className="flex justify-between gap-4">
-        <h1 className="text-4xl font-semibold">Dashboard</h1>
+      <div className="flex justify-between items-center gap-4">
+        <h1 className="text-3xl sm:text-4xl font-semibold">Dashboard</h1>
         <Link href="/admin/manage-users">
           <Button className="bg-pink-500 hover:bg-pink-600">
             Manage Users

@@ -20,6 +20,7 @@ export const createFoundItem = async (data: any) => {
 
   revalidatePath("/recent-posts");
   revalidatePath("/found-item");
+  revalidatePath("/my-found-items");
   revalidatePath("/my-profile");
   revalidatePath("/admin/dashboard");
 
@@ -99,6 +100,7 @@ export const deleteFoundItem = async (id: string) => {
 
   revalidatePath("/recent-posts");
   revalidatePath("/found-item");
+  revalidatePath("/my-found-items");
   revalidatePath("/my-profile");
   revalidatePath("/admin/dashboard");
 
