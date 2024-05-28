@@ -24,6 +24,7 @@ const ProfileHeader = ({ name, email, age, contactNo, bio, image }: TProps) => {
           age={age}
           contactNo={contactNo}
           bio={bio}
+          image={image}
         />
       </div>
 

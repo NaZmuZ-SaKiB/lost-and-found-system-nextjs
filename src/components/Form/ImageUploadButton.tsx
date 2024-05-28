@@ -67,7 +67,7 @@ const ImageUploadButton = ({
           />
         </div>
       )}
-      <div className="flex gap-3 justify-end">
+      <div className="flex gap-3 justify-end flex-wrap">
         <Button
           type="button"
           size="sm"

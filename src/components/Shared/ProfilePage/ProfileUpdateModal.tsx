@@ -1,5 +1,6 @@
 "use client";
 
+import ImageUploadButton from "@/components/Form/ImageUploadButton";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { uploadImage } from "@/lib/actions/imgbb.actions";
 import { updateUser } from "@/lib/actions/user.actions";
 import { UpdateProfileValidation } from "@/lib/validations/user.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,10 +36,21 @@ type TProps = {
   age?: number;
   contactNo: string;
   bio?: string;
+  image?: string;
 };
 
-const ProfileUpdateModal = ({ name, email, age, contactNo, bio }: TProps) => {
+const ProfileUpdateModal = ({
+  name,
+  email,
+  age,
+  contactNo,
+  bio,
+  image: oldImage,
+}: TProps) => {
   const [open, setOpen] = useState(false);
+
+  const [image, setImage] = useState<File | null>(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
 
   const form = useForm({
     resolver: zodResolver(UpdateProfileValidation),
@@ -54,7 +67,15 @@ const ProfileUpdateModal = ({ name, email, age, contactNo, bio }: TProps) => {
 
   const onSubmit = async (values: z.infer<typeof UpdateProfileValidation>) => {
     try {
-      const result = await updateUser(values);
+      let data: any = { ...values };
+      let imgUrl: any = null;
+
+      if (image) {
+        imgUrl = await uploadImage(image);
+        data.profile.image = imgUrl;
+      }
+
+      const result = await updateUser(data);
       if (result.success) {
         toast.success("Profile updated successfully");
         setOpen(false);
@@ -82,6 +103,13 @@ const ProfileUpdateModal = ({ name, email, age, contactNo, bio }: TProps) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col justify-start gap-3 max-sm:gap-6"
           >
+            <ImageUploadButton
+              image={image}
+              imageSrc={imageSrc}
+              setImage={setImage}
+              setImageSrc={setImageSrc}
+              title="Update Profile"
+            />
             <FormField
               control={form.control}
               name="email"
