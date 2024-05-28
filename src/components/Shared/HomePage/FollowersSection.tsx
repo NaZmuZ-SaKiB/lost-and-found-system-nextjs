@@ -1,13 +1,13 @@
 import { FollowersCountList } from "@/constants";
 
-const FolloersSection = () => {
+const FollowersSection = () => {
   return (
-    <section className="py-10 bg-gray-900 px-2 sm:px-4">
+    <section className="py-10 bg-pink-700 px-2 sm:px-4">
       <div className="container">
         <h2 className="text-4xl font-semibold text-center text-white">
           Followers
         </h2>
-        <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+        <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-white" />
 
         <div className="flex max-md:justify-center justify-between flex-wrap gap-10 items-center mt-10">
           {FollowersCountList.map((item) => (
@@ -25,4 +25,4 @@ const FolloersSection = () => {
   );
 };
 
-export default FolloersSection;
+export default FollowersSection;

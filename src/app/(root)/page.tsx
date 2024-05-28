@@ -1,5 +1,5 @@
 import AboutSection from "@/components/Shared/HomePage/AboutSection";
-import FolloersSection from "@/components/Shared/HomePage/FolloersSection";
+import FollowersSection from "@/components/Shared/HomePage/FollowersSection";
 import HeroSection from "@/components/Shared/HomePage/HeroSection";
 import OurTeam from "@/components/Shared/HomePage/OurTeam";
 import RecentLostItems from "@/components/Shared/HomePage/RecentLostItems";
@@ -12,7 +12,7 @@ export default function Home() {
       <AboutSection />
       <OurTeam />
       <RecentLostItems />
-      <FolloersSection />
+      <FollowersSection />
       <Tesimonials />
     </main>
   );
