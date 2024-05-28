@@ -1,6 +1,7 @@
 "use client";
 
 import CustomPagination from "@/components/Form/CustomPagination";
+import UsersDataLoading from "@/components/Loaders/UsersDataLoading";
 import Filters from "@/components/Shared/Filters";
 import ChangeUserStatus from "@/components/Shared/UserManagementPage/ChangeUserStatus";
 import ToggleUserRole from "@/components/Shared/UserManagementPage/ToggleUserRole";
@@ -12,7 +13,7 @@ const ManageUsersPage = () => {
   const params = Object.fromEntries(searchParams.entries());
 
   const {
-    data: userData,
+    currentData: userData,
     isLoading: loadingUsers,
     isFetching,
   } = useGetAllUsersQuery(params);
@@ -51,6 +52,8 @@ const ManageUsersPage = () => {
                 </span>
               </div>
             ))
+          ) : isFetching ? (
+            <UsersDataLoading />
           ) : (
             <div className="mt-5 text-center border-2 p-3 text-lg font-semibold">
               No Users
@@ -58,7 +61,7 @@ const ManageUsersPage = () => {
           )}
         </div>
 
-        {!loadingUsers && (
+        {!loadingUsers && !isFetching && (
           <CustomPagination
             page={userData?.meta?.page}
             limit={userData?.meta?.limit}
