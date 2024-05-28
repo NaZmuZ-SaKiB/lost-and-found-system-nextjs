@@ -2,7 +2,7 @@ import { FollowersCountList } from "@/constants";
 
 const FollowersSection = () => {
   return (
-    <section className="py-10 bg-pink-700 px-2 sm:px-4">
+    <section className="py-10 bg-gray-500 px-2 sm:px-4">
       <div className="container">
         <h2 className="text-4xl font-semibold text-center text-white">
           Followers

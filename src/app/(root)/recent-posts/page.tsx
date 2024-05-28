@@ -5,13 +5,9 @@ import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const RecentPostsPage = async () => {
   const user = await isUserLoggedIn();
-  if (!user?.id) {
-    redirect("/sign-in");
-  }
 
   const foundItems = await getAllFoundItems({ limit: 6 });
   const lostItems = await getAllLostItems({ limit: 6 });
@@ -30,7 +26,7 @@ const RecentPostsPage = async () => {
               foundItems?.data?.map((foundItem: any) => (
                 <FoundItemCard
                   key={foundItem.id}
-                  userId={user.id}
+                  userId={user?.id}
                   foundItem={foundItem}
                 />
               ))
@@ -57,7 +53,7 @@ const RecentPostsPage = async () => {
               lostItems?.data?.map((lostItem: any) => (
                 <LostItemCard
                   key={lostItem.id}
-                  userId={user.id}
+                  userId={user?.id}
                   lostItem={lostItem}
                 />
               ))
