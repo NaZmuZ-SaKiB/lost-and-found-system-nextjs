@@ -13,14 +13,14 @@ const HeroSection = () => {
         backgroundImage: `linear-gradient(rgba(255 255 255/0), rgba(255 255 255/0)), url("${GridImage.src}")`,
       }}
     >
-      <div className="container flex max-md:flex-col-reverse items-center gap-5">
+      <div className="container flex flex-col-reverse md:flex-row items-center gap-5">
         <div className="flex flex-col gap-5 max-md:items-center items-start max-w-[60%]">
-          <h1 className="text-4xl lg:text-5xl max-md:text-center lg:font-bold font-semibold uppercase lg:leading-[3.8rem]">
+          <h1 className="text-4xl sm:text-5xl max-md:text-center lg:font-bold font-semibold uppercase lg:leading-[3.8rem]">
             <span className="text-pink-500">Connecting People</span> <br />
             with Their Possessions!
           </h1>
 
-          <p className="text-xl max-md:text-center lg:w-[70%]">
+          <p className="text-lg sm:text-xl max-md:text-center lg:w-[70%]">
             Reuniting Lost Items with Their Owners. Report Found Items. Search
             and Claim What {"You've"} Lost.
           </p>
@@ -42,11 +42,11 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative max-md:size-[70vw] size-[40vw]">
+        <div className="relative max-sm:size-[70vw] sm:size-[50vw] lg:size-[40vw]">
           <Image
             fill
             src={SearchingImage1.src}
-            className="object-cover"
+            className="object-contain"
             alt="Searching item"
           />
         </div>
