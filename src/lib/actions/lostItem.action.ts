@@ -105,4 +105,6 @@ export const markAsFound = async (id: string) => {
   revalidatePath("/my-lost-items");
   revalidatePath("/my-profile");
   revalidatePath("/admin/dashboard");
+
+  return result;
 };

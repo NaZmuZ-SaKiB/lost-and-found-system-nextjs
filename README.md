@@ -1,6 +1,6 @@
 # Lost and Found System Frontend
 
-This is a lost item management frontend project. User can register and manage their profile. User can report found items, lost items, claim a lost item from the reported items, track their claim status and search lost and found items with a robust filterring system. NextJs server side rendering and server actions is heavily used in this project to take the full benefits if NextJs framework.
+This is a lost item management frontend project. User can register and manage their profile. User can report found items, lost items, claim a lost item from the reported items, track their claim status and search lost and found items with a robust filterring system. NextJs server side rendering and server actions is heavily used in this project to take the full benefits if NextJs framework. NextJs built-in loading page and ReactJs suspense component is utilized to show loading states.
 
 ### [Live Site Link](https://lost-and-found-system-nextjs.vercel.app)
 
