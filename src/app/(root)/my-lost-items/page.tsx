@@ -1,11 +1,12 @@
-import LostItemCard from "@/components/Card/LostItemCard";
-import CustomPagination from "@/components/Form/CustomPagination";
+import SearchResultLoading from "@/components/Loaders/SearchResultLoading";
 import Filters from "@/components/Shared/Filters";
+import SearchResults from "@/components/Shared/SearchResults";
 import { Button } from "@/components/ui/button";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 type TProps = {
   searchParams: any;
@@ -16,8 +17,6 @@ const MyLostItemsPage = async ({ searchParams }: TProps) => {
   if (!user?.id) {
     redirect("/sign-in");
   }
-
-  const lostItems = await getAllLostItems({ userId: user.id, ...searchParams });
 
   return (
     <main className="px-2 sm:px-4">
@@ -35,26 +34,18 @@ const MyLostItemsPage = async ({ searchParams }: TProps) => {
           <Filters />
         </div>
 
-        <div className="flex gap-5 mt-10 justify-center flex-wrap">
-          {lostItems?.data?.map((lostItem: any) => (
-            <LostItemCard
-              key={lostItem.id}
-              userId={user.id}
-              lostItem={lostItem}
-            />
-          ))}
-          {!lostItems?.data?.length && (
-            <p className="text-pink-500 text-xl bg-pink-50 flex-1 text-center p-3">
-              No Lost Items
-            </p>
-          )}
-        </div>
-
-        <CustomPagination
-          page={lostItems?.meta?.page}
-          limit={lostItems?.meta?.limit}
-          total={lostItems?.meta?.total}
-        />
+        <Suspense
+          key={JSON.stringify(searchParams)}
+          fallback={<SearchResultLoading />}
+        >
+          <SearchResults
+            searchParams={searchParams}
+            searchFunction={(params: any) =>
+              getAllLostItems({ userId: user.id, ...params })
+            }
+            type="lost-item"
+          />
+        </Suspense>
       </div>
     </main>
   );

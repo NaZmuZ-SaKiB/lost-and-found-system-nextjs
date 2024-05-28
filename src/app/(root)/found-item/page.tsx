@@ -1,9 +1,10 @@
-import FoundItemCard from "@/components/Card/FoundItemCard";
-import CustomPagination from "@/components/Form/CustomPagination";
+import SearchResultLoading from "@/components/Loaders/SearchResultLoading";
 import Filters from "@/components/Shared/Filters";
+import SearchResults from "@/components/Shared/SearchResults";
 import { Button } from "@/components/ui/button";
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const fetchCache = "force-no-store";
 
@@ -11,9 +12,7 @@ type TProps = {
   searchParams: any;
 };
 
-const FoundItemPage = async ({ searchParams }: TProps) => {
-  const foundItems = await getAllFoundItems(searchParams);
-
+const FoundItemPage = ({ searchParams }: TProps) => {
   return (
     <main className="px-2 sm:px-4">
       <div className="container !py-10">
@@ -30,23 +29,16 @@ const FoundItemPage = async ({ searchParams }: TProps) => {
           <Filters />
         </div>
 
-        <div className="flex gap-5 mt-10 justify-center flex-wrap">
-          {foundItems?.data?.map((foundItem: any) => (
-            <FoundItemCard key={foundItem.id} foundItem={foundItem} />
-          ))}
-
-          {!foundItems?.data?.length && (
-            <p className="text-pink-500 text-xl bg-pink-50 flex-1 text-center p-3">
-              No Found Items
-            </p>
-          )}
-        </div>
-
-        <CustomPagination
-          page={foundItems?.meta?.page}
-          limit={foundItems?.meta?.limit}
-          total={foundItems?.meta?.total}
-        />
+        <Suspense
+          key={JSON.stringify(searchParams)}
+          fallback={<SearchResultLoading />}
+        >
+          <SearchResults
+            searchParams={searchParams}
+            searchFunction={getAllFoundItems}
+            type="found-item"
+          />
+        </Suspense>
       </div>
     </main>
   );

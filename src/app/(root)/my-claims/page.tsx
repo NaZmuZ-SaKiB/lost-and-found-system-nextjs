@@ -1,9 +1,10 @@
-import ClaimCard from "@/components/Card/ClaimCard";
 import LimitFilter from "@/components/Form/LimitFilter";
-import CustomPagination from "@/components/Form/CustomPagination";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { getAllClaims } from "@/lib/actions/claim.actions";
 import { redirect } from "next/navigation";
+import SearchResults from "@/components/Shared/SearchResults";
+import { Suspense } from "react";
+import SearchResultLoading from "@/components/Loaders/SearchResultLoading";
 
 type TProps = {
   searchParams: any;
@@ -15,37 +16,27 @@ const MyClaimsPage = async ({ searchParams }: TProps) => {
     redirect("/sign-in");
   }
 
-  const claims = await getAllClaims({
-    userId: user.id,
-    ...searchParams,
-  });
-
   return (
     <main className="px-2 sm:px-4">
       <div className="container !py-10">
         <h1 className="text-4xl max-md:text-center font-semibold">My Claims</h1>
 
-        <div className="mt-3 flex justify-center">
+        <div className="mt-5 flex max-md:justify-center justify-start">
           <LimitFilter />
         </div>
 
-        <div className="flex gap-5 mt-10 justify-center flex-wrap">
-          {claims?.data?.map((claim: any) => (
-            <ClaimCard key={claim.id} userId={user.id} claim={claim} />
-          ))}
-
-          {!claims?.data?.length && (
-            <p className="text-pink-500 text-xl bg-pink-50 flex-1 text-center p-3">
-              No Lost Items
-            </p>
-          )}
-        </div>
-
-        <CustomPagination
-          page={claims?.meta?.page}
-          limit={claims?.meta?.limit}
-          total={claims?.meta?.total}
-        />
+        <Suspense
+          key={JSON.stringify(searchParams)}
+          fallback={<SearchResultLoading />}
+        >
+          <SearchResults
+            searchParams={searchParams}
+            searchFunction={(params: any) =>
+              getAllClaims({ userId: user.id, ...params })
+            }
+            type="claim"
+          />
+        </Suspense>
       </div>
     </main>
   );

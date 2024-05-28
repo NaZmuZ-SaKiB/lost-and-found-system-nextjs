@@ -1,19 +1,22 @@
-import FoundItemCard from "@/components/Card/FoundItemCard";
-import CustomPagination from "@/components/Form/CustomPagination";
+import SearchResultLoading from "@/components/Loaders/SearchResultLoading";
 import Filters from "@/components/Shared/Filters";
+import SearchResults from "@/components/Shared/SearchResults";
 import { Button } from "@/components/ui/button";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
-const MyFoundItemsPage = async () => {
+type TProps = {
+  searchParams: any;
+};
+
+const MyFoundItemsPage = async ({ searchParams }: TProps) => {
   const user = await isUserLoggedIn();
   if (!user?.id) {
     redirect("/sign-in");
   }
-
-  const foundItems = await getAllFoundItems({ userId: user.id, limit: 999 });
 
   return (
     <main className="px-2 sm:px-4">
@@ -31,27 +34,18 @@ const MyFoundItemsPage = async () => {
           <Filters />
         </div>
 
-        <div className="flex gap-5 mt-10 justify-center flex-wrap">
-          {foundItems?.data?.map((foundItem: any) => (
-            <FoundItemCard
-              key={foundItem.id}
-              userId={user.id}
-              foundItem={foundItem}
-            />
-          ))}
-
-          {!foundItems?.data?.length && (
-            <p className="text-pink-500 text-xl bg-pink-50 flex-1 text-center p-3">
-              No Found Items
-            </p>
-          )}
-        </div>
-
-        <CustomPagination
-          page={foundItems?.meta?.page}
-          limit={foundItems?.meta?.limit}
-          total={foundItems?.meta?.total}
-        />
+        <Suspense
+          key={JSON.stringify(searchParams)}
+          fallback={<SearchResultLoading />}
+        >
+          <SearchResults
+            searchParams={searchParams}
+            searchFunction={(params: any) =>
+              getAllFoundItems({ userId: user.id, ...params })
+            }
+            type="found-item"
+          />
+        </Suspense>
       </div>
     </main>
   );

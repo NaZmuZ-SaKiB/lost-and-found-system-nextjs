@@ -36,14 +36,17 @@ const CategoryFilter = () => {
   };
   return (
     <div>
-      <Select onValueChange={(value) => handleChange(value)}>
+      <Select
+        onValueChange={(value) => handleChange(value)}
+        defaultValue={searchParams.get("category") || ""}
+      >
         <SelectTrigger>
           <SelectValue placeholder={"Select Category"} />
         </SelectTrigger>
 
         {!isLoading && (
           <SelectContent>
-            <SelectItem value={"All"}>All</SelectItem>
+            <SelectItem value={"All"}>All Category</SelectItem>
 
             {data.map((item: any) => (
               <SelectItem

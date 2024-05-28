@@ -26,6 +26,7 @@ const SearchBar = () => {
       <Input
         type="text"
         placeholder="Search..."
+        defaultValue={searchParams.get("searchTerm") || ""}
         onChange={(e) => handleChange(e.target.value)}
       />
     </div>

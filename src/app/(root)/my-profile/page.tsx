@@ -1,9 +1,11 @@
+import ItemsBoxLoading from "@/components/Loaders/ItemsBoxLoading";
 import MyClaims from "@/components/Shared/ProfilePage/MyClaims";
 import MyFoundItems from "@/components/Shared/ProfilePage/MyFoundItems";
 import MyLostItems from "@/components/Shared/ProfilePage/MyLostItems";
 import ProfileHeader from "@/components/Shared/ProfilePage/ProfileHeader";
 import { currentUser } from "@/lib/actions/auth.actions";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 const MyProfilePage = async () => {
   const user = await currentUser();
@@ -21,9 +23,18 @@ const MyProfilePage = async () => {
         bio={user?.bio}
         image={user?.image}
       />
-      <MyClaims userId={user?.user?.id} />
-      <MyLostItems userId={user?.user?.id} />
-      <MyFoundItems userId={user?.user?.id} />
+
+      <Suspense fallback={<ItemsBoxLoading />}>
+        <MyClaims userId={user?.user?.id} />
+      </Suspense>
+
+      <Suspense fallback={<ItemsBoxLoading />}>
+        <MyLostItems userId={user?.user?.id} />
+      </Suspense>
+
+      <Suspense fallback={<ItemsBoxLoading />}>
+        <MyFoundItems userId={user?.user?.id} />
+      </Suspense>
     </main>
   );
 };
