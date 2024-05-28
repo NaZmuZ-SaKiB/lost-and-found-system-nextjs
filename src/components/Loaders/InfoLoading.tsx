@@ -1,16 +1,19 @@
-import { FaEdit } from "react-icons/fa";
 import { Button } from "../ui/button";
 
-const InfoLoading = () => {
+const InfoLoading = ({ isProfile = false }: { isProfile?: boolean }) => {
   return (
     <section className="container !py-10 !px-8 max-sm:!px-3 bg-gray-100 rounded-3xl ">
       <div className="flex max-xs:flex-col justify-between items-center gap-4">
-        <h1 className="text-4xl font-semibold">My Profile</h1>
+        <div className="w-40 h-10 bg-gray-200 rounded-3xl animate-pulse"></div>
         <Button className="bg-gray-300 hover:bg-gray-300 w-28"></Button>
       </div>
 
       <div className="flex flex-col items-center md:flex-row mt-10 gap-3">
-        <div className="mx-auto relative size-[150px] bg-gray-200 border animate-pulse rounded-full overflow-hidden"></div>
+        <div
+          className={`mx-auto relative size-[150px] bg-gray-200 border animate-pulse ${
+            isProfile ? "rounded-full" : "rounded-lg"
+          } overflow-hidden`}
+        ></div>
 
         <div className="flex-1">
           <div className="flex max-sm:flex-col gap-4 items-center">
