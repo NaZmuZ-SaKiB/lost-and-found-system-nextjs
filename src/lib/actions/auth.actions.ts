@@ -26,7 +26,7 @@ export const signUpAction = async (data: any) => {
     cookies().set("jwt", result.data.token, {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       path: "/",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     });
@@ -53,7 +53,7 @@ export const signInAction = async (email: string, password: string) => {
     cookies().set("jwt", result.data.token, {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       path: "/",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     });
