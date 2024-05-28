@@ -1,6 +1,7 @@
 "use server";
 
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export const createFoundItem = async (data: any) => {
@@ -16,6 +17,11 @@ export const createFoundItem = async (data: any) => {
       cache: "no-cache",
     }
   );
+
+  revalidatePath("/recent-posts");
+  revalidatePath("/found-item");
+  revalidatePath("/my-profile");
+  revalidatePath("/admin/dashboard");
 
   return await res.json();
 };
@@ -89,5 +95,12 @@ export const deleteFoundItem = async (id: string) => {
     }
   );
 
-  return await res.json();
+  const result = await res.json();
+
+  revalidatePath("/recent-posts");
+  revalidatePath("/found-item");
+  revalidatePath("/my-profile");
+  revalidatePath("/admin/dashboard");
+
+  return result;
 };

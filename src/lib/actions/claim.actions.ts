@@ -5,6 +5,7 @@ import { ClaimValidation } from "../validations/claim.validation";
 import { cookies } from "next/headers";
 import axios from "axios";
 import { ClaimStatusEnum } from "@/constants";
+import { revalidatePath } from "next/cache";
 
 export const createClaim = async (data: z.infer<typeof ClaimValidation>) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims`, {
@@ -17,7 +18,11 @@ export const createClaim = async (data: z.infer<typeof ClaimValidation>) => {
     cache: "no-cache",
   });
 
-  return await res.json();
+  const result = await res.json();
+
+  revalidatePath("/my-claims");
+  revalidatePath("/my-profile");
+  return result;
 };
 
 export const getAllClaims = async (query?: Record<string, any>) => {
@@ -46,7 +51,11 @@ export const deleteClaim = async (id: string) => {
     }
   );
 
-  return await res.json();
+  const result = await res.json();
+
+  revalidatePath("/my-claims");
+  revalidatePath("/my-profile");
+  return result;
 };
 
 export const updateStatus = async (id: string, data: { status: string }) => {
@@ -66,6 +75,9 @@ export const updateStatus = async (id: string, data: { status: string }) => {
       cache: "no-cache",
     }
   );
+
+  revalidatePath("/my-claims");
+  revalidatePath("/my-profile");
 
   return await res.json();
 };

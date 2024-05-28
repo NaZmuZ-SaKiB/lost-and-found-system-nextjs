@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import { ChangePasswordValidation } from "../validations/auth.validation";
+import { revalidatePath } from "next/cache";
 
 export const signUpAction = async (data: any) => {
   const res = await fetch(
@@ -31,6 +32,8 @@ export const signUpAction = async (data: any) => {
     });
   }
 
+  revalidatePath("/my-profile");
+
   return result;
 };
 
@@ -55,6 +58,8 @@ export const signInAction = async (email: string, password: string) => {
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     });
   }
+
+  revalidatePath("/my-profile");
 
   return result;
 };

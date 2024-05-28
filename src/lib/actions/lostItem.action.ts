@@ -19,6 +19,10 @@ export const createLostItem = async (data: any) => {
   );
 
   revalidatePath("/");
+  revalidatePath("/recent-posts");
+  revalidatePath("/lost-item");
+  revalidatePath("/my-profile");
+  revalidatePath("/admin/dashboard");
 
   return await res.json();
 };
@@ -69,7 +73,15 @@ export const deleteLostItem = async (id: string) => {
     }
   );
 
-  return await res.json();
+  const result = await res.json();
+
+  revalidatePath("/");
+  revalidatePath("/recent-posts");
+  revalidatePath("/lost-item");
+  revalidatePath("/my-profile");
+  revalidatePath("/admin/dashboard");
+
+  return result;
 };
 
 export const markAsFound = async (id: string) => {
@@ -84,5 +96,10 @@ export const markAsFound = async (id: string) => {
     }
   );
 
-  return await res.json();
+  const result = await res.json();
+
+  revalidatePath("/recent-posts");
+  revalidatePath("/lost-item");
+  revalidatePath("/my-profile");
+  revalidatePath("/admin/dashboard");
 };
