@@ -16,7 +16,6 @@ export const uploadImage = async (image: any) => {
   );
 
   const result = await res.json();
-  console.log("result", result);
 
   if (result.success) {
     return result?.data?.url;

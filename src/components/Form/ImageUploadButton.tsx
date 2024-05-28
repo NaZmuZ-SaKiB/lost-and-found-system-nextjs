@@ -9,6 +9,7 @@ type TProps = {
   imageSrc: string | null;
   setImage: any;
   setImageSrc: any;
+  title?: string;
 };
 
 const ImageUploadButton = ({
@@ -16,6 +17,7 @@ const ImageUploadButton = ({
   imageSrc,
   setImage,
   setImageSrc,
+  title,
 }: TProps) => {
   const imgInputRef = useRef<HTMLInputElement>(null);
 
@@ -72,7 +74,7 @@ const ImageUploadButton = ({
           className="bg-pink-500 hover:bg-pink-600"
           onClick={() => imgInputRef.current?.click()}
         >
-          {image ? "Change" : "Add"} Image
+          {image ? "Change" : title || "Add"} Image
         </Button>
         {image && (
           <Button
