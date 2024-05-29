@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import LogoutButton from "../Shared/LogoutButton";
-import Logo from "@/assets/images/logo-small.png";
+import Logo from "@/assets/images/logo-small.webp";
 
 const AdminNavbar = async () => {
   const user = await isUserLoggedIn();

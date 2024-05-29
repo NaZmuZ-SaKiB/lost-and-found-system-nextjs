@@ -1,6 +1,6 @@
-import UserImage1 from "@/assets/images/testimony-user-1.jpg";
+import UserImage1 from "@/assets/images/testimony-user-1.webp";
 import UserImage2 from "@/assets/images/testimony-user-2.webp";
-import UserImage3 from "@/assets/images/testimony-user-3.jpg";
+import UserImage3 from "@/assets/images/testimony-user-3.webp";
 
 export const testimonials = [
   {

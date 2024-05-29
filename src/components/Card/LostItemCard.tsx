@@ -3,7 +3,7 @@ import LostItemCardDeleteButton from "../Shared/LostItemCardDeleteButton";
 import MarkAsFoundButton from "../Shared/MarkAsFoundButton";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import PlaceHolderImage from "@/assets/images/placeholder-image.jpg";
+import PlaceHolderImage from "@/assets/images/placeholder-image.webp";
 
 type TProps = {
   lostItem: any;

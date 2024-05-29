@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
-import GridImage from "@/assets/images/grid.png";
-import SearchingImage1 from "@/assets/images/searching-image-1.png";
+import GridImage from "@/assets/images/grid.webp";
+import SearchingImage1 from "@/assets/images/searching-image-1.webp";
 
 const HeroSection = () => {
   return (

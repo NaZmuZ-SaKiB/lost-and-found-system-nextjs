@@ -1,7 +1,7 @@
-import TeamMember1 from "@/assets/images/team-member-1.jpg";
-import TeamMember2 from "@/assets/images/team-member-2.jpg";
-import TeamMember3 from "@/assets/images/team-member-3.jpg";
-import TeamMember4 from "@/assets/images/team-member-4.jpg";
+import TeamMember1 from "@/assets/images/team-member-1.webp";
+import TeamMember2 from "@/assets/images/team-member-2.webp";
+import TeamMember3 from "@/assets/images/team-member-3.webp";
+import TeamMember4 from "@/assets/images/team-member-4.webp";
 
 export type TTeamMember = {
   name: string;

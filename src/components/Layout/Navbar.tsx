@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "@/assets/images/logo-small.png";
+import Logo from "@/assets/images/logo-small.webp";
 import { Button } from "../ui/button";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import LogoutButton from "../Shared/LogoutButton";

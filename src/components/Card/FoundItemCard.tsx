@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import FoundItemCardDeleteButton from "../Shared/FoundItemCardDeleteButton";
 import Image from "next/image";
-import PlaceHolderImage from "@/assets/images/placeholder-image.jpg";
+import PlaceHolderImage from "@/assets/images/placeholder-image.webp";
 
 type TProps = {
   foundItem: any;
