@@ -1,6 +1,7 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { Tags } from "@/constants";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const createFoundItem = async (data: any) => {
@@ -17,13 +18,12 @@ export const createFoundItem = async (data: any) => {
     }
   );
 
-  revalidatePath("/recent-posts");
-  revalidatePath("/found-item");
-  revalidatePath("/my-found-items");
-  revalidatePath("/my-profile");
-  revalidatePath("/admin/dashboard");
+  const result = await res.json();
 
-  return await res.json();
+  revalidateTag(Tags.FOUND_ITEM);
+  revalidateTag(Tags.DASHBOARD);
+
+  return result;
 };
 
 export const getAllFoundItems = async (query?: Record<string, any>) => {
@@ -35,6 +35,9 @@ export const getAllFoundItems = async (query?: Record<string, any>) => {
     }/api/found-items?${params.toString()}`,
     {
       cache: "no-store",
+      next: {
+        tags: [Tags.FOUND_ITEM],
+      },
     }
   );
 
@@ -52,6 +55,9 @@ export const getFoundItemById = async (id: string) => {
         "Content-Type": "application/json",
       },
       cache: "no-cache",
+      next: {
+        tags: [Tags.FOUND_ITEM],
+      },
     }
   );
 
@@ -74,6 +80,9 @@ export const isFoundItemClaimedByMe = async (id: string) => {
         Authorization: cookies().get("jwt")?.value as string,
       },
       cache: "no-cache",
+      next: {
+        tags: [Tags.FOUND_ITEM, Tags.CLAIM],
+      },
     }
   );
 
@@ -100,11 +109,8 @@ export const deleteFoundItem = async (id: string) => {
 
   const result = await res.json();
 
-  revalidatePath("/recent-posts");
-  revalidatePath("/found-item");
-  revalidatePath("/my-found-items");
-  revalidatePath("/my-profile");
-  revalidatePath("/admin/dashboard");
+  revalidateTag(Tags.FOUND_ITEM);
+  revalidateTag(Tags.DASHBOARD);
 
   return result;
 };

@@ -1,7 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
+import { Tags } from "@/constants";
 
 export const createLostItem = async (data: any) => {
   const res = await fetch(
@@ -17,14 +18,12 @@ export const createLostItem = async (data: any) => {
     }
   );
 
-  revalidatePath("/");
-  revalidatePath("/recent-posts");
-  revalidatePath("/lost-item");
-  revalidatePath("/my-lost-items");
-  revalidatePath("/my-profile");
-  revalidatePath("/admin/dashboard");
+  const result = await res.json();
 
-  return await res.json();
+  revalidateTag(Tags.LOST_ITEM);
+  revalidateTag(Tags.DASHBOARD);
+
+  return result;
 };
 
 export const getAllLostItems = async (query?: Record<string, any>) => {
@@ -36,6 +35,9 @@ export const getAllLostItems = async (query?: Record<string, any>) => {
     }/api/lost-items?${params.toString()}`,
     {
       cache: "no-store",
+      next: {
+        tags: [Tags.LOST_ITEM],
+      },
     }
   );
 
@@ -52,6 +54,9 @@ export const getLostItemById = async (id: string) => {
         "Content-Type": "application/json",
       },
       cache: "no-cache",
+      next: {
+        tags: [Tags.LOST_ITEM],
+      },
     }
   );
 
@@ -78,12 +83,8 @@ export const deleteLostItem = async (id: string) => {
 
   const result = await res.json();
 
-  revalidatePath("/");
-  revalidatePath("/recent-posts");
-  revalidatePath("/lost-item");
-  revalidatePath("/my-lost-items");
-  revalidatePath("/my-profile");
-  revalidatePath("/admin/dashboard");
+  revalidateTag(Tags.LOST_ITEM);
+  revalidateTag(Tags.DASHBOARD);
 
   return result;
 };
@@ -102,11 +103,8 @@ export const markAsFound = async (id: string) => {
 
   const result = await res.json();
 
-  revalidatePath("/recent-posts");
-  revalidatePath("/lost-item");
-  revalidatePath("/my-lost-items");
-  revalidatePath("/my-profile");
-  revalidatePath("/admin/dashboard");
+  revalidateTag(Tags.LOST_ITEM);
+  revalidateTag(Tags.DASHBOARD);
 
   return result;
 };

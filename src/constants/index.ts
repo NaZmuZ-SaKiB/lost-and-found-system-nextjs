@@ -1,5 +1,6 @@
 export * from "./teamMembers";
 export * from "./testimonials";
+export * from "./tags";
 
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";

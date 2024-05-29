@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import { ChangePasswordValidation } from "../validations/auth.validation";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
+import { Tags } from "@/constants";
 
 export const signUpAction = async (data: any) => {
   const res = await fetch(
@@ -32,7 +33,7 @@ export const signUpAction = async (data: any) => {
     });
   }
 
-  revalidatePath("/my-profile");
+  revalidateTag(Tags.USER);
 
   return result;
 };
@@ -59,7 +60,7 @@ export const signInAction = async (email: string, password: string) => {
     });
   }
 
-  revalidatePath("/my-profile");
+  revalidateTag(Tags.USER);
 
   return result;
 };
@@ -84,6 +85,9 @@ export const currentUser = async () => {
           Authorization: cookies().get("jwt")!.value,
         },
         cache: "no-store",
+        next: {
+          tags: [Tags.USER],
+        },
       }
     );
 

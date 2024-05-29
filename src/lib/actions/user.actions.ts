@@ -3,8 +3,8 @@
 import { z } from "zod";
 import { UpdateProfileValidation } from "../validations/user.validation";
 import { cookies } from "next/headers";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { Tags } from "@/constants/tags";
+import { revalidateTag } from "next/cache";
+import { Tags } from "@/constants";
 
 export const updateUser = async (
   data: z.infer<typeof UpdateProfileValidation>
@@ -24,7 +24,6 @@ export const updateUser = async (
 
   const result = await res.json();
 
-  revalidatePath("/my-profile");
   revalidateTag(Tags.USER);
 
   return result;
@@ -39,6 +38,9 @@ export const getDashboardData = async () => {
         Authorization: cookies().get("jwt")?.value as string,
       },
       cache: "no-cache",
+      next: {
+        tags: [Tags.DASHBOARD],
+      },
     }
   );
 
@@ -108,6 +110,7 @@ export const updateUserStatus = async (data: {
   const result = await res.json();
 
   revalidateTag(Tags.USER);
+  revalidateTag(Tags.DASHBOARD);
 
   return result;
 };

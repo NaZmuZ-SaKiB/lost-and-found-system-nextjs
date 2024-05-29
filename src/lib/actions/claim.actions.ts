@@ -3,8 +3,8 @@
 import { z } from "zod";
 import { ClaimValidation } from "../validations/claim.validation";
 import { cookies } from "next/headers";
-import { ClaimStatusEnum } from "@/constants";
-import { revalidatePath } from "next/cache";
+import { ClaimStatusEnum, Tags } from "@/constants";
+import { revalidateTag } from "next/cache";
 
 export const createClaim = async (data: z.infer<typeof ClaimValidation>) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims`, {
@@ -19,8 +19,8 @@ export const createClaim = async (data: z.infer<typeof ClaimValidation>) => {
 
   const result = await res.json();
 
-  revalidatePath("/my-claims");
-  revalidatePath("/my-profile");
+  revalidateTag(Tags.CLAIM);
+  revalidateTag(Tags.DASHBOARD);
   return result;
 };
 
@@ -31,6 +31,9 @@ export const getAllClaims = async (query?: Record<string, any>) => {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims?${params.toString()}`,
     {
       cache: "no-store",
+      next: {
+        tags: [Tags.CLAIM],
+      },
     }
   );
 
@@ -53,8 +56,9 @@ export const deleteClaim = async (id: string) => {
 
   const result = await res.json();
 
-  revalidatePath("/my-claims");
-  revalidatePath("/my-profile");
+  revalidateTag(Tags.CLAIM);
+  revalidateTag(Tags.DASHBOARD);
+
   return result;
 };
 
@@ -76,8 +80,9 @@ export const updateStatus = async (id: string, data: { status: string }) => {
     }
   );
 
-  revalidatePath("/my-claims");
-  revalidatePath("/my-profile");
+  const result = await res.json();
+  revalidateTag(Tags.CLAIM);
+  revalidateTag(Tags.DASHBOARD);
 
-  return await res.json();
+  return result;
 };

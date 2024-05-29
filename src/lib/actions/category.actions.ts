@@ -1,12 +1,18 @@
 "use server";
 
+import { Tags } from "@/constants";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getAllCategories = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories`,
-    { cache: "no-store" }
+    {
+      cache: "no-store",
+      next: {
+        tags: [Tags.CATEGORY],
+      },
+    }
   );
 
   const result = await res.json();
@@ -29,15 +35,12 @@ export const createCategory = async (data: { name: string }) => {
       },
       body: JSON.stringify(data),
       cache: "no-store",
-      next: {
-        tags: ["category"],
-      },
     }
   );
 
   const result = await res.json();
 
-  revalidateTag("category");
+  revalidateTag(Tags.CATEGORY);
 
   return result;
 };
