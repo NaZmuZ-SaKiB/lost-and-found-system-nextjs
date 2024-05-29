@@ -41,7 +41,7 @@ const FoundItemCard = ({ foundItem, userId }: TProps) => {
           {foundItem.contactNo || foundItem.user.userProfile.contactNo}
         </li>
       </ul>
-      <div className="text-center w-full left-0 px-2 absolute bottom-2 flex gap-3">
+      <div className="text-center w-full left-0 px-2 absolute bottom-3 flex gap-3">
         <Link href={`/found-item/${foundItem.id}`} className="flex-1">
           <Button
             variant="outline"

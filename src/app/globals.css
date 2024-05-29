@@ -19,5 +19,5 @@
 }
 
 .item_card {
-  @apply rounded-xl overflow-hidden pb-16 border border-gray-200 bg-white relative basis-[300px] hover:shadow-lg transition-shadow duration-300;
+  @apply rounded-xl overflow-hidden pb-20 border border-gray-200 bg-white relative basis-[300px] hover:shadow-lg transition-shadow duration-300;
 }

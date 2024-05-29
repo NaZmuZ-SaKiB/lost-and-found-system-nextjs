@@ -13,7 +13,7 @@ const InfoLoading = ({ isProfile = false }: { isProfile?: boolean }) => {
           className={`mx-auto relative bg-gray-200 border animate-pulse ${
             isProfile
               ? "rounded-full size-[150px]"
-              : "rounded-lg w-[200px] max-md:h-[200px]"
+              : "rounded-lg w-[200px] h-[150px] max-md:h-[200px]"
           } overflow-hidden`}
         ></div>
 

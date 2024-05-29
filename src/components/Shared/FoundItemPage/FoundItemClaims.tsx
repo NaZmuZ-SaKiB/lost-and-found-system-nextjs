@@ -7,7 +7,7 @@ type TProps = {
 
 const FoundItemClaims = ({ claims, userId }: TProps) => {
   return (
-    <section className="container !py-10 !px-8 border border-pink-500 rounded-3xl">
+    <section className="container bg-gray-50 !py-10 !px-8 border border-gray-200 rounded-3xl">
       <h2 className="text-3xl font-semibold text-center">Claim Requests</h2>
       <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 
