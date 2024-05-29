@@ -17,3 +17,7 @@
 .bottombar_link {
   @apply relative flex flex-col text-gray-900 items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
 }
+
+.item_card {
+  @apply rounded-xl overflow-hidden pb-16 border border-gray-200 bg-white relative basis-[300px] hover:shadow-lg transition-shadow duration-300;
+}

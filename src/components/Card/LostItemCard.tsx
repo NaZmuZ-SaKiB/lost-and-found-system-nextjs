@@ -14,7 +14,7 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
   const isMyItem = userId === lostItem?.user?.id;
 
   return (
-    <div className="rounded-xl pb-16 overflow-hidden border border-gray-300 bg-white relative basis-[300px]">
+    <div className="item_card">
       <div className="w-full h-[200px] relative mb-3 border-b">
         <Image
           src={lostItem?.image || PlaceHolderImage.src}

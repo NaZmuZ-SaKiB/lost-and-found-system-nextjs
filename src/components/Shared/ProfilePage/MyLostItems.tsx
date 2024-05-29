@@ -11,7 +11,7 @@ const MyLostItems = async ({ userId }: TProps) => {
   const lostItems = await getAllLostItems({ userId });
 
   return (
-    <section className="container max-sm:!p-5 max-sm:!px-2 !py-10 !px-8 border border-pink-500 rounded-3xl">
+    <section className="container bg-gray-50 max-sm:!p-5 max-sm:!px-2 !py-10 !px-8 border border-gray-200 rounded-3xl">
       <h2 className="text-3xl font-semibold text-center">My Lost Items</h2>
       <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
 

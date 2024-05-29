@@ -10,7 +10,7 @@ const ClaimCard = ({ claim, userId, isFoundItemPage }: TProps) => {
   const isMyClaim = userId === claim?.userId;
 
   return (
-    <div className="rounded-xl p-4 pb-16 border border-gray-300 bg-white relative basis-[300px]">
+    <div className="item_card p-4">
       <h3 className="text-xl font-semibold text-center mb-3">
         {claim.foundItem.foundItemName}
       </h3>

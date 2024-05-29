@@ -10,12 +10,14 @@ const InfoLoading = ({ isProfile = false }: { isProfile?: boolean }) => {
 
       <div className="flex flex-col items-center md:flex-row mt-10 gap-3">
         <div
-          className={`mx-auto relative size-[150px] bg-gray-200 border animate-pulse ${
-            isProfile ? "rounded-full" : "rounded-lg"
+          className={`mx-auto relative bg-gray-200 border animate-pulse ${
+            isProfile
+              ? "rounded-full size-[150px]"
+              : "rounded-lg w-[200px] max-md:h-[200px]"
           } overflow-hidden`}
         ></div>
 
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <div className="flex max-sm:flex-col gap-4 items-center">
             <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg h-16 animate-pulse"></div>
             <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg h-16 animate-pulse"></div>
