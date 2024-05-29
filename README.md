@@ -7,14 +7,13 @@ This is a lost item management frontend project. User can register and manage th
 ## Technology
 
 1.  NextJs
-2.  Redux Toolit
-3.  Jsonwebtoken
-4.  React Hook Form
-5.  Shadcn UI
-6.  Tailwind CSS
-7.  Zod
-8.  ImgBB
-9.  TypeScript
+2.  Jsonwebtoken
+3.  React Hook Form
+4.  Shadcn UI
+5.  Tailwind CSS
+6.  Zod
+7.  ImgBB
+8.  TypeScript
 
 ## Run the project in your local mechine
 
