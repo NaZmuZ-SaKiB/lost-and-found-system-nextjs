@@ -1,7 +1,6 @@
 "use server";
 
 import { cookies } from "next/headers";
-import axios from "axios";
 import { revalidatePath } from "next/cache";
 
 export const createLostItem = async (data: any) => {
@@ -29,15 +28,18 @@ export const createLostItem = async (data: any) => {
 };
 
 export const getAllLostItems = async (query?: Record<string, any>) => {
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/lost-items`,
+  const params = new URLSearchParams(query);
+
+  const res = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_BACKEND_URL
+    }/api/lost-items?${params.toString()}`,
     {
-      params: query || {},
-      validateStatus: (_) => true,
+      cache: "no-store",
     }
   );
 
-  const result = res.data;
+  const result = await res.json();
   return result;
 };
 

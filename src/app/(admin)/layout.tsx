@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "sonner";
-import Providers from "@/lib/Providers/Providers";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { redirect } from "next/navigation";
 

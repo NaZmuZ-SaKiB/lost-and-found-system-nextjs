@@ -3,7 +3,6 @@
 import { z } from "zod";
 import { ClaimValidation } from "../validations/claim.validation";
 import { cookies } from "next/headers";
-import axios from "axios";
 import { ClaimStatusEnum } from "@/constants";
 import { revalidatePath } from "next/cache";
 
@@ -26,15 +25,16 @@ export const createClaim = async (data: z.infer<typeof ClaimValidation>) => {
 };
 
 export const getAllClaims = async (query?: Record<string, any>) => {
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims`,
+  const params = new URLSearchParams(query);
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/claims?${params.toString()}`,
     {
-      params: query || {},
-      validateStatus: (_) => true,
+      cache: "no-store",
     }
   );
 
-  const result = res.data;
+  const result = await res.json();
 
   return result;
 };
