@@ -1,5 +1,5 @@
+import FiltersLoading from "@/components/Loaders/FiltersLoading";
 import UsersDataLoading from "@/components/Loaders/UsersDataLoading";
-import Filters from "@/components/Shared/Filters";
 
 const loading = () => {
   return (
@@ -7,7 +7,7 @@ const loading = () => {
       <h1 className="text-4xl font-semibold">User Management</h1>
 
       <div className="mt-5 flex gap-3 justify-center items-center flex-wrap max-w-screen-md mx-auto">
-        <Filters category={false} />
+        <FiltersLoading />
       </div>
 
       <div className="overflow-x-auto">

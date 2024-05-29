@@ -1,5 +1,5 @@
+import FiltersLoading from "@/components/Loaders/FiltersLoading";
 import SearchResultLoading from "@/components/Loaders/SearchResultLoading";
-import Filters from "@/components/Shared/Filters";
 import { Button } from "@/components/ui/button";
 
 const loading = () => {
@@ -15,7 +15,7 @@ const loading = () => {
         </div>
 
         <div className="mt-5 flex gap-3 justify-center items-center flex-wrap max-w-screen-md mx-auto">
-          <Filters />
+          <FiltersLoading />
         </div>
 
         <SearchResultLoading />

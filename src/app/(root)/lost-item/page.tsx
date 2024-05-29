@@ -1,3 +1,4 @@
+import FiltersLoading from "@/components/Loaders/FiltersLoading";
 import SearchResultLoading from "@/components/Loaders/SearchResultLoading";
 import Filters from "@/components/Shared/Filters";
 import SearchResults from "@/components/Shared/SearchResults";
@@ -24,7 +25,9 @@ const LostItemPage = ({ searchParams }: TProps) => {
         </div>
 
         <div className="mt-5 flex gap-3 justify-center items-center flex-wrap max-w-screen-md mx-auto">
-          <Filters />
+          <Suspense fallback={<FiltersLoading />}>
+            <Filters />
+          </Suspense>
         </div>
 
         <Suspense
