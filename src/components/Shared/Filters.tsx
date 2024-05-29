@@ -1,6 +1,7 @@
 import CategoryFilter from "@/components/Form/CategoryFilter";
 import LimitFilter from "@/components/Form/LimitFilter";
 import SearchBar from "@/components/Form/SearchBar";
+import { getAllCategories } from "@/lib/actions/category.actions";
 
 type TProps = {
   search?: boolean;
@@ -8,7 +9,13 @@ type TProps = {
   limit?: boolean;
 };
 
-const Filters = ({ search = true, category = true, limit = true }: TProps) => {
+const Filters = async ({
+  search = true,
+  category = true,
+  limit = true,
+}: TProps) => {
+  const categories = await getAllCategories();
+
   return (
     <>
       {search && (
@@ -17,7 +24,7 @@ const Filters = ({ search = true, category = true, limit = true }: TProps) => {
         </div>
       )}
 
-      {category && <CategoryFilter />}
+      {category && <CategoryFilter categories={categories} />}
 
       {limit && <LimitFilter />}
     </>

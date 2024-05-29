@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetAllCategoriesQuery } from "@/redux/api/category.api";
 import {
   Select,
   SelectContent,
@@ -10,9 +9,11 @@ import {
 } from "../ui/select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const CategoryFilter = () => {
-  const { data, isLoading } = useGetAllCategoriesQuery(undefined);
+type TProps = {
+  categories: any[];
+};
 
+const CategoryFilter = ({ categories }: TProps) => {
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -44,20 +45,15 @@ const CategoryFilter = () => {
           <SelectValue placeholder={"Select Category"} />
         </SelectTrigger>
 
-        {!isLoading && (
-          <SelectContent>
-            <SelectItem value={"All"}>All Category</SelectItem>
+        <SelectContent>
+          <SelectItem value={"All"}>All Category</SelectItem>
 
-            {data.map((item: any) => (
-              <SelectItem
-                key={"category-filter" + "-" + item.id}
-                value={item.id}
-              >
-                {item.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        )}
+          {categories?.map((item: any) => (
+            <SelectItem key={"category-filter" + "-" + item.id} value={item.id}>
+              {item.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
       </Select>
     </div>
   );
