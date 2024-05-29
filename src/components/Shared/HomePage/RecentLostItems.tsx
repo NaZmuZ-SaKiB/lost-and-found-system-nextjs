@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
 import Link from "next/link";
 
-export const fetchCache = "force-no-store";
-
 const RecentLostItems = async () => {
   const lostItems = await getAllLostItems({ limit: 4 });
 

@@ -6,8 +6,6 @@ import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export const fetchCache = "force-no-store";
-
 type TProps = {
   searchParams: any;
 };
