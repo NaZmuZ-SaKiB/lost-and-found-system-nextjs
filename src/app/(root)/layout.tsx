@@ -4,7 +4,6 @@ import "../globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Toaster } from "sonner";
-import Providers from "@/lib/Providers/Providers";
 import MobileNav from "@/components/Layout/MobileNav";
 import { BottomBarItems } from "@/constants";
 
@@ -22,18 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className={inter.className}>
-          <>
-            <Navbar />
-            <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
-            <MobileNav items={BottomBarItems} />
-            <Footer />
-            <Toaster position="top-center" />
-          </>
-        </body>
-      </html>
-    </Providers>
+    <html lang="en">
+      <body className={inter.className}>
+        <>
+          <Navbar />
+          <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
+          <MobileNav items={BottomBarItems} />
+          <Footer />
+          <Toaster position="bottom-right" />
+        </>
+      </body>
+    </html>
   );
 }

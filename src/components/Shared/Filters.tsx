@@ -14,7 +14,7 @@ const Filters = async ({
   category = true,
   limit = true,
 }: TProps) => {
-  const categories = await getAllCategories();
+  const categories = category ? await getAllCategories() : [];
 
   return (
     <>

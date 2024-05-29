@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import FoundItemCard from "../Card/FoundItemCard";
 import LostItemCard from "../Card/LostItemCard";
 import ClaimCard from "../Card/ClaimCard";

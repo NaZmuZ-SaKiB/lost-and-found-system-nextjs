@@ -3,7 +3,8 @@
 import { z } from "zod";
 import { UpdateProfileValidation } from "../validations/user.validation";
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { Tags } from "@/constants/tags";
 
 export const updateUser = async (
   data: z.infer<typeof UpdateProfileValidation>
@@ -24,6 +25,7 @@ export const updateUser = async (
   const result = await res.json();
 
   revalidatePath("/my-profile");
+  revalidateTag(Tags.USER);
 
   return result;
 };
@@ -53,4 +55,79 @@ export const getDashboardData = async () => {
       claimCount: 0,
     };
   }
+};
+
+export const getAllUsers = async (query: Record<string, any>) => {
+  const params = new URLSearchParams(query);
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api?${params.toString()}`,
+    {
+      headers: {
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      cache: "no-store",
+      next: {
+        tags: [Tags.USER],
+      },
+    }
+  );
+
+  const result = await res.json();
+
+  if (result?.success) {
+    return {
+      users: result?.data,
+      meta: result?.meta,
+    };
+  } else {
+    return {
+      users: [],
+      meta: {},
+    };
+  }
+};
+
+export const updateUserStatus = async (data: {
+  id: string;
+  data: { status: string };
+}) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/change-status/${data?.id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      body: JSON.stringify(data.data),
+      cache: "no-cache",
+    }
+  );
+
+  const result = await res.json();
+
+  revalidateTag(Tags.USER);
+
+  return result;
+};
+
+export const toggleUserRole = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/toggle-role/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: cookies().get("jwt")?.value as string,
+      },
+      cache: "no-cache",
+    }
+  );
+
+  const result = await res.json();
+
+  revalidateTag(Tags.USER);
+
+  return result;
 };

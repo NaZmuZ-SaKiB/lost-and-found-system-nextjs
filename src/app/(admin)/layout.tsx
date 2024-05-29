@@ -35,17 +35,15 @@ export default async function RootLayout({
   }
 
   return (
-    <Providers>
-      <html lang="en">
-        <body className={inter.className}>
-          <div className="pb-10">
-            <AdminNavbar />
-            <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
-            <MobileNav items={AdminBottomBarItems} />
-            <Toaster position="top-center" />
-          </div>
-        </body>
-      </html>
-    </Providers>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="pb-10">
+          <AdminNavbar />
+          <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
+          <MobileNav items={AdminBottomBarItems} />
+          <Toaster position="bottom-right" />
+        </div>
+      </body>
+    </html>
   );
 }
