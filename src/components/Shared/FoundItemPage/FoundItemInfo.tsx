@@ -26,7 +26,7 @@ const FoundItemInfo = ({ foundItem }: { foundItem: any }) => {
             />
           </div>
         )}
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <div className="flex max-sm:flex-col gap-4 items-center">
             <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg">
               <span className="font-semibold text-sm text-pink-500">
