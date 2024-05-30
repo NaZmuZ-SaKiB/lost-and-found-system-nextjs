@@ -10,8 +10,8 @@ const RecentLostItemsDataTable = async () => {
         Recent Lost Items
       </h4>
 
-      <div className="overflow-x-auto">
-        <div className="min-w-[600px]">
+      <div className="overflow-x-auto scrollbar-thin scrollbar-webkit">
+        <div className="min-w-[580px]">
           <div className="text-sm p-2 font-semibold bg-purple-500 text-white rounded-md grid gap-3 grid-cols-5 mb-2">
             <span className="col-span-2">Item Name</span>
             <span className="text-center">Contact No</span>

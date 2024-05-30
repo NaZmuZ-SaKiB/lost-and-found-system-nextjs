@@ -11,7 +11,7 @@ const UserSearchResults = async ({ searchParams }: TProps) => {
   const userData = await getAllUsers(searchParams);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto scrollbar-thin scrollbar-webkit">
       <div className="min-w-[700px]">
         <div className="text-sm p-2 font-semibold border rounded-md mb-1 bg-gray-50 border-gray-300 grid gap-3 grid-cols-6">
           <span className="col-span-2">Email</span>
