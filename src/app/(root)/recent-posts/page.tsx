@@ -15,7 +15,23 @@ const RecentPostsPage = async () => {
   return (
     <main className="px-2 sm:px-4">
       <div className="container !py-10">
-        <h1 className="text-4xl font-semibold mb-10">Recent Posts</h1>
+        <div className="flex max-sm:flex-col items-center justify-between gap-4 max-sm:mb-5 mb-10">
+          <h1 className="text-4xl font-semibold">Recent Posts</h1>
+
+          <div className="flex justify-center items-center gap-3 flex-wrap">
+            <Link href="/report-lost-item">
+              <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
+                Report A Lost Item
+              </Button>
+            </Link>
+
+            <Link href="/report-found-item">
+              <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
+                Report A Found Item
+              </Button>
+            </Link>
+          </div>
+        </div>
 
         <section className="container bg-gray-50 !py-10 !px-8 max-sm:!p-5 max-sm:!px-2 border border-gray-200 rounded-3xl">
           <h2 className="text-3xl font-semibold text-center">Found Items</h2>
