@@ -4,6 +4,16 @@ This is a lost item management frontend project. User can register and manage th
 
 ### [Live Site Link](https://lost-and-found-system-nextjs.vercel.app)
 
+### Credendials:
+
+`User:`
+`email:` sarah@gmail.com
+`password:` 22222222
+
+`Admin:`
+`email:` admin@gmail.com
+`password:` 11111111
+
 ## Technology
 
 1.  NextJs
