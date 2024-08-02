@@ -36,7 +36,7 @@ This is a lost item management frontend project. User can register and manage th
 1. Clone this repo:
    - `git clone https://github.com/NaZmuZ-SaKiB/lost-and-found-system-nextjs.git`
 2. Install all necessary dependencies:
-   - `lost-and-found-system-nextjs`
+   - `cd lost-and-found-system-nextjs`
    - `npm install` or `yarn`
 3. Create a `.env` file in current directory and add following properties:
 
