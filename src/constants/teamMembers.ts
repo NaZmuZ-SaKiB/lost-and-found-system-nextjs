@@ -5,35 +5,30 @@ import TeamMember4 from "@/assets/images/team-member-4.webp";
 
 export type TTeamMember = {
   name: string;
-  contactNo: string;
-  address: string;
+  position: string;
   image: string;
 };
 
 export const TeamMembers: TTeamMember[] = [
   {
     name: "John Doe",
-    contactNo: "+1234567890",
-    address: "Springfield, IL 62704, USA",
+    position: "Founder",
     image: TeamMember1.src,
   },
 
   {
     name: "Michael Johnson",
-    contactNo: "+1122334455",
-    address: "Gotham, NJ 07001, USA",
+    position: "Coordinator",
     image: TeamMember2.src,
   },
   {
     name: "Jane Smith",
-    contactNo: "+1987654321",
-    address: "Metropolis, NY 10001, USA",
+    position: "Community Manager",
     image: TeamMember3.src,
   },
   {
     name: "Emily Davis",
-    contactNo: "+1223344556",
-    address: "Star City, CA 90210, USA",
+    position: "Moderator",
     image: TeamMember4.src,
   },
 ];

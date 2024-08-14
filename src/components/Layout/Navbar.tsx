@@ -10,27 +10,27 @@ const Navbar = async () => {
   const user = await isUserLoggedIn();
 
   return (
-    <header className="border-b fixed top-0 bg-white bg-opacity-95 z-10 w-full py-3 px-3">
+    <header className="border-b fixed top-0 bg-white bg-opacity-90 backdrop-blur-lg z-10 w-full py-3 px-3">
       <div className="container flex gap-3 justify-between items-center">
         <Link href="/" className="size-[30px] sm:size-[50px] relative">
           <Image src={Logo.src} fill alt="logo" />
         </Link>
 
-        <div className="text-gray-600 space-x-4 hidden md:block">
+        <div className="text-slate-600 space-x-4 hidden md:block">
           <Link
-            className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+            className="hover:text-pink-600 border-b-2 border-transparent hover:border-pink-600"
             href="/"
           >
             Home
           </Link>
           <Link
-            className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+            className="hover:text-pink-600 border-b-2 border-transparent hover:border-pink-600"
             href="/#about-us"
           >
             About Us
           </Link>
           <Link
-            className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+            className="hover:text-pink-600 border-b-2 border-transparent hover:border-pink-600"
             href="/recent-posts"
           >
             Recent Posts
@@ -38,7 +38,7 @@ const Navbar = async () => {
           {user?.id && (
             <>
               <Link
-                className="hover:text-pink-500 border-b-2 border-transparent hover:border-pink-500"
+                className="hover:text-pink-600 border-b-2 border-transparent hover:border-pink-600"
                 href="/my-profile"
               >
                 My Profile
@@ -52,7 +52,7 @@ const Navbar = async () => {
             <>
               {user.role === "ADMIN" && (
                 <Link href="/admin/dashboard">
-                  <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
+                  <Button size="sm" className="bg-pink-600 hover:bg-pink-700">
                     Dashboard
                   </Button>
                 </Link>
@@ -65,13 +65,13 @@ const Navbar = async () => {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+                  className="bg-transparent border-pink-600 text-pink-600 hover:bg-pink-50 hover:text-pink-700"
                 >
                   Sign In
                 </Button>
               </Link>
               <Link href="/sign-up">
-                <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
+                <Button size="sm" className="bg-pink-600 hover:bg-pink-700">
                   Sign Up
                 </Button>
               </Link>

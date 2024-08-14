@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 const TestimonialCard = ({ testimony }: { testimony: any }) => {
   const emptyRating = 5 - testimony.rating;
   return (
-    <div className="rounded-xl bg-gray-100 flex-1 p-4 overflow-hidden basis-[250px]">
+    <div className="w-[500px] rounded-xl bg-gray-100 p-4 overflow-hidden">
       <div className="flex gap-3 items-center">
         <div className="relative size-[75px] rounded-full overflow-hidden">
           <Image

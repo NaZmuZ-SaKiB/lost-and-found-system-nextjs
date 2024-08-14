@@ -5,8 +5,10 @@ const OurTeam = () => {
   return (
     <section className="py-20">
       <div className="container">
-        <h2 className="text-4xl font-semibold text-center">Our Team</h2>
-        <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+        <h2 className="text-4xl text-slate-700 font-semibold text-center">
+          Our Team
+        </h2>
+        <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-600" />
 
         <div className="flex flex-wrap gap-3 mt-10">
           {TeamMembers.map((member, index) => (

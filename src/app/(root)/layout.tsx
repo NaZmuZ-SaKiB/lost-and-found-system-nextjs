@@ -23,7 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, " scrollbar-thin scrollbar-webkit")}>
+      <body
+        className={cn(
+          inter.className,
+          "w-[100vw] overflow-x-hidden scrollbar-thin scrollbar-webkit"
+        )}
+      >
         <>
           <Navbar />
           <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>

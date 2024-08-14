@@ -6,8 +6,12 @@
   @apply mx-auto  max-w-screen-xl p-0;
 }
 
+.container-sm {
+  @apply mx-auto max-w-screen-lg p-0;
+}
+
 .bottombar {
-  @apply fixed bottom-0 z-10 w-full  bg-white bg-opacity-95 max-sm:p-2 backdrop-blur-lg xs:px-7 md:hidden;
+  @apply fixed bottom-0 z-10 w-full  bg-white bg-opacity-90 max-sm:p-2 backdrop-blur-lg xs:px-7 md:hidden;
 }
 
 .bottombar_container {
@@ -15,9 +19,19 @@
 }
 
 .bottombar_link {
-  @apply relative flex flex-col text-gray-900 items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
+  @apply relative flex flex-col text-slate-500 items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
 }
 
 .item_card {
-  @apply rounded-xl overflow-hidden pb-20 border border-gray-200 bg-white relative basis-[300px] hover:shadow-lg transition-shadow duration-300;
+  @apply rounded-2xl overflow-hidden p-3 pt-3.5 pb-16 bg-white relative basis-[300px] max-w-[350px] shadow-md hover:shadow-lg transition-shadow duration-300;
+}
+
+.hero-bg {
+  @apply absolute -z-10 inset-0 h-full w-full bg-pink-50/80 bg-[linear-gradient(to_right,#80808020_1px,transparent_1px),linear-gradient(to_bottom,#80808020_1px,transparent_1px)] bg-[size:30px_30px];
+}
+
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  justify-items: center;
 }

@@ -23,36 +23,45 @@ export const FooterLinks = [
   { href: "/", label: "Support" },
 ];
 
+export const FooterLinks2 = [
+  { href: "/", label: "Home" },
+  { href: "/recent-posts", label: "Recently Added" },
+  { href: "/found-item", label: "Found Items" },
+  { href: "/lost-item", label: "Lost Items" },
+  { href: "/report-lost-item", label: "Report Lost Item" },
+  { href: "/report-found-item", label: "Report Found Item" },
+];
+
 export const FooterSocialLinks = [
   {
     href: "https://www.facebook.com",
     label: "Facebook",
     icon: FaFacebook,
-    color: "hover:text-blue-500",
+    color: "!text-blue-500/80 hover:!text-blue-500",
   },
   {
     href: "https://www.twitter.com",
     label: "Twitter",
     icon: FaTwitter,
-    color: "hover:text-blue-400",
+    color: "!text-blue-400/80 hover:!text-blue-400",
   },
   {
     href: "https://www.instagram.com",
     label: "Instagram",
     icon: FaInstagramSquare,
-    color: "hover:text-pink-700",
+    color: "!text-pink-600/80 hover:!text-pink-600",
   },
   {
     href: "https://www.linkedin.com",
     label: "LinkedIn",
     icon: FaLinkedin,
-    color: "hover:text-blue-600",
+    color: "!text-blue-600/80 hover:!text-blue-600",
   },
   {
     href: "https://www.youtube.com",
     label: "YouTube",
     icon: FaYoutube,
-    color: "hover:text-red-500",
+    color: "!text-red-500/80 hover:!text-red-500",
   },
 ];
 
@@ -60,23 +69,35 @@ export const FollowersCountList = [
   {
     label: "Facebook",
     icon: FaFacebook,
-    count: "750K+",
+    count: 750,
+    countAfterText: "K+",
+    bgColor: "bg-blue-600",
+    subText: "Likes",
   },
   {
     label: "Twitter",
     icon: FaTwitter,
-    count: "470K+",
+    count: 470,
+    countAfterText: "K+",
+    bgColor: "bg-blue-500",
+    subText: "Followers",
   },
   {
     label: "Instagram",
     icon: FaInstagramSquare,
-    count: "600K+",
+    count: 600,
+    countAfterText: "K+",
+    bgColor: "bg-pink-700",
+    subText: "Followers",
   },
 
   {
     label: "YouTube",
     icon: FaYoutube,
-    count: "1.5M+",
+    count: 1.5,
+    countAfterText: "M+",
+    bgColor: "bg-red-500",
+    subText: "Subscribers",
   },
 ];
 

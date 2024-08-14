@@ -4,6 +4,7 @@ import MarkAsFoundButton from "../Shared/MarkAsFoundButton";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import PlaceHolderImage from "@/assets/images/placeholder-image.webp";
+import { cn } from "@/lib/utils";
 
 type TProps = {
   lostItem: any;
@@ -15,7 +16,12 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
 
   return (
     <div className="item_card">
-      <div className="w-full h-[200px] relative mb-3 border-b">
+      <div
+        className={cn(
+          "w-full h-[200px] rounded-xl overflow-hidden relative mb-3 border border-slate-300",
+          { "bg-slate-100 border-0": !lostItem?.image }
+        )}
+      >
         <Image
           src={lostItem?.image || PlaceHolderImage.src}
           className="object-cover object-center"
@@ -23,30 +29,21 @@ const LostItemCard = ({ lostItem, userId }: TProps) => {
           alt={lostItem?.lostItemName}
         />
       </div>
-      <h3 className="text-lg font-semibold px-2 mb-3">
+      <h3 className="text-xl text-slate-700 font-semibold mb-3 p-1">
         {lostItem.lostItemName}
       </h3>
-      <ul className="flex flex-col gap-1 px-2 text-gray-600 text-sm list-inside list-disc">
-        <li className="list-item">
-          <span className="font-semibold">Location:</span> {lostItem.location}
-        </li>
-        <li className="list-item">
-          <span className="font-semibold">Lost Date:</span>{" "}
-          {new Date(
-            lostItem.lostDate || lostItem.createdAt
-          ).toLocaleDateString()}
-        </li>
 
-        <li className="list-item">
-          <span className="font-semibold">Contact:</span>{" "}
-          {lostItem.contactNo || lostItem.user.userProfile.contactNo}
-        </li>
-      </ul>
-      <div className="text-center w-full left-0 px-2 absolute bottom-3 flex gap-3">
+      <p className="text-slate-600 text-sm leading-6 p-1">
+        {lostItem.lostItemName} was lost on{" "}
+        {new Date(lostItem.lostDate).toDateString()} at {lostItem.location}. If
+        found, please contact the owner at{" "}
+        {lostItem.contactNo || lostItem.user.userProfile.contactNo}.
+      </p>
+      <div className="text-center w-full left-0 px-3.5 absolute bottom-3.5 flex gap-3">
         <Link href={`/lost-item/${lostItem.id}`} className="flex-1">
           <Button
             variant="outline"
-            className="w-full bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+            className="w-full rounded-md bg-transparent border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-pink-50"
             size="sm"
           >
             View

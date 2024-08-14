@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { IoCall } from "react-icons/io5";
-import { IoLocationSharp } from "react-icons/io5";
 
 import { TTeamMember } from "@/constants";
+import ShineBorder from "../magicui/shine-border";
+import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 type TProps = {
   member: TTeamMember;
@@ -11,8 +11,13 @@ type TProps = {
 const TeamMemberCard = ({ member }: TProps) => {
   return (
     <div className="rounded-3xl flex-1 p-4 overflow-hidden basis-[250px]">
-      <div className="mx-auto border-2 border-pink-500 rounded-full p-1 h-[150px] w-[150px]">
-        <div className="size-full rounded-full overflow-hidden relative">
+      <ShineBorder
+        borderRadius={1000}
+        borderWidth={2}
+        className="relative mx-auto border-2 border-transparent rounded-full h-[150px] min-w-[150px] w-[150px] p-0 flex items-center justify-center"
+        color={["#FF69B4", "#DA70D6", "#DA70D6"]}
+      >
+        <div className="size-[138px] rounded-full overflow-hidden relative">
           <Image
             src={member.image}
             alt={member.name}
@@ -20,15 +25,18 @@ const TeamMemberCard = ({ member }: TProps) => {
             className="object-cover object-center"
           />
         </div>
-      </div>
+      </ShineBorder>
       <div className="mt-3  text-center">
-        <h5 className=" text-lg text-gray-700 font-bold mb-2">{member.name}</h5>
-        <p className="flex justify-center items-center gap-2 mb-2">
-          <IoCall /> {member.contactNo}
+        <h5 className="text-xl text-slate-700 font-bold">{member.name}</h5>
+        <p className="text-slate-600 flex justify-center items-center gap-2 mb-3">
+          {member.position}
         </p>
-        <p className="flex justify-center items-center gap-2">
-          <IoLocationSharp /> {member.address}
-        </p>
+
+        <div className="flex justify-center gap-2 items-center">
+          <FaFacebook className="text-xl text-blue-600/80 hover:text-blue-600 cursor-pointer" />
+          <FaTwitter className="text-xl text-blue-400/80 hover:text-blue-400 cursor-pointer" />
+          <FaLinkedin className="text-xl text-blue-800/80 hover:text-blue-800 cursor-pointer" />
+        </div>
       </div>
     </div>
   );
