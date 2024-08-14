@@ -5,10 +5,8 @@ import { Toaster } from "sonner";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { redirect } from "next/navigation";
 
-import MobileNav from "@/components/Layout/MobileNav";
-
-import { AdminBottomBarItems } from "@/constants";
 import AdminNavbar from "@/components/Layout/AdminNavbar";
+import AdminSidebar from "@/components/Layout/AdminSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,12 +34,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="pb-10">
-          <AdminNavbar />
-          <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
-          <MobileNav items={AdminBottomBarItems} />
-          <Toaster position="bottom-right" />
+        <AdminNavbar />
+        <div className="flex">
+          <AdminSidebar />
+          <div className="h-svh flex-1 overflow-y-auto pt-12 bg-slate-200/60">
+            {children}
+          </div>
         </div>
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );

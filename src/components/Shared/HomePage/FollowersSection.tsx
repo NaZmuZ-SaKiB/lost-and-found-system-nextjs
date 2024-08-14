@@ -6,7 +6,7 @@ import { FollowersCountList } from "@/constants";
 
 const FollowersSection = () => {
   return (
-    <section className="py-10 px-2 sm:px-4">
+    <section className="py-20 px-2 sm:px-4">
       <div className="container">
         <h2 className="text-4xl text-slate-700 font-semibold text-center">
           Followers

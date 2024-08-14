@@ -52,7 +52,7 @@ export const signInAction = async (email: string, password: string) => {
 
   if (result.success) {
     cookies().set("jwt", result.data.token, {
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       httpOnly: true,
       sameSite: "none",
       path: "/",

@@ -7,10 +7,6 @@ export async function middleware(request: NextRequest) {
 
   const token = request.cookies.get("jwt");
 
-  if (token && (path === "/sign-in" || path === "/sign-up")) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
   if (!token && authRoutes.includes(path)) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }

@@ -54,7 +54,7 @@ const SignInPage = () => {
         >
           <div>
             <h1 className="text-4xl font-semibold text-center">Sign in</h1>
-            <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+            <div className="w-[75px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-600" />
           </div>
 
           <FormField
@@ -91,22 +91,54 @@ const SignInPage = () => {
           />
 
           <p className="">
-            <Link href="/sign-in" className="text-pink-500">
+            <Link href="/sign-in" className="text-pink-600">
               Forgot Password?
             </Link>
           </p>
 
-          <Button
-            className={`bg-pink-500 hover:bg-pink-600 disabled:bg-gray-400 disabled:animate-pulse`}
-            type="submit"
-            disabled={form.formState.isSubmitting}
-          >
-            {!form.formState.isSubmitting ? "Sign In" : "Signing In..."}
-          </Button>
+          <div>
+            <Button
+              className={`w-full bg-pink-600 hover:bg-pink-700 disabled:bg-gray-400 disabled:animate-pulse`}
+              type="submit"
+              disabled={form.formState.isSubmitting}
+            >
+              {!form.formState.isSubmitting ? "Sign In" : "Signing In..."}
+            </Button>
+
+            <div className="mt-3 space-x-3 text-center">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={form.formState.isSubmitting}
+                className="px-2 h-8 bg-transparent border-pink-600 text-pink-600 hover:bg-pink-50 hover:text-pink-700 disabled:opacity-50"
+                onClick={() => {
+                  form.setValue("email", "sarah@gmail.com");
+                  form.setValue("password", "22222222");
+                  form.handleSubmit(onSubmit)();
+                }}
+              >
+                Test User Login
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="px-2 h-8 bg-transparent border-pink-600 text-pink-600 hover:bg-pink-50 hover:text-pink-700"
+                onClick={() => {
+                  form.setValue("email", "admin@gmail.com");
+                  form.setValue("password", "11111111");
+                  form.handleSubmit(onSubmit)();
+                }}
+              >
+                Test Admin Login
+              </Button>
+            </div>
+          </div>
         </form>
         <p className=" mt-3">
           {"Don't"} have an account?{" "}
-          <Link href="/sign-up" className="text-pink-500">
+          <Link href="/sign-up" className="text-pink-600">
             Sign up
           </Link>
         </p>

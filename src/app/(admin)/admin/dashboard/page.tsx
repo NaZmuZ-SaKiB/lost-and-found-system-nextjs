@@ -23,7 +23,7 @@ const AdminDashboardPage = async () => {
         <DashboardMetaData />
       </Suspense>
 
-      <div className="mt-10 xl:grid grid-cols-2 gap-3">
+      <div className="mt-4">
         <Suspense fallback={<DataTableLoading />}>
           <RecentFoundItemsDataTable />
         </Suspense>

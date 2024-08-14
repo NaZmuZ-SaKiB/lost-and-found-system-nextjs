@@ -7,7 +7,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import { AiFillHome } from "react-icons/ai";
+import { AiFillDashboard, AiFillHome } from "react-icons/ai";
 import { FaInfoCircle } from "react-icons/fa";
 import { BsPostcardFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
@@ -181,6 +181,29 @@ export const AdminBottomBarItems = [
     label: "Category",
     route: "/admin/category",
     icon: BiSolidCategory,
+  },
+];
+
+export const AdminSidebarItems = [
+  {
+    label: "Dashboard",
+    route: "/admin/dashboard",
+    icon: AiFillDashboard,
+  },
+  {
+    label: "Manage Users",
+    route: "/admin/manage-users",
+    icon: FaUserGroup,
+  },
+  {
+    label: "Manage Category",
+    route: "/admin/category",
+    icon: BiSolidCategory,
+  },
+  {
+    label: "Back to Home",
+    route: "/",
+    icon: AiFillHome,
   },
 ];
 
