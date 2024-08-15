@@ -4,12 +4,15 @@ import UsersDataLoading from "@/components/Loaders/UsersDataLoading";
 import Filters from "@/components/Shared/Filters";
 import { Suspense } from "react";
 import SearchResults from "./SearchResults";
+import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 
 type TProps = {
   searchParams: any;
 };
 
-const AdminFoundItemsPage = ({ searchParams }: TProps) => {
+const AdminFoundItemsPage = async ({ searchParams }: TProps) => {
+  const user = await isUserLoggedIn();
+
   return (
     <main className="container !py-10 !px-2 sm:!px-4">
       <h1 className="text-4xl font-semibold">Found Items</h1>
@@ -24,7 +27,11 @@ const AdminFoundItemsPage = ({ searchParams }: TProps) => {
         key={JSON.stringify(searchParams)}
         fallback={<UsersDataLoading />}
       >
-        <SearchResults searchParams={searchParams} />
+        <SearchResults
+          searchParams={searchParams}
+          role={user?.role as any}
+          id={user?.id as any}
+        />
       </Suspense>
     </main>
   );

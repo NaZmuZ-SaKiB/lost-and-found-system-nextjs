@@ -3,12 +3,19 @@ import Filters from "@/components/Shared/Filters";
 import UserSearchResults from "@/components/Shared/UserSearchResults";
 import UsersDataLoading from "@/components/Loaders/UsersDataLoading";
 import FiltersLoading from "@/components/Loaders/FiltersLoading";
+import { isUserLoggedIn } from "@/lib/actions/auth.actions";
+import { redirect } from "next/navigation";
 
 type TProps = {
   searchParams: any;
 };
 
 const ManageUsersPage = async ({ searchParams }: TProps) => {
+  const user = await isUserLoggedIn();
+
+  if (user?.role !== "ADMIN") {
+    redirect("/user/dashboard");
+  }
   return (
     <main className="container !py-10 !px-2 sm:!px-4">
       <h1 className="text-4xl font-semibold">User Management</h1>

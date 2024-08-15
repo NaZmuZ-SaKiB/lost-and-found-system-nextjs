@@ -11,12 +11,12 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoutButton from "../Shared/LogoutButton";
 
-const ProfileMenu = async () => {
+const DashboardProfileMenu = async () => {
   const profile = await currentUser();
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="outline-none no-focus flex items-center gap-2 bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-md font-semibold">
+      <DropdownMenuTrigger className="outline-none no-focus flex items-center gap-2 bg-slate-800 text-slate-50 hover:bg-pink-800 px-3 py-1 rounded-md font-semibold">
         {profile?.name?.split(" ")[0]}
         <div className="mx-auto relative size-[40px] rounded-full overflow-hidden">
           <Image
@@ -27,18 +27,13 @@ const ProfileMenu = async () => {
           />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem className="cursor-pointer">
+      <DropdownMenuContent className="bg-slate-900 border-0 text-slate-50">
+        <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">
           <Link href={`/${profile.user.role.toLowerCase()}/profile`}>
             Profile
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
-          <Link href={`/${profile.user.role.toLowerCase()}/dashboard`}>
-            Dashboard
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">
           <LogoutButton />
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -46,4 +41,4 @@ const ProfileMenu = async () => {
   );
 };
 
-export default ProfileMenu;
+export default DashboardProfileMenu;

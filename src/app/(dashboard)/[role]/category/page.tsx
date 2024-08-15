@@ -2,8 +2,16 @@ import { getAllCategories } from "@/lib/actions/category.actions";
 import AddCategoryModal from "./components/AddCategoryModal";
 import "@/styles/table.css";
 import UpdateCategoryModal from "./components/UpdateCategoryModal";
+import { isUserLoggedIn } from "@/lib/actions/auth.actions";
+import { redirect } from "next/navigation";
 
 const ManageCategoryPage = async () => {
+  const user = await isUserLoggedIn();
+
+  if (user?.role !== "ADMIN") {
+    redirect("/user/dashboard");
+  }
+
   const categories = await getAllCategories();
 
   return (

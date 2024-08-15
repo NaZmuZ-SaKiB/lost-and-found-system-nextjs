@@ -7,7 +7,11 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import { AiFillAppstore, AiFillHome } from "react-icons/ai";
+import {
+  AiFillAppstore,
+  AiFillExclamationCircle,
+  AiFillHome,
+} from "react-icons/ai";
 import { FaInfoCircle } from "react-icons/fa";
 import { BsPostcardFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
@@ -109,7 +113,7 @@ export const DashboardItems2 = [
   "claimCount",
 ];
 
-export const DashboardItems = [
+export const AdminDashboardItems = [
   {
     title: "Active Users",
     field: "userCount",
@@ -138,6 +142,30 @@ export const DashboardItems = [
   },
 ];
 
+export const UserDashboardItems = [
+  {
+    title: "Lost Items",
+    field: "lostItemCount",
+    className: "bg-red-500 hover:bg-red-600",
+  },
+  {
+    title: "Found Items",
+    field: "foundItemCount",
+    className: "bg-purple-500 hover:bg-purple-600",
+  },
+
+  {
+    title: "Total Claims",
+    field: "claimCount",
+    className: "bg-pink-500 hover:bg-pink-600",
+  },
+  {
+    title: "Successful Reunions",
+    field: "returnedItemCount",
+    className: "bg-green-500 hover:bg-green-600 col-span-1 md:col-span-3",
+  },
+];
+
 export const BottomBarItems = [
   {
     label: "Home",
@@ -161,29 +189,6 @@ export const BottomBarItems = [
   },
 ];
 
-export const AdminBottomBarItems = [
-  {
-    label: "Home",
-    route: "/",
-    icon: AiFillHome,
-  },
-  {
-    label: "Profile",
-    route: "/my-profile",
-    icon: FaUser,
-  },
-  {
-    label: "Users",
-    route: "/admin/manage-users",
-    icon: FaUserGroup,
-  },
-  {
-    label: "Category",
-    route: "/admin/category",
-    icon: BiSolidCategory,
-  },
-];
-
 export const AdminSidebarItems = [
   {
     label: "Dashboard",
@@ -201,14 +206,42 @@ export const AdminSidebarItems = [
     icon: BsPostcardFill,
   },
   {
-    label: "Manage Users",
+    label: "Users",
     route: "/admin/manage-users",
     icon: FaUserGroup,
   },
   {
-    label: "Manage Category",
+    label: "Categories",
     route: "/admin/category",
     icon: BiSolidCategory,
+  },
+  {
+    label: "Back to Home",
+    route: "/",
+    icon: AiFillHome,
+  },
+];
+
+export const UserSidebarItems = [
+  {
+    label: "Dashboard",
+    route: "/user/dashboard",
+    icon: AiFillAppstore,
+  },
+  {
+    label: "My Lost Items",
+    route: "/user/lost-items",
+    icon: BsPostcardFill,
+  },
+  {
+    label: "My Found Items",
+    route: "/user/found-items",
+    icon: BsPostcardFill,
+  },
+  {
+    label: "Claims",
+    route: "/user/my-claims",
+    icon: AiFillExclamationCircle,
   },
   {
     label: "Back to Home",

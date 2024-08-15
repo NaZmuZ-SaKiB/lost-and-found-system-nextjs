@@ -11,7 +11,7 @@
 }
 
 .bottombar {
-  @apply fixed bottom-0 z-10 w-full  bg-white bg-opacity-90 max-sm:p-2 backdrop-blur-lg xs:px-7 md:hidden;
+  @apply fixed bottom-0 z-10 w-full  bg-white bg-opacity-90 max-sm:px-2 backdrop-blur-lg xs:px-7 md:hidden;
 }
 
 .bottombar_container {
@@ -19,7 +19,7 @@
 }
 
 .bottombar_link {
-  @apply relative flex flex-col text-slate-500 items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
+  @apply relative flex flex-col text-slate-500 items-center gap-1 sm:gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
 }
 
 .item_card {

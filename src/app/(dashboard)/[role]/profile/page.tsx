@@ -2,6 +2,9 @@ import { currentUser } from "@/lib/actions/auth.actions";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import PlaceHolderProfileImage from "@/assets/images/placeholder-profile.webp";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { FaEdit } from "react-icons/fa";
 
 const MyProfilePage = async () => {
   const profile = await currentUser();
@@ -10,8 +13,16 @@ const MyProfilePage = async () => {
   }
 
   return (
-    <main className="container !py-10 !px-2 sm:!px-4">
+    <main className="container !py-5 !px-2 sm:!px-4">
       <div className="flex flex-col items-center gap-5">
+        <Link
+          href={`/${profile.user.role.toLowerCase()}/profile/edit`}
+          className="self-end"
+        >
+          <Button className="bg-pink-600 hover:bg-pink-700" size="sm">
+            <FaEdit className="mr-2" /> Edit Profile
+          </Button>
+        </Link>
         <div className="mx-auto relative size-[250px] bg-white rounded-full overflow-hidden shadow-lg">
           <Image
             src={profile.image || PlaceHolderProfileImage.src}
@@ -38,14 +49,14 @@ const MyProfilePage = async () => {
             About {profile.name}
           </h3>
           <p className="whitespace-pre-wrap break-words mt-2 text-sm sm:text-base text-slate-700">
-            {profile?.aboutMe || "No About Me"}
+            {profile?.aboutMe || "N/A"}
           </p>
 
           <h3 className="text-lg font-semibold text-slate-700 mt-2">
             Interests
           </h3>
           <p className="text-sm sm:text-base text-slate-700">
-            {profile?.interests}
+            {profile?.interests || "N/A"}
           </p>
 
           <h3 className="text-lg font-semibold text-slate-700 mt-2">Contact</h3>
@@ -53,25 +64,15 @@ const MyProfilePage = async () => {
             <span className="font-medium">Email:</span> {profile?.user?.email}
           </p>
           <p className="text-sm sm:text-base text-slate-700">
-            <span className="font-medium">Phone:</span> {profile?.contactNo}
+            <span className="font-medium">Phone:</span>{" "}
+            {profile?.contactNo || "N/A"}
           </p>
           <p className="text-sm sm:text-base text-slate-700">
-            <span className="font-medium">Location:</span> {profile?.location}
+            <span className="font-medium">Location:</span>{" "}
+            {profile?.location || "N/A"}
           </p>
         </div>
       </div>
-
-      {/* <Suspense fallback={<ItemsBoxLoading />}>
-        <MyClaims userId={user?.user?.id} />
-      </Suspense>
-
-      <Suspense fallback={<ItemsBoxLoading />}>
-        <MyLostItems userId={user?.user?.id} />
-      </Suspense>
-
-      <Suspense fallback={<ItemsBoxLoading />}>
-        <MyFoundItems userId={user?.user?.id} />
-      </Suspense> */}
     </main>
   );
 };

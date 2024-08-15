@@ -5,8 +5,8 @@ import { Toaster } from "sonner";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import { redirect } from "next/navigation";
 
-import AdminNavbar from "@/components/Layout/AdminNavbar";
-import AdminSidebar from "@/components/Layout/AdminSidebar";
+import DashboardNavbar from "@/components/Layout/DashboardNavbar";
+import DashboardSidebar from "@/components/Layout/DashboardSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,16 +27,12 @@ export default async function RootLayout({
     redirect("/sign-in");
   }
 
-  if (user?.role !== "ADMIN") {
-    redirect("/");
-  }
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AdminNavbar />
+        <DashboardNavbar role={user.role} />
         <div className="flex">
-          <AdminSidebar />
+          <DashboardSidebar role={user.role} />
           <div className="h-svh flex-1 overflow-y-auto pt-12 bg-slate-200/60">
             {children}
           </div>

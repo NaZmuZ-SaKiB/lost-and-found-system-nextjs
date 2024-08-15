@@ -1,8 +1,15 @@
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
 import Link from "next/link";
 
-const RecentLostItemsDataTable = async () => {
-  const lostItems = await getAllLostItems({ limit: 10 });
+type TProps = { role: "ADMIN" | "USER"; id: string };
+
+const RecentLostItemsDataTable = async ({ role, id }: TProps) => {
+  const query: any = { limit: 10 };
+
+  if (role === "USER") {
+    query.userId = id;
+  }
+  const lostItems = await getAllLostItems(query);
 
   return (
     <div className="mt-5 border-2 border-purple-500 rounded-lg p-2 bg-purple-50">

@@ -1,8 +1,15 @@
 import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import Link from "next/link";
 
-const RecentFoundItemsDataTable = async () => {
-  const foundItems = await getAllFoundItems({ limit: 10 });
+type TProps = { role: "ADMIN" | "USER"; id: string };
+
+const RecentFoundItemsDataTable = async ({ role, id }: TProps) => {
+  const query: any = { limit: 10 };
+
+  if (role === "USER") {
+    query.userId = id;
+  }
+  const foundItems = await getAllFoundItems(query);
 
   return (
     <div className="mt-5 border-2 border-blue-500 rounded-lg p-2 bg-blue-50">

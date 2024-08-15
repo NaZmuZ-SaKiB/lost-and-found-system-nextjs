@@ -4,8 +4,16 @@ import { getAllFoundItems } from "@/lib/actions/foundItem.actions";
 import Link from "next/link";
 import "@/styles/table.css";
 
-const SearchResults = async ({ searchParams }: { searchParams: any }) => {
-  const foundItemsData = await getAllFoundItems(searchParams);
+type TProps = { role: "ADMIN" | "USER"; id: string; searchParams: any };
+
+const SearchResults = async ({ searchParams, role, id }: TProps) => {
+  const query: any = {};
+
+  if (role === "USER") {
+    query.userId = id;
+  }
+
+  const foundItemsData = await getAllFoundItems({ ...searchParams, ...query });
   const foundItems = foundItemsData?.data;
 
   return (

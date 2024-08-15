@@ -6,15 +6,17 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { AdminSidebarItems } from "@/constants";
+import { AdminSidebarItems, UserSidebarItems } from "@/constants";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RiMenu3Line } from "react-icons/ri";
 
-const AdminMobileSidebar = () => {
+const AdminMobileSidebar = ({ role }: { role: "ADMIN" | "USER" }) => {
   const pathname = usePathname();
+
+  const sidebarItems = role === "ADMIN" ? AdminSidebarItems : UserSidebarItems;
 
   return (
     <Sheet>
@@ -27,7 +29,7 @@ const AdminMobileSidebar = () => {
             <X className="size-6" />
           </SheetClose>
         </div>
-        {AdminSidebarItems.map((item) => (
+        {sidebarItems.map((item) => (
           <Link
             key={item.route}
             href={item.route}

@@ -4,8 +4,16 @@ import Link from "next/link";
 import "@/styles/table.css";
 import { getAllLostItems } from "@/lib/actions/lostItem.action";
 
-const SearchResults = async ({ searchParams }: { searchParams: any }) => {
-  const lostItemsData = await getAllLostItems(searchParams);
+type TProps = { role: "ADMIN" | "USER"; id: string; searchParams: any };
+
+const SearchResults = async ({ searchParams, role, id }: TProps) => {
+  const query: any = {};
+
+  if (role === "USER") {
+    query.userId = id;
+  }
+
+  const lostItemsData = await getAllLostItems({ ...searchParams, ...query });
   const lostItems = lostItemsData?.data;
 
   return (

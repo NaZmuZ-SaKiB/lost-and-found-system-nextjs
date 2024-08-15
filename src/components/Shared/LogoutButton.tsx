@@ -1,27 +1,20 @@
 "use client";
 
 import { signOutAction } from "@/lib/actions/auth.actions";
-import { Button } from "../ui/button";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
+  const router = useRouter();
   const handleLogout = async () => {
     try {
       await signOutAction();
-      toast.success("Logged out");
-    } catch (error: any) {
-      toast(error?.message || "Failed to log out");
-    }
+      router.push("/");
+    } catch (error: any) {}
   };
   return (
-    <Button
-      variant="outline"
-      size="sm"
-      className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
-      onClick={handleLogout}
-    >
-      Log out
-    </Button>
+    <div className="w-full" onClick={handleLogout}>
+      logout
+    </div>
   );
 };
 

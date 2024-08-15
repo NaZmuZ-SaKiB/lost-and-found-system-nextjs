@@ -1,20 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/assets/images/logo-small-white.png";
-import AdminMobileSidebar from "./AdminMobileSidebar";
-import ProfileMenu from "./ProfileMenu";
+import DashboardMobileSidebar from "./DashboardMobileSidebar";
+import ProfileMenu from "./DashboardProfileMenu";
 
-const AdminNavbar = async () => {
+const DashboardNavbar = ({ role }: { role: "ADMIN" | "USER" }) => {
   return (
     <header className="fixed top-0 bg-slate-900 z-10 w-full py-2 px-3">
       <div className="flex gap-3 justify-between items-center">
         <div className="flex items-center gap-3">
-          <AdminMobileSidebar />
+          <DashboardMobileSidebar role={role} />
           <Link href="/" className="size-[30px] relative">
             <Image src={Logo.src} fill alt="logo" />
           </Link>
-          <h1 className="text-2xl font-semibold capitalize text-slate-200">
-            Admin Panel
+          <h1 className="text-2xl font-semibold capitalize text-slate-200 max-sm:hidden">
+            {role === "ADMIN" ? "Admin Panel" : "Dashboard"}
           </h1>
         </div>
         <ProfileMenu />
@@ -23,4 +23,4 @@ const AdminNavbar = async () => {
   );
 };
 
-export default AdminNavbar;
+export default DashboardNavbar;

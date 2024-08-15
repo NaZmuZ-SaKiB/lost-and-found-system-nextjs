@@ -4,13 +4,13 @@ import Link from "next/link";
 import Logo from "@/assets/images/logo-small.webp";
 import { Button } from "../ui/button";
 import { isUserLoggedIn } from "@/lib/actions/auth.actions";
-import LogoutButton from "../Shared/LogoutButton";
+import ProfileMenu from "./ProfileMenu";
 
 const Navbar = async () => {
   const user = await isUserLoggedIn();
 
   return (
-    <header className="border-b fixed top-0 bg-white bg-opacity-90 backdrop-blur-lg z-10 w-full py-3 px-3">
+    <header className="border-b fixed top-0 bg-white bg-opacity-90 backdrop-blur-lg z-10 w-full py-2 px-3">
       <div className="container flex gap-3 justify-between items-center">
         <Link href="/" className="size-[30px] sm:size-[50px] relative">
           <Image src={Logo.src} fill alt="logo" />
@@ -39,7 +39,7 @@ const Navbar = async () => {
             <>
               <Link
                 className="hover:text-pink-600 border-b-2 border-transparent hover:border-pink-600"
-                href="/my-profile"
+                href={`/${user.role.toLowerCase()}/profile`}
               >
                 My Profile
               </Link>
@@ -49,16 +49,7 @@ const Navbar = async () => {
 
         <div className="space-x-3">
           {user?.id ? (
-            <>
-              {user.role === "ADMIN" && (
-                <Link href="/admin/dashboard">
-                  <Button size="sm" className="bg-pink-600 hover:bg-pink-700">
-                    Dashboard
-                  </Button>
-                </Link>
-              )}
-              <LogoutButton />
-            </>
+            <ProfileMenu />
           ) : (
             <>
               <Link href="/sign-in">
