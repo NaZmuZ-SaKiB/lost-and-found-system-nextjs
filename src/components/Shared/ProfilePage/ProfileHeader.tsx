@@ -29,30 +29,30 @@ const ProfileHeader = ({ name, email, age, contactNo, bio, image }: TProps) => {
       </div>
 
       <div className="flex flex-col items-center md:flex-row mt-10 gap-3">
-        <div className="mx-auto relative size-[150px] border border-pink-500 rounded-full overflow-hidden">
+        <div className="mx-auto relative size-[150px] border border-pink-600 rounded-full overflow-hidden">
           <Image
             src={image || PlaceHolderProfileImage.src}
             fill
             className="object-cover object-center p-1 rounded-full"
-            alt="lost item"
+            alt="profile pic"
           />
         </div>
 
         <div className="flex-1 w-full">
           <div className="flex max-sm:flex-col gap-4 items-center">
             <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg">
-              <span className="font-semibold text-sm text-pink-500">Name</span>
+              <span className="font-semibold text-sm text-pink-600">Name</span>
               <br />
               <span className="font-semibold">{name}</span>
             </div>
             <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg">
-              <span className="font-semibold text-sm text-pink-500">Email</span>
+              <span className="font-semibold text-sm text-pink-600">Email</span>
               <br />
               <span className="font-semibold">{email}</span>
             </div>
           </div>
           <div className="w-full text-lg bg-white px-4 py-2 rounded-lg mt-4">
-            <span className="font-semibold text-sm text-pink-500">Bio</span>
+            <span className="font-semibold text-sm text-pink-600">Bio</span>
             <br />
             <span className="text-base">{bio || "N/A"}</span>
           </div>
@@ -60,12 +60,12 @@ const ProfileHeader = ({ name, email, age, contactNo, bio, image }: TProps) => {
       </div>
       <div className="flex mt-4 max-sm:flex-col gap-4 items-center">
         <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg">
-          <span className="font-semibold text-sm text-pink-500">Age</span>
+          <span className="font-semibold text-sm text-pink-600">Age</span>
           <br />
           <span className="font-semibold">{age || "N/A"}</span>
         </div>
         <div className="felx-1 w-full text-lg bg-white px-4 py-2 rounded-lg">
-          <span className="font-semibold text-sm text-pink-500">
+          <span className="font-semibold text-sm text-pink-600">
             Contact No
           </span>
           <br />
@@ -77,7 +77,7 @@ const ProfileHeader = ({ name, email, age, contactNo, bio, image }: TProps) => {
         <Link href="/change-password">
           <Button
             variant="outline"
-            className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+            className="bg-transparent border-pink-600 text-pink-600 hover:bg-pink-100 hover:text-pink-700"
           >
             Change Password
           </Button>

@@ -71,7 +71,7 @@ const ImageUploadButton = ({
         <Button
           type="button"
           size="sm"
-          className="bg-pink-500 hover:bg-pink-600"
+          className="bg-pink-600 hover:bg-pink-700"
           onClick={() => imgInputRef.current?.click()}
         >
           {image ? "Change" : title || "Add"} Image
@@ -81,7 +81,7 @@ const ImageUploadButton = ({
             type="button"
             size="sm"
             variant="outline"
-            className="bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+            className="bg-transparent border-pink-600 text-pink-600 hover:bg-pink-100 hover:text-pink-700"
             onClick={removeImage}
           >
             remove Image

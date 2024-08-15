@@ -40,6 +40,7 @@ export const getDashboardData = async () => {
       cache: "no-cache",
       next: {
         tags: [Tags.DASHBOARD],
+        revalidate: 0,
       },
     }
   );

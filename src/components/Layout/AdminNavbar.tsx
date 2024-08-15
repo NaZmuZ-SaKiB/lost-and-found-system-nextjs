@@ -1,14 +1,10 @@
-import { isUserLoggedIn } from "@/lib/actions/auth.actions";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import LogoutButton from "../Shared/LogoutButton";
 import Logo from "@/assets/images/logo-small-white.png";
 import AdminMobileSidebar from "./AdminMobileSidebar";
+import ProfileMenu from "./ProfileMenu";
 
 const AdminNavbar = async () => {
-  const user = await isUserLoggedIn();
-
   return (
     <header className="fixed top-0 bg-slate-900 z-10 w-full py-2 px-3">
       <div className="flex gap-3 justify-between items-center">
@@ -21,6 +17,7 @@ const AdminNavbar = async () => {
             Admin Panel
           </h1>
         </div>
+        <ProfileMenu />
       </div>
     </header>
   );

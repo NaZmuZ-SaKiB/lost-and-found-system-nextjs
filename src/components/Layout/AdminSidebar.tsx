@@ -9,7 +9,7 @@ const AdminSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="hidden lg:flex flex-col w-[220px] h-svh pt-12 bg-slate-900 border-r border-slate-300">
+    <div className="hidden lg:flex flex-col w-[220px] h-svh pt-14 bg-slate-900 border-r border-slate-300">
       {AdminSidebarItems.map((item) => (
         <Link
           href={item.route}

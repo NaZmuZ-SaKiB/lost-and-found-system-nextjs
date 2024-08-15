@@ -24,6 +24,10 @@ export const UpdateProfileValidation = z.object({
         invalid_type_error: "Bio must be a string.",
       })
       .optional(),
+    jobTitle: z.string().optional(),
+    interests: z.string().optional(),
+    aboutMe: z.string().optional(),
+    location: z.string().optional(),
     age: z.coerce
       .number({
         invalid_type_error: "Age must be a number.",

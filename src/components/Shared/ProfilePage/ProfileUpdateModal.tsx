@@ -37,6 +37,10 @@ type TProps = {
   contactNo: string;
   bio?: string;
   image?: string;
+  jobTitle?: string;
+  location?: string;
+  interests?: string;
+  aboutMe?: string;
 };
 
 const ProfileUpdateModal = ({
@@ -50,17 +54,21 @@ const ProfileUpdateModal = ({
   const [open, setOpen] = useState(false);
 
   const [image, setImage] = useState<File | null>(null);
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(oldImage || null);
 
   const form = useForm({
     resolver: zodResolver(UpdateProfileValidation),
     defaultValues: {
       email: email || "",
       profile: {
-        contactNo: contactNo || "",
         name: name || "",
-        bio: bio || "",
+        jobTitle: "",
         age: age || 0,
+        contactNo: contactNo || "",
+        bio: bio || "",
+        location: "",
+        interests: "",
+        aboutMe: "",
       },
     },
   });
@@ -89,11 +97,11 @@ const ProfileUpdateModal = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-pink-500 hover:bg-pink-600">
+        <Button className="bg-pink-600 hover:bg-pink-700">
           <FaEdit className="mr-2" /> Edit Profile
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Edit Profile</DialogTitle>
         </DialogHeader>
@@ -132,6 +140,20 @@ const ProfileUpdateModal = ({
                   <FormLabel className="">Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Name" className="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="profile.jobTitle"
+              render={({ field }) => (
+                <FormItem className="flex flex-col w-full">
+                  <FormLabel className="">Job Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Job Title" className="" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -184,9 +206,55 @@ const ProfileUpdateModal = ({
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="profile.location"
+              render={({ field }) => (
+                <FormItem className="flex flex-col w-full">
+                  <FormLabel className="">Location</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Location" className="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="profile.interests"
+              render={({ field }) => (
+                <FormItem className="flex flex-col w-full">
+                  <FormLabel className="">Interests</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Interests" className="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="profile.aboutMe"
+              render={({ field }) => (
+                <FormItem className="flex flex-col w-full">
+                  <FormLabel className="">About Me</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="About Me"
+                      className="resize-y max-h-[500px] overflow-y-auto"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <DialogFooter>
               <Button
-                className={`w-full bg-pink-500 hover:bg-pink-600 disabled:bg-gray-400 disabled:animate-pulse`}
+                className={`w-full bg-pink-600 hover:bg-pink-700 disabled:bg-gray-400 disabled:animate-pulse`}
                 type="submit"
                 disabled={form.formState.isSubmitting}
               >
