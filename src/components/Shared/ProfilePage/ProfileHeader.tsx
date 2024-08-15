@@ -1,8 +1,8 @@
 import Link from "next/link";
-import ProfileUpdateModal from "./ProfileUpdateModal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import PlaceHolderProfileImage from "@/assets/images/placeholder-profile.webp";
+import { FaEdit } from "react-icons/fa";
 
 type TProps = {
   name: string;
@@ -11,21 +11,28 @@ type TProps = {
   contactNo: string;
   bio?: string;
   image?: string;
+  role: string;
 };
 
-const ProfileHeader = ({ name, email, age, contactNo, bio, image }: TProps) => {
+const ProfileHeader = ({
+  name,
+  email,
+  age,
+  contactNo,
+  bio,
+  image,
+  role,
+}: TProps) => {
   return (
     <section className="container !py-10 !px-8 max-sm:!px-3 bg-gray-100 rounded-3xl">
       <div className="flex max-xs:flex-col justify-between items-center gap-4">
         <h1 className="text-4xl font-semibold">My Profile</h1>
-        <ProfileUpdateModal
-          name={name}
-          email={email}
-          age={age}
-          contactNo={contactNo}
-          bio={bio}
-          image={image}
-        />
+
+        <Link href={`/${role.toLowerCase()}/profile/edit`}>
+          <Button className="bg-pink-600 hover:bg-pink-700">
+            <FaEdit className="mr-2" /> Edit Profile
+          </Button>
+        </Link>
       </div>
 
       <div className="flex flex-col items-center md:flex-row mt-10 gap-3">
