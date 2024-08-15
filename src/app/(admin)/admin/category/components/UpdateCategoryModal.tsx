@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createCategory } from "@/lib/actions/category.actions";
+import { updateCategory } from "@/lib/actions/category.actions";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -36,40 +36,45 @@ const categoryValidation = z.object({
     .min(3, { message: "Name must be at least 3 char long." }),
 });
 
-const AddCategoryModal = () => {
+type TProps = {
+  id: string;
+  name: string;
+};
+
+const UpdateCategoryModal = ({ id, name }: TProps) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(categoryValidation),
     defaultValues: {
-      name: "",
+      name,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof categoryValidation>) => {
     try {
-      const result = await createCategory(values);
+      const result = await updateCategory(id, values);
       if (result.success) {
-        toast.success("Category created successfully");
+        toast.success("Category updated successfully");
         setOpen(false);
       } else {
         toast.error(result?.message);
       }
     } catch (error: any) {
-      toast.error(error?.message || "Failed to create category");
+      toast.error(error?.message || "Failed to update category");
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-pink-600 hover:bg-pink-700">
-          <FaEdit className="mr-2" /> Create Category
+        <Button size="sm" className="h-8">
+          <FaEdit className="mr-2" /> Edit
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create Category</DialogTitle>
+          <DialogTitle>Update Category</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -97,7 +102,7 @@ const AddCategoryModal = () => {
                 type="submit"
                 disabled={form.formState.isSubmitting}
               >
-                {form.formState.isSubmitting ? "Creating..." : "Create"}
+                {form.formState.isSubmitting ? "Updating..." : "Update"}
               </Button>
             </DialogFooter>
           </form>
@@ -107,4 +112,4 @@ const AddCategoryModal = () => {
   );
 };
 
-export default AddCategoryModal;
+export default UpdateCategoryModal;

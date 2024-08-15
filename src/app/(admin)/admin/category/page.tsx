@@ -1,5 +1,7 @@
 import { getAllCategories } from "@/lib/actions/category.actions";
 import AddCategoryModal from "./components/AddCategoryModal";
+import "@/styles/table.css";
+import UpdateCategoryModal from "./components/UpdateCategoryModal";
 
 const ManageCategoryPage = async () => {
   const categories = await getAllCategories();
@@ -12,15 +14,33 @@ const ManageCategoryPage = async () => {
         <AddCategoryModal />
       </div>
 
-      <div className="mt-5 container !py-10 !px-8 max-sm:!px-3 bg-gray-100 rounded-3xl flex flex-col xs:flex-row gap-3 flex-wrap justify-start items-center">
-        {categories?.map((item: any) => (
-          <div
-            key={item?.id}
-            className="felx-1 text-center max-xs:w-full text-lg bg-white px-8 py-3 rounded-lg"
-          >
-            {item?.name}
-          </div>
-        ))}
+      <div className="overflow-x-auto scrollbar-thin scrollbar-webkit mt-5 p-2 bg-white rounded-lg">
+        <div className="min-w-[700px]">
+          <table className="table-auto admin-table">
+            <thead className="text-left">
+              <tr>
+                <th>Name</th>
+                <th>Found Items</th>
+                <th>Lost Items</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories?.map((item: any) => (
+                <tr key={item?.id}>
+                  <td>{item?.name}</td>
+                  <td>{item?._count?.foundItem}</td>
+                  <td>{item?._count?.lostItem}</td>
+                  <td>
+                    <div className="flex justify-end">
+                      <UpdateCategoryModal id={item?.id} name={item?.name} />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   );

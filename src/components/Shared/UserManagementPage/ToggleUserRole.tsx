@@ -12,8 +12,6 @@ const ToggleUserRole = ({ role, userId }: TProps) => {
 
   const newRole = role === "ADMIN" ? "USER" : "ADMIN";
 
-  const color = newRole === "ADMIN" ? "bg-red-600 hover:bg-red-600" : "";
-
   const handleToggleRole = async () => {
     setLoading(true);
 
@@ -35,7 +33,7 @@ const ToggleUserRole = ({ role, userId }: TProps) => {
   return (
     <Button
       size="sm"
-      className={`capitalize text-white ${color}`}
+      className={`capitalize text-white`}
       onClick={handleToggleRole}
       disabled={loading}
     >

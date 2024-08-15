@@ -2,6 +2,7 @@ import CustomPagination from "@/components/Form/CustomPagination";
 import ChangeUserStatus from "@/components/Shared/UserManagementPage/ChangeUserStatus";
 import ToggleUserRole from "@/components/Shared/UserManagementPage/ToggleUserRole";
 import { getAllUsers } from "@/lib/actions/user.actions";
+import "@/styles/table.css";
 
 type TProps = {
   searchParams: any;
@@ -11,37 +12,42 @@ const UserSearchResults = async ({ searchParams }: TProps) => {
   const userData = await getAllUsers(searchParams);
 
   return (
-    <div className="overflow-x-auto scrollbar-thin scrollbar-webkit">
+    <div className="overflow-x-auto scrollbar-thin scrollbar-webkit bg-white p-2 rounded-lg">
       <div className="min-w-[700px]">
-        <div className="text-sm p-2 font-semibold border rounded-md mb-1 bg-gray-50 border-gray-300 grid gap-3 grid-cols-6">
-          <span className="col-span-2">Email</span>
-          <span className="text-center">Role</span>
-          <span className="text-center">Status</span>
-          <span className="text-right col-span-2">Actions</span>
-        </div>
+        <table className="table-auto admin-table">
+          <thead className="text-left">
+            <tr>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-        {userData?.users?.length > 0 ? (
-          userData?.users?.map((user: any) => (
-            <div
-              key={user.id}
-              className="text-sm p-2 border rounded-md mb-1 border-gray-300 grid gap-3 grid-cols-6 hover:bg-gray-50 cursor-pointer"
-            >
-              <span className="col-span-2">{user.email}</span>
+          <tbody>
+            {userData?.users?.length > 0 ? (
+              userData?.users?.map((user: any) => (
+                <tr key={user.id}>
+                  <td>{user.email}</td>
 
-              <span className="text-center">{user.role}</span>
+                  <td>{user.role}</td>
 
-              <span className="text-center">{user.status}</span>
-              <span className="text-right col-span-2 space-x-2">
-                <ChangeUserStatus userId={user.id} status={user.status} />
-                <ToggleUserRole userId={user.id} role={user.role} />
-              </span>
-            </div>
-          ))
-        ) : (
-          <div className="mt-5 text-center border-2 p-3 text-lg font-semibold">
-            No Users
-          </div>
-        )}
+                  <td>{user.status}</td>
+                  <td>
+                    <div className="flex justify-end gap-3">
+                      <ChangeUserStatus userId={user.id} status={user.status} />
+                      <ToggleUserRole userId={user.id} role={user.role} />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="mt-5 text-center border-2 p-3 text-lg font-semibold">
+                <td colSpan={4}>No Users</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
 
       <CustomPagination

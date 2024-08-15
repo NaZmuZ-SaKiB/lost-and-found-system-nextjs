@@ -18,7 +18,7 @@ const SearchResults = async ({
 
   return (
     <>
-      <div className="flex gap-5 mt-10 justify-center flex-wrap">
+      <div className="custom-grid gap-5 mt-10">
         {items?.data?.map((item: any) => (
           <>
             {type === "found-item" && (

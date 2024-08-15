@@ -20,13 +20,13 @@ const RecentPostsPage = async () => {
 
           <div className="flex justify-center items-center gap-3 flex-wrap">
             <Link href="/report-lost-item">
-              <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
+              <Button size="sm" className="bg-pink-600 hover:bg-pink-700">
                 Report A Lost Item
               </Button>
             </Link>
 
             <Link href="/report-found-item">
-              <Button size="sm" className="bg-pink-500 hover:bg-pink-600">
+              <Button size="sm" className="bg-pink-600 hover:bg-pink-700">
                 Report A Found Item
               </Button>
             </Link>
@@ -35,7 +35,7 @@ const RecentPostsPage = async () => {
 
         <section className="container bg-gray-50 !py-10 !px-8 max-sm:!p-5 max-sm:!px-2 border border-gray-200 rounded-3xl">
           <h2 className="text-3xl font-semibold text-center">Found Items</h2>
-          <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+          <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-600" />
 
           <div className="flex gap-5 mt-10 justify-center flex-wrap">
             {foundItems?.data?.length ? (
@@ -53,7 +53,7 @@ const RecentPostsPage = async () => {
 
           <div className="flex justify-center mt-10">
             <Link href={"/found-item"}>
-              <Button className="bg-pink-500 hover:bg-pink-600">
+              <Button className="bg-pink-600 hover:bg-pink-700">
                 View All
               </Button>
             </Link>
@@ -62,7 +62,7 @@ const RecentPostsPage = async () => {
 
         <section className="container bg-gray-50 !py-10 !px-8 max-sm:!p-5 max-sm:!px-2 border border-gray-200 rounded-3xl mt-10">
           <h2 className="text-3xl font-semibold text-center">Lost Items</h2>
-          <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+          <div className="w-[50px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-600" />
 
           <div className="flex gap-5 mt-10 justify-center flex-wrap">
             {lostItems?.data?.length ? (
@@ -80,7 +80,7 @@ const RecentPostsPage = async () => {
 
           <div className="flex justify-center mt-10">
             <Link href={"/lost-item"}>
-              <Button className="bg-pink-500 hover:bg-pink-600">
+              <Button className="bg-pink-600 hover:bg-pink-700">
                 View All
               </Button>
             </Link>

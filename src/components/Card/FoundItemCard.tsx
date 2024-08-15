@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import FoundItemCardDeleteButton from "../Shared/FoundItemCardDeleteButton";
 import Image from "next/image";
 import PlaceHolderImage from "@/assets/images/placeholder-image.webp";
+import { cn } from "@/lib/utils";
 
 type TProps = {
   foundItem: any;
@@ -14,7 +15,12 @@ const FoundItemCard = ({ foundItem, userId }: TProps) => {
 
   return (
     <div className="item_card">
-      <div className="w-full h-[200px] relative mb-3 border-b">
+      <div
+        className={cn(
+          "w-full h-[200px] rounded-xl overflow-hidden relative mb-3 border border-slate-300",
+          { "bg-slate-100 border-0": !foundItem?.image }
+        )}
+      >
         <Image
           src={foundItem?.image || PlaceHolderImage.src}
           className="object-cover object-center"
@@ -22,30 +28,22 @@ const FoundItemCard = ({ foundItem, userId }: TProps) => {
           alt={foundItem?.foundItemName}
         />
       </div>
-      <h3 className="text-lg font-semibold px-2 mb-3">
+      <h3 className="text-xl text-slate-700 font-semibold mb-3 p-1">
         {foundItem.foundItemName}
       </h3>
-      <ul className="flex flex-col gap-1 px-2 list-disc list-inside text-gray-600 text-sm">
-        <li className="list-item">
-          <span className="font-semibold">Location:</span> {foundItem.location}
-        </li>
-        <li className="list-item">
-          <span className="font-semibold">Found Date:</span>{" "}
-          {new Date(
-            foundItem.foundDate || foundItem.createdAt
-          ).toLocaleDateString()}
-        </li>
 
-        <li className="list-item">
-          <span className="font-semibold">Contact:</span>{" "}
-          {foundItem.contactNo || foundItem.user.userProfile.contactNo}
-        </li>
-      </ul>
-      <div className="text-center w-full left-0 px-2 absolute bottom-3 flex gap-3">
+      <p className="text-slate-600 text-sm leading-6 p-1">
+        {foundItem.foundItemName} was found on{" "}
+        {new Date(foundItem.lostDate).toDateString()} at {foundItem.location}.
+        If this belongs to you or your friend, please contact me at{" "}
+        {foundItem.contactNo || foundItem.user.userProfile.contactNo}.
+      </p>
+
+      <div className="text-center w-full left-0 px-3.5 absolute bottom-3.5 flex gap-3">
         <Link href={`/found-item/${foundItem.id}`} className="flex-1">
           <Button
             variant="outline"
-            className="w-full bg-transparent border-pink-500 text-pink-500 hover:bg-pink-100 hover:text-pink-600"
+            className="w-full rounded-md bg-transparent border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-pink-50"
             size="sm"
           >
             View / Claim
