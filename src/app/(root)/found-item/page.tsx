@@ -18,7 +18,7 @@ const FoundItemPage = ({ searchParams }: TProps) => {
         <div className="flex max-xs:flex-col items-center justify-between gap-4">
           <h1 className="text-4xl font-semibold">Found Items</h1>
           <Link href="/report-found-item">
-            <Button className="bg-pink-500 hover:bg-pink-600">
+            <Button className="bg-pink-600 hover:bg-pink-700">
               Report A Found Item
             </Button>
           </Link>

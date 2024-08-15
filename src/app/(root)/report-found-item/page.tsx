@@ -10,7 +10,7 @@ const ReportFoundItemPage = async () => {
         <h1 className="text-4xl font-semibold text-center">
           Report Found Item
         </h1>
-        <div className="w-[125px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
+        <div className="w-[125px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-600" />
       </div>
 
       <FoundItemForm categories={categories} />

@@ -205,7 +205,7 @@ const FoundItemForm = ({ categories }: TProps) => {
           )}
         />
         <Button
-          className={`bg-pink-500 hover:bg-pink-600 disabled:bg-gray-400 disabled:animate-pulse`}
+          className={`bg-pink-600 hover:bg-pink-700 disabled:bg-gray-400 disabled:animate-pulse`}
           type="submit"
           disabled={form.formState.isSubmitting}
         >

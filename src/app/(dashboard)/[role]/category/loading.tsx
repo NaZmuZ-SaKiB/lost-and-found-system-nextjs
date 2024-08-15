@@ -1,3 +1,4 @@
+import UsersDataLoading from "@/components/Loaders/UsersDataLoading";
 import { Button } from "@/components/ui/button";
 
 const loading = () => {
@@ -9,15 +10,16 @@ const loading = () => {
         <Button className="bg-gray-300 hover:bg-gray-300 w-28"></Button>
       </div>
 
-      <div className="mt-5 container !py-10 !px-8 max-sm:!px-3 bg-gray-100 rounded-3xl flex flex-col xs:flex-row gap-3 flex-wrap justify-start items-center">
-        {Array(10)
-          .fill(0)
-          ?.map((_, i) => (
-            <div
-              key={"category-loading-" + i}
-              className="felx-1 max-xs:w-full h-10 animate-pulse w-40 bg-white px-8 py-3 rounded-lg"
-            ></div>
-          ))}
+      <div className="overflow-x-auto">
+        <div className="mt-3 min-w-[700px]">
+          <div className="text-sm p-2 font-semibold border rounded-md mb-1 bg-gray-50 border-gray-300 grid gap-3 grid-cols-6">
+            <span className="col-span-2">Email</span>
+            <span className="text-center">Role</span>
+            <span className="text-center">Status</span>
+            <span className="text-right col-span-2">Actions</span>
+          </div>
+          <UsersDataLoading />
+        </div>
       </div>
     </main>
   );
