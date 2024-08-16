@@ -7,9 +7,9 @@ import {
 
 import { currentUser } from "@/lib/actions/auth.actions";
 import PlaceHolderProfileImage from "@/assets/images/placeholder-profile.webp";
+import LogoutButton from "../Shared/LogoutButton";
 import Image from "next/image";
 import Link from "next/link";
-import LogoutButton from "../Shared/LogoutButton";
 
 const DashboardProfileMenu = async () => {
   const profile = await currentUser();
@@ -29,8 +29,32 @@ const DashboardProfileMenu = async () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-slate-900 border-0 text-slate-50">
         <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">
-          <Link href={`/${profile.user.role.toLowerCase()}/profile`}>
+          <Link href="/" className="w-full">
+            Home
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/profile`}
+            className="w-full"
+          >
             Profile
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/profile/edit`}
+            className="w-full"
+          >
+            Edit Profile
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/change-password`}
+            className="w-full"
+          >
+            Change Password
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer hover:!bg-slate-700 hover:!text-slate-50">

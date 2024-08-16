@@ -13,7 +13,7 @@ const MyProfilePage = async () => {
   }
 
   return (
-    <main className="container !py-5 !px-2 sm:!px-4">
+    <main className="container !py-6 !px-2 sm:!px-4">
       <div className="flex flex-col items-center gap-5">
         <Link
           href={`/${profile.user.role.toLowerCase()}/profile/edit`}
@@ -51,10 +51,10 @@ const MyProfilePage = async () => {
           <p className="whitespace-pre-wrap break-words mt-2 text-sm sm:text-base text-slate-700">
             {profile?.aboutMe || "N/A"}
           </p>
+        </div>
 
-          <h3 className="text-lg font-semibold text-slate-700 mt-2">
-            Interests
-          </h3>
+        <div className="bg-white rounded-lg p-5 w-full">
+          <h3 className="text-lg font-semibold text-slate-700">Interests</h3>
           <p className="text-sm sm:text-base text-slate-700">
             {profile?.interests || "N/A"}
           </p>

@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { changePassword } from "@/lib/actions/auth.actions";
 import { ChangePasswordValidation } from "@/lib/validations/auth.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -46,18 +45,15 @@ const ChangePasswordPage = () => {
   };
   return (
     <section className="max-w-screen-sm mx-auto !py-20 px-2 sm:px4">
+      <h1 className="text-3xl font-semibold text-center mb-8">
+        Change Password
+      </h1>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-start gap-10 max-sm:gap-6"
+          className="flex flex-col justify-start gap-10 max-sm:gap-6 bg-white p-5 rounded-lg"
         >
-          <div>
-            <h1 className="text-4xl font-semibold text-center">
-              Change Password
-            </h1>
-            <div className="w-[125px] h-[5px] mx-auto mt-4 rounded-3xl bg-pink-500" />
-          </div>
-
           <FormField
             control={form.control}
             name="oldPassword"
@@ -92,7 +88,7 @@ const ChangePasswordPage = () => {
           />
 
           <Button
-            className={`bg-pink-500 hover:bg-pink-600 disabled:bg-gray-400 disabled:animate-pulse`}
+            className={`bg-slate-900 hover:bg-slate-700 disabled:bg-gray-400 disabled:animate-pulse`}
             type="submit"
             disabled={form.formState.isSubmitting}
           >

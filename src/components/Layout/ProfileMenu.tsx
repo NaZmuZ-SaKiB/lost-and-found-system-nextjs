@@ -29,13 +29,35 @@ const ProfileMenu = async () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="cursor-pointer">
-          <Link href={`/${profile.user.role.toLowerCase()}/profile`}>
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/dashboard`}
+            className="w-full"
+          >
+            Dashboard
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/profile`}
+            className="w-full"
+          >
             Profile
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
-          <Link href={`/${profile.user.role.toLowerCase()}/dashboard`}>
-            Dashboard
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/profile/edit`}
+            className="w-full"
+          >
+            Edit Profile
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <Link
+            href={`/${profile.user.role.toLowerCase()}/change-password`}
+            className="w-full"
+          >
+            Change Password
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
