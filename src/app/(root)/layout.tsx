@@ -34,7 +34,7 @@ export default function RootLayout({
           <div className="pt-10 sm:pt-16 md:pt-20">{children}</div>
           <MobileNav items={BottomBarItems} />
           <Footer />
-          <Toaster position="bottom-right" />
+          <Toaster position="bottom-right" closeButton richColors />
         </>
       </body>
     </html>
